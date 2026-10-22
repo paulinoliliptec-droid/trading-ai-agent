@@ -44,6 +44,44 @@ SAAS_ARCHITECTURE.md).
   Programas para startups (Google for Startups Cloud) exigem candidatura. **Nada foi assumido.**
 - MongoDB Atlas: há créditos de arranque em programas para startups; sem conta Atlas configurada, nada verificado.
 
+## Fase 3: operação pessoal no projeto `serafy-agentics` (verificado a 22/10/2026, só leitura)
+
+Por decisão do dono, a aplicação corre no projeto GCP da Serafy Agentics, que já tem faturação. Verificação:
+
+- Há dois projetos da Serafy. **`serafy-agentics`** (n.º 37214601676) tem a faturação ativa (o Secret Manager
+  responde) e corre o serviço Cloud Run `agentos-angola` em `europe-west1`. **`serafy-agentics-fe12b`** tem a
+  faturação **desligada** (o Secret Manager recusa com `BILLING_DISABLED`): não serve.
+- Identidade: `paulinoliliptec@gmail.com` com `roles/owner` em ambos.
+- Compute Engine não está ativo no `serafy-agentics`: é a única API a ativar.
+- A conta de faturação e os créditos não são visíveis sem ativar a Cloud Billing API (não foi ativada).
+- Colisões: os segredos da Serafy são `GEMINI_API_KEY`, `TWILIO_*` e `WHATSAPP_VERIFY_TOKEN`; tudo o que esta
+  aplicação cria tem o prefixo `trading-ai` (conta de serviço, segredos, bucket, repositório, IP, VM) e a etiqueta
+  `app=trading-ai`. A conta de serviço só tem acesso aos seus próprios segredos e ao seu bucket.
+
+### Custo mensal incremental: operação pessoal (USD, us-central1)
+
+| Componente | Com nível gratuito | Sem nível gratuito |
+|---|---|---|
+| VM e2-micro (worker BTC/USD + bot), sempre ligada | 0 | ~6,1 |
+| Disco 30 GB pd-standard | 0 | ~1,2 |
+| IP externo estático (necessário para a lista do Atlas) | ~3,7 | ~3,7 |
+| Artifact Registry (~1,5 GB de imagem) | ~0,1 | ~0,1 |
+| Cloud Storage (modelos e datasets, < 1 GB) | 0 | < 0,1 |
+| Secret Manager (4 segredos, poucos acessos) | 0 | < 0,3 |
+| Logging (< 1 GB) e saída de rede (< 1 GB) | 0 | < 0,2 |
+| MongoDB Atlas M0 | 0 | 0 |
+| **Total** | **~4** | **~11 a 12** |
+
+O nível gratuito da e2-micro é **um por conta de faturação**: se outro projeto na mesma conta já o usar, vale a
+coluna da direita. Não foi possível confirmar sem a Cloud Billing API. O treino continua na Workstation, sem
+custo na GCP. Se passar para a cloud, um Cloud Run Job semanal de cerca de 45 minutos custa menos de 1 USD por mês.
+
+### Futuro SaaS (separado, não ativo)
+
+Mantém-se o cenário 3 acima (250 a 650 USD por mês para cerca de 100 tenants, sem jurídico nem suporte). Os
+componentes que só fazem sentido com clientes ficam desligados: API pública, autenticação de utilizadores,
+subscrições, Atlas dedicado (M10 ou superior) e um worker por tenant.
+
 ## O que falta para a GCP
 
 1. Decidir o projeto (novo projeto dedicado, por exemplo `trading-ai-agent`, ou um existente). **Criar um projeto

@@ -1,22 +1,31 @@
 # MongoDB Atlas
 
-## Estado (22/10/2026)
+## Estado e recursos (fase 3)
 
-**Sem acesso.** O ambiente não tem `MONGODB_URI`, nem a CLI do Atlas, nem configuração local. Nenhuma URI ou
-credencial foi inventada. Enquanto não houver, o agente usa SQLite local (`data/state.db` e `data/operacao.db`)
-com o MESMO contrato; a implementação MongoDB está testada contra `mongomock` (`tests/test_agent.py`).
+Recursos já criados (não criar outros): organização `6a97478c4b161a79239cafe2`, projeto **Trading AI Agent**
+(`6ada846a7dcd22b453a73fac`), cluster **`trading-ai-m0`** (M0 gratuito, AWS `US_EAST_1`). Os 500 USD de créditos
+promocionais são do Atlas (não da GCP) e não são precisos enquanto o cluster for M0.
 
-## O que é preciso (e só isto)
+## Ligação pela Atlas CLI (Workstation)
 
-| Item | Onde se obtém | Onde se guarda |
-|---|---|---|
-| Conta Atlas e um cluster **M0** (gratuito, 512 MB) | cloud.mongodb.com | |
-| Utilizador de base de dados com papel `readWrite` só na base `trading_agent` | Atlas → Database Access | |
-| Lista de acesso de rede: o IP de saída do worker (VM) e o da estação de trabalho | Atlas → Network Access | |
-| A URI `mongodb+srv://<utilizador>:<palavra-passe>@<cluster>/trading_agent?retryWrites=true&w=majority` | Atlas → Connect → Drivers | variável `MONGODB_URI` (`.env` local, nunca no Git) ou segredo `mongodb-uri` no Secret Manager |
+```bash
+atlas auth login                                   # interativo: o dono autoriza no navegador
+atlas config set project_id 6ada846a7dcd22b453a73fac
+scripts/atlas_setup.sh                             # utilizador readWrite só em trading_agent + IP temporário + .env
+python scripts/mongo_init.py                       # coleções e índices
+```
 
-Com a variável definida, `default_store()` e `default_repository()` passam a usar o Atlas sem mudar código, e os
-índices são criados no primeiro arranque. Para os criar antes: `python scripts/mongo_init.py`.
+`scripts/atlas_setup.sh` gera a palavra-passe localmente, escreve a `MONGODB_URI` só no `.env` (permissões 600,
+fora do Git) e nunca a imprime. O IP da Workstation entra na lista de acesso com expiração (`--deleteAfter`), porque
+o IP de saída pode mudar; o da VM entra como permanente depois de criada (IP estático).
+
+| Item | Valor |
+|---|---|
+| Utilizador | `trading-ai-agent`, papel `readWrite@trading_agent` (nada mais) |
+| Lista de acesso | IP da Workstation (temporário) e IP estático da VM `trading-ai-worker`. Nunca `0.0.0.0/0` |
+| URI | `mongodb+srv://trading-ai-agent:<palavra-passe>@<host>/trading_agent?retryWrites=true&w=majority`: `.env` local ou segredo `trading-ai-mongodb-uri` |
+
+Sem `MONGODB_URI`, o agente usa SQLite local (`data/state.db` e `data/operacao.db`) com o MESMO contrato.
 
 ## Coleções e índices
 
@@ -31,6 +40,7 @@ Todas com `tenant_id` obrigatório e `ts` (UTC). Definidas em `src/trading_agent
 | `equity` | Saldo, equity, capital comprometido e disponível em cada ciclo | `(tenant_id, ts)` |
 | `risk_events` | Vetos, limite diário, drawdown | `(tenant_id, ts)`; `(tenant_id, kind, ts)` |
 | `events` | Arranques, falhas de API, recuperações, erros, reconciliações | `(tenant_id, ts)`; `(tenant_id, level, ts)` |
+| `tenants` | Registo do tenant (só o pessoal nesta fase): membros, risco, nomes dos segredos, subscrição | **único** `tenant_id` |
 | `model_versions` | Modelos carregados (id, estado de aprovação, SHA-256) | **único** `(tenant_id, model_id)` |
 | `state` | Estado partilhado: kill switch, contas virtuais, velas processadas, pedidos de fecho | `_id` = chave |
 

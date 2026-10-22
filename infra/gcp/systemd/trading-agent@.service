@@ -5,9 +5,9 @@ Requires=docker.service
 
 [Service]
 EnvironmentFile=/etc/trading/image
-ExecStart=/usr/bin/docker run --rm --name agent-%i --env-file /etc/trading/env \
+ExecStart=/usr/bin/docker run --rm --name agent-%i --log-driver=gcplogs --env-file /etc/trading/env \
   -v /var/lib/trading/models_artifacts:/app/models_artifacts:ro ${IMAGE} \
-  python scripts/run_agent.py --symbol %i --modo paper --intervalo 60
+  python scripts/run_agent.py --symbol %i --modo observacao --intervalo 60
 Restart=always
 RestartSec=30
 
