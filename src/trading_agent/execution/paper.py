@@ -428,6 +428,7 @@ class PaperAccount(ExecutionVenue):
             "positions": {s: asdict(p) for s, p in self.positions_.items()}, "orders": self.orders,
             "pending": {cid: {**self.orders[cid], "client_order_id": cid} for cid in self.pending},
             "trades": self.trades, "marks": {k: list(v) for k, v in self.marks.items()},
+            "fills": [{**asdict(f), "side": str(f.side), "timestamp": _iso(f.timestamp)} for f in self.fills],
             "realized_pnl": self.realized_pnl, "fees_paid": self.fees_paid, "peak_equity": self.peak_equity,
             "day": self.day, "day_start_equity": self.day_start_equity, "last_equity": self.last_equity,
             "fx": [[a, b, r] for (a, b), r in self.fx.rates.items()],
@@ -441,6 +442,8 @@ class PaperAccount(ExecutionVenue):
         acc.positions_ = {s: OpenPosition(**p) for s, p in st["positions"].items()}
         acc.orders = st["orders"]
         acc.trades = st["trades"]
+        acc.fills = [Fill(f["client_order_id"], f["symbol"], Side(f["side"]), f["quantity"], f["price"], f["fee"], _dt(f["timestamp"]))
+                     for f in st.get("fills", [])]
         acc.marks = {k: tuple(v) for k, v in st["marks"].items()}
         acc.realized_pnl, acc.fees_paid = st["realized_pnl"], st["fees_paid"]
         acc.peak_equity, acc.day, acc.day_start_equity = st["peak_equity"], st["day"], st["day_start_equity"]

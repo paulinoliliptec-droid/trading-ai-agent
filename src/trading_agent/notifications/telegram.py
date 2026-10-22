@@ -21,10 +21,15 @@ class Event(StrEnum):
     STARTED = "Sistema iniciado"
     STOPPED = "Sistema interrompido"
     SIGNAL = "Novo sinal"
+    SIGNAL_APPROVED = "Sinal aprovado pelo risco"
+    SIGNAL_REJECTED = "Sinal rejeitado pelo risco"
     OPENED = "Operação simulada aberta"
     CLOSED = "Operação simulada encerrada"
     PNL = "Resultado"
     RISK_LIMIT = "Limite de risco atingido"
+    DRAWDOWN = "Drawdown"
+    DAILY_LIMIT = "Limite diário de perdas atingido"
+    TECH_FAILURE = "Falha técnica"
     BROKER_ERROR = "Erro na API da corretora"
     DAILY = "Relatório diário"
     WEEKLY = "Relatório semanal"
@@ -75,10 +80,12 @@ class TelegramCommands:
 
 
 def default_handlers(kill_switch, status_fn: Callable[[], str], portfolio_fn: Callable[[], str],
-                     performance_fn: Callable[[], str]) -> dict[str, CommandHandler]:
+                     performance_fn: Callable[[], str], store=None, tenant_id: str = "default") -> dict[str, CommandHandler]:
+    """Só consulta, pausa, retoma e paragem. Nada aqui muda pesos de modelos nem limites de risco."""
+
     def pause() -> str:
         kill_switch.engage("telegram", "/pause")
-        return "Pausado: nenhuma operação nova abre até /resume."
+        return "Pausado: nenhuma operação nova abre até /resume. As posições abertas continuam com stop e alvo."
 
     def resume() -> str:
         kill_switch.release("telegram")
@@ -86,7 +93,78 @@ def default_handlers(kill_switch, status_fn: Callable[[], str], portfolio_fn: Ca
 
     def stop() -> str:
         kill_switch.engage("telegram", "/stop")
-        return "Parado: kill switch acionado. Desarmar exige /resume."
+        if store is not None:
+            store.put(f"command:{tenant_id}:close_all", {"by": "telegram", "done": False})
+        return "Parado: kill switch acionado e posições simuladas a fechar no próximo ciclo. Desarmar exige /resume."
 
     return {"/status": status_fn, "/portfolio": portfolio_fn, "/performance": performance_fn,
             "/pause": pause, "/resume": resume, "/stop": stop}
+
+
+@dataclass
+class TelegramBot:
+    """Recebe comandos por long polling (`getUpdates`). Corre num processo próprio: fala com o
+    worker só através do estado partilhado (kill switch, pedido de fecho, estado das contas)."""
+
+    token: str
+    commands: TelegramCommands
+    client: httpx.Client = field(default_factory=lambda: httpx.Client(timeout=40))
+    offset: int = 0
+
+    def _reply(self, chat_id: int, text: str) -> None:
+        try:
+            self.client.post(f"https://api.telegram.org/bot{self.token}/sendMessage", json={"chat_id": chat_id, "text": text})
+        except httpx.HTTPError as e:
+            log.warning("telegram falhou: %s", type(e).__name__)
+
+    def poll_once(self) -> int:
+        try:
+            r = self.client.get(f"https://api.telegram.org/bot{self.token}/getUpdates",
+                                params={"offset": self.offset, "timeout": 30, "allowed_updates": '["message"]'})
+            updates = r.json().get("result", [])
+        except (httpx.HTTPError, ValueError) as e:
+            log.warning("getUpdates falhou: %s", type(e).__name__)
+            return 0
+        for u in updates:
+            self.offset = max(self.offset, u["update_id"] + 1)
+            msg = u.get("message") or {}
+            chat, text = (msg.get("chat") or {}).get("id"), msg.get("text", "")
+            if chat is not None and text.startswith("/"):
+                self._reply(chat, self.commands.handle(int(chat), text))
+        return len(updates)
+
+
+def account_views(store, tenant_id: str = "default") -> dict[str, Callable[[], str]]:
+    """Respostas de consulta a partir do estado partilhado (só leitura)."""
+
+    def contas() -> list[tuple[str, dict]]:
+        return [(k.split(":")[-1], store.get(k)) for k in store.keys(f"account:{tenant_id}:")]
+
+    def status() -> str:
+        ks = store.get("kill_switch") or {}
+        linhas = [f"Modo: SIMULAÇÃO · kill switch {'ACIONADO' if ks.get('engaged') else 'desarmado'}"]
+        for sym, _ in contas():
+            h = store.get(f"health:{tenant_id}:{sym}") or {}
+            linhas.append(f"{sym}: último ciclo {h.get('last_cycle', '?')} · falhas seguidas {h.get('consecutive_errors', 0)}")
+        return "\n".join(linhas)
+
+    def portfolio() -> str:
+        linhas = []
+        for sym, st in contas():
+            linhas.append(f"{sym}: saldo {st['cash']:.2f} {st['currency']} · posições {len(st['positions'])}")
+            for p in st["positions"].values():
+                linhas.append(f"  {'comprado' if p['side'] == 1 else 'vendido'} {p['qty']:g} a {p['entry_price']:.5f} "
+                              f"(SL {p['stop_loss']}, TP {p['take_profit']})")
+        return "\n".join(linhas) or "Sem contas."
+
+    def performance() -> str:
+        linhas = []
+        for sym, st in contas():
+            tr = st["trades"]
+            pnl = sum(t["pnl_account"] for t in tr)
+            ganhos = sum(1 for t in tr if t["pnl_account"] > 0)
+            linhas.append(f"{sym}: {len(tr)} operações · {ganhos} ganhadoras · resultado {pnl:+.2f} {st['currency']} · "
+                          f"pico {st['peak_equity']:.2f}")
+        return "\n".join(linhas) or "Sem operações."
+
+    return {"status": status, "portfolio": portfolio, "performance": performance}

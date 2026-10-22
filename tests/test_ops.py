@@ -40,9 +40,20 @@ def test_tenant_isolado_e_sem_negociacao_real():
 
 def test_api_status_e_killswitch_exige_token(monkeypatch, tmp_path):
     import apps.api.main as api
-    monkeypatch.setattr(api, "_kill", KillSwitch(tmp_path / "KS"))
+    from trading_agent.persistence.state import SqliteStateStore
+
+    st = SqliteStateStore(tmp_path / "state.db")
+    monkeypatch.setattr(api, "_store", st)
+    monkeypatch.setattr(api, "_kill", KillSwitch(None, store=st))
     c = TestClient(api.app)
     st = c.get("/status").json()
     assert st["modo"] == "simulação" and st["negociacao_real"] is False
     assert c.post("/killswitch/engage").status_code == 401
     assert c.post("/killswitch/engage", headers={"Authorization": "Bearer errado"}).status_code == 401
+    from pydantic import SecretStr
+
+    monkeypatch.setattr(api._secrets, "api_admin_token", SecretStr("token-de-teste-123"))
+    assert c.post("/killswitch/engage", headers={"Authorization": "Bearer token-de-teste-123"}).status_code == 200
+    # o worker, noutro processo, lê o mesmo estado
+    assert KillSwitch(None, store=SqliteStateStore(tmp_path / "state.db")).is_engaged()
+    assert c.get("/status").json()["kill_switch"] is True
