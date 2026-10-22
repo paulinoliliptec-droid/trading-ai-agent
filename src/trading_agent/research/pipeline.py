@@ -294,9 +294,10 @@ def buy_and_hold(prep: Prepared, idx: pd.Index) -> dict:
 
 
 def run_experiment(spec: ExperimentSpec, cfg: AppConfig, models: tuple[str, ...] = ("A", "B", "C"), n_splits: int = 6,
-                   dev_splits: int = 4, test_frac: float = 0.6, capital: float = 10_000.0, log=print) -> tuple[dict, dict]:
+                   dev_splits: int = 4, test_frac: float = 0.6, capital: float = 10_000.0, log=print,
+                   bars: pd.DataFrame | None = None) -> tuple[dict, dict]:
     t0 = time.time()
-    prep = prepare(spec, cfg)
+    prep = prepare(spec, cfg, bars)
     ppy = 252 if prep.inst.asset_class == "forex" else 365
     folds = walk_forward(prep.t1, n_splits, test_frac, val_frac=0.15, calib_frac=0.15, embargo=spec.horizon_bars)
     log(f"{spec.name}: {len(prep.data)} amostras, modelos {models}")

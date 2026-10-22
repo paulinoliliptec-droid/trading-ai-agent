@@ -10,8 +10,8 @@
 |---|---|---|
 | API e painel | Cloud Run (serviço) | Escala a zero; paga-se o uso |
 | Recolha horária de dados | Cloud Run Jobs + Cloud Scheduler | Corre e termina; sem servidor ligado |
-| Treino periódico | Cloud Run Jobs (CPU) | XGBoost e uma GRU pequena treinam em minutos em CPU |
-| Paper trading contínuo | Cloud Run com instância mínima 1, **ou** uma VM e2-small | Precisa de estar sempre ligado para reagir ao preço |
+| Treino periódico | Cloud Run Job (2 vCPU, 4 GiB), semanal | A grelha completa da fase 2 corre em ~45 min em 4 CPU; um modelo só, em minutos. Nunca na máquina de inferência |
+| Paper trading contínuo (inferência) | **VM e2-micro** (1 GB) com o worker e o bot em systemd | Sempre ligado; a inferência (XGBoost já treinado + features) usa poucas centenas de MB. Separado do treino |
 | Datasets e modelos | Cloud Storage (Standard) | Parquet e artefactos versionados |
 | Credenciais | Secret Manager | Tokens de corretora, Telegram, MongoDB; um segredo por tenant no SaaS |
 | Logs e alertas | Cloud Logging e Monitoring | Logs JSON já estruturados pelo código |
@@ -28,6 +28,15 @@
 
 O custo dominante do cenário 3 não é a infraestrutura: é o enquadramento regulatório e a operação (ver
 SAAS_ARCHITECTURE.md).
+
+## Verificação feita a 22/10/2026 (só leitura)
+
+- Nenhum projeto da conta é de trading; o projeto ativo por omissão é o `dra-kiesse` (produção de outro produto: não
+  se usa).
+- A API de faturação não está ativa nesse projeto, por isso **não foi possível ver contas de faturação nem
+  créditos** sem alterar um projeto existente. Não se alterou.
+- A e2-micro tem um nível gratuito mensal nalgumas regiões dos EUA (us-west1, us-central1, us-east1) segundo a
+  documentação pública da Google; **confirmar** na conta antes de contar com ele. Fora disso, ~7 a 9 USD/mês.
 
 ## Créditos promocionais
 
