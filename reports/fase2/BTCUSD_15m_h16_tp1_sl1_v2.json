@@ -1,0 +1,516 @@
+{
+ "experiencia": "BTCUSD_15m_h16_tp1_sl1_v2",
+ "spec": {
+  "symbol": "BTC/USD",
+  "source": "coinbase",
+  "timeframe": "15m",
+  "horizon_bars": 16,
+  "tp_mult": 1.0,
+  "sl_mult": 1.0,
+  "feature_set": "v2",
+  "train_window": null
+ },
+ "amostras": 71948,
+ "features": [
+  "ret_1",
+  "ret_3",
+  "ret_6",
+  "ret_12",
+  "ret_24",
+  "vol_24",
+  "vol_72",
+  "rsi_14",
+  "ema_12_48",
+  "close_ema_96",
+  "atr_pct",
+  "mom_24",
+  "range_pos_24",
+  "hour_sin",
+  "hour_cos",
+  "volume_z_72",
+  "vol_parkinson_24",
+  "vol_gk_24",
+  "vol_rel_24_168",
+  "efficiency_24",
+  "efficiency_72",
+  "trend_slope_48_atr",
+  "range_compression_24",
+  "mom_vol_adj_24",
+  "mom_vol_adj_72",
+  "volume_chg_24",
+  "amihud_24",
+  "cost_to_atr"
+ ],
+ "periodos": {
+  "desenvolvimento": [
+   "2025-07-29 13:45:00+00:00",
+   "2026-05-25 20:15:00+00:00"
+  ],
+  "teste_final": [
+   "2026-05-25 20:30:00+00:00",
+   "2026-10-22 18:00:00+00:00"
+  ]
+ },
+ "diagnostico_custos": {
+  "custo_ida_volta_bps": 56.0,
+  "atr_mediano_pct": 0.2782,
+  "custo_em_atr": 2.013,
+  "prob_ponto_morto_tp_primeiro": 1.5066,
+  "taxa_tp_primeiro_observada": 0.4691,
+  "retorno_bruto_medio_rotulo_bps": -1.29
+ },
+ "modelos": {
+  "A_regras": {
+   "classificacao_por_fold": [],
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "max_drawdown_pct": 0.0,
+    "nota": "sem operações (equivale a não negociar)",
+    "vetos_do_risco": {
+     "expectativa": 8996
+    },
+    "classificacao_lado_principal": null,
+    "regimes": {},
+    "consistencia_rotulo_execucao": {}
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "max_drawdown_pct": 0.0,
+    "nota": "sem operações (equivale a não negociar)",
+    "vetos_do_risco": {
+     "expectativa": 4503
+    },
+    "classificacao_lado_principal": null
+   },
+   "qualificado_no_desenvolvimento": false
+  },
+  "B_xgboost": {
+   "classificacao_por_fold": [
+    {
+     "fold": 0,
+     "lado": 1,
+     "auc_treino": 0.607,
+     "roc_auc": 0.4897,
+     "brier_skill": -0.00933,
+     "ece": 0.0277,
+     "taxa_base": 0.4686
+    },
+    {
+     "fold": 1,
+     "lado": 1,
+     "auc_treino": 0.5738,
+     "roc_auc": 0.4944,
+     "brier_skill": -0.00599,
+     "ece": 0.01,
+     "taxa_base": 0.47
+    },
+    {
+     "fold": 2,
+     "lado": 1,
+     "auc_treino": 0.5611,
+     "roc_auc": 0.4816,
+     "brier_skill": -0.00579,
+     "ece": 0.018,
+     "taxa_base": 0.4568
+    },
+    {
+     "fold": 3,
+     "lado": 1,
+     "auc_treino": 0.5769,
+     "roc_auc": 0.4984,
+     "brier_skill": -0.00182,
+     "ece": 0.0217,
+     "taxa_base": 0.4808
+    },
+    {
+     "fold": 4,
+     "lado": 1,
+     "auc_treino": 0.5769,
+     "roc_auc": 0.4927,
+     "brier_skill": -0.002,
+     "ece": 0.0106,
+     "taxa_base": 0.4644
+    },
+    {
+     "fold": 5,
+     "lado": 1,
+     "auc_treino": 0.5401,
+     "roc_auc": 0.5084,
+     "brier_skill": -0.00317,
+     "ece": 0.0204,
+     "taxa_base": 0.4849
+    }
+   ],
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "max_drawdown_pct": 0.0,
+    "nota": "sem operações (equivale a não negociar)",
+    "vetos_do_risco": {
+     "expectativa": 28779,
+     "condição": 1
+    },
+    "classificacao_lado_principal": {
+     "amostras": 28779,
+     "taxa_base": 0.4691,
+     "roc_auc": 0.488,
+     "brier": 0.2504,
+     "brier_skill": -0.00544,
+     "log_loss": 0.69406,
+     "ece": 0.0105,
+     "calibracao": [
+      {
+       "prevista": 0.453,
+       "observada": 0.477,
+       "n": 5901
+      },
+      {
+       "prevista": 0.463,
+       "observada": 0.482,
+       "n": 5612
+      },
+      {
+       "prevista": 0.469,
+       "observada": 0.468,
+       "n": 6260
+      },
+      {
+       "prevista": 0.473,
+       "observada": 0.468,
+       "n": 5280
+      },
+      {
+       "prevista": 0.514,
+       "observada": 0.451,
+       "n": 5726
+      }
+     ]
+    },
+    "regimes": {},
+    "auc_lado_principal_por_volatilidade": {
+     "baixo": 0.4783,
+     "medio": 0.4956,
+     "alto": 0.4902
+    },
+    "consistencia_rotulo_execucao": {}
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "max_drawdown_pct": 0.0,
+    "nota": "sem operações (equivale a não negociar)",
+    "vetos_do_risco": {
+     "expectativa": 14390
+    },
+    "classificacao_lado_principal": {
+     "amostras": 14390,
+     "taxa_base": 0.4746,
+     "roc_auc": 0.4964,
+     "brier": 0.2499,
+     "brier_skill": -0.00216,
+     "log_loss": 0.693,
+     "ece": 0.0072,
+     "calibracao": [
+      {
+       "prevista": 0.457,
+       "observada": 0.481,
+       "n": 6368
+      },
+      {
+       "prevista": 0.473,
+       "observada": 0.464,
+       "n": 4113
+      },
+      {
+       "prevista": 0.473,
+       "observada": 0.47,
+       "n": 1159
+      },
+      {
+       "prevista": 0.5,
+       "observada": 0.477,
+       "n": 2750
+      }
+     ]
+    }
+   },
+   "qualificado_no_desenvolvimento": false
+  },
+  "C_gru": {
+   "classificacao_por_fold": [
+    {
+     "fold": 0,
+     "lado": 1,
+     "roc_auc": 0.497,
+     "brier_skill": -0.00445,
+     "ece": 0.0359,
+     "taxa_base": 0.4686
+    },
+    {
+     "fold": 1,
+     "lado": 1,
+     "roc_auc": 0.5031,
+     "brier_skill": -0.0009,
+     "ece": 0.0048,
+     "taxa_base": 0.47
+    },
+    {
+     "fold": 2,
+     "lado": 1,
+     "roc_auc": 0.5039,
+     "brier_skill": -0.00057,
+     "ece": 0.015,
+     "taxa_base": 0.4568
+    },
+    {
+     "fold": 3,
+     "lado": 1,
+     "roc_auc": 0.5153,
+     "brier_skill": -0.00069,
+     "ece": 0.0204,
+     "taxa_base": 0.4808
+    },
+    {
+     "fold": 4,
+     "lado": 1,
+     "roc_auc": 0.5171,
+     "brier_skill": -0.00085,
+     "ece": 0.0122,
+     "taxa_base": 0.4644
+    },
+    {
+     "fold": 5,
+     "lado": 1,
+     "roc_auc": 0.4944,
+     "brier_skill": -0.00614,
+     "ece": 0.0196,
+     "taxa_base": 0.4849
+    }
+   ],
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "max_drawdown_pct": 0.0,
+    "nota": "sem operações (equivale a não negociar)",
+    "vetos_do_risco": {
+     "expectativa": 28779,
+     "condição": 1
+    },
+    "classificacao_lado_principal": {
+     "amostras": 28779,
+     "taxa_base": 0.4691,
+     "roc_auc": 0.4973,
+     "brier": 0.24938,
+     "brier_skill": -0.00136,
+     "log_loss": 0.6938,
+     "ece": 0.0103,
+     "calibracao": [
+      {
+       "prevista": 0.455,
+       "observada": 0.475,
+       "n": 7949
+      },
+      {
+       "prevista": 0.47,
+       "observada": 0.467,
+       "n": 8856
+      },
+      {
+       "prevista": 0.472,
+       "observada": 0.447,
+       "n": 1862
+      },
+      {
+       "prevista": 0.472,
+       "observada": 0.478,
+       "n": 4460
+      },
+      {
+       "prevista": 0.506,
+       "observada": 0.463,
+       "n": 5652
+      }
+     ]
+    },
+    "regimes": {},
+    "auc_lado_principal_por_volatilidade": {
+     "baixo": 0.4886,
+     "medio": 0.5069,
+     "alto": 0.4965
+    },
+    "consistencia_rotulo_execucao": {}
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "max_drawdown_pct": 0.0,
+    "nota": "sem operações (equivale a não negociar)",
+    "vetos_do_risco": {
+     "expectativa": 14390
+    },
+    "classificacao_lado_principal": {
+     "amostras": 14390,
+     "taxa_base": 0.4746,
+     "roc_auc": 0.501,
+     "brier": 0.25012,
+     "brier_skill": -0.00307,
+     "log_loss": 0.6983,
+     "ece": 0.0057,
+     "calibracao": [
+      {
+       "prevista": 0.429,
+       "observada": 0.482,
+       "n": 2997
+      },
+      {
+       "prevista": 0.476,
+       "observada": 0.471,
+       "n": 4807
+      },
+      {
+       "prevista": 0.478,
+       "observada": 0.486,
+       "n": 1171
+      },
+      {
+       "prevista": 0.483,
+       "observada": 0.459,
+       "n": 3008
+      },
+      {
+       "prevista": 0.499,
+       "observada": 0.486,
+       "n": 2407
+      }
+     ]
+    }
+   },
+   "qualificado_no_desenvolvimento": false
+  },
+  "D_ensemble_BC": {
+   "classificacao_por_fold": [],
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "max_drawdown_pct": 0.0,
+    "nota": "sem operações (equivale a não negociar)",
+    "vetos_do_risco": {
+     "expectativa": 28779,
+     "condição": 1
+    },
+    "classificacao_lado_principal": {
+     "amostras": 28779,
+     "taxa_base": 0.4691,
+     "roc_auc": 0.4902,
+     "brier": 0.25024,
+     "brier_skill": -0.00482,
+     "log_loss": 0.69453,
+     "ece": 0.0162,
+     "calibracao": [
+      {
+       "prevista": 0.451,
+       "observada": 0.473,
+       "n": 6650
+      },
+      {
+       "prevista": 0.464,
+       "observada": 0.488,
+       "n": 5513
+      },
+      {
+       "prevista": 0.469,
+       "observada": 0.464,
+       "n": 5531
+      },
+      {
+       "prevista": 0.477,
+       "observada": 0.469,
+       "n": 5728
+      },
+      {
+       "prevista": 0.517,
+       "observada": 0.45,
+       "n": 5357
+      }
+     ]
+    },
+    "regimes": {},
+    "auc_lado_principal_por_volatilidade": {
+     "baixo": 0.4784,
+     "medio": 0.4957,
+     "alto": 0.4968
+    },
+    "consistencia_rotulo_execucao": {}
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "max_drawdown_pct": 0.0,
+    "nota": "sem operações (equivale a não negociar)",
+    "vetos_do_risco": {
+     "expectativa": 14390
+    },
+    "classificacao_lado_principal": {
+     "amostras": 14390,
+     "taxa_base": 0.4746,
+     "roc_auc": 0.5074,
+     "brier": 0.25035,
+     "brier_skill": -0.00397,
+     "log_loss": 0.6962,
+     "ece": 0.0083,
+     "calibracao": [
+      {
+       "prevista": 0.419,
+       "observada": 0.473,
+       "n": 2943
+      },
+      {
+       "prevista": 0.473,
+       "observada": 0.47,
+       "n": 4218
+      },
+      {
+       "prevista": 0.478,
+       "observada": 0.468,
+       "n": 1530
+      },
+      {
+       "prevista": 0.482,
+       "observada": 0.463,
+       "n": 3014
+      },
+      {
+       "prevista": 0.514,
+       "observada": 0.501,
+       "n": 2685
+      }
+     ]
+    }
+   },
+   "qualificado_no_desenvolvimento": false
+  }
+ },
+ "referencias": {
+  "desenvolvimento": {
+   "nao_negociar": {
+    "retorno_pct": 0.0
+   },
+   "comprar_e_manter": {
+    "retorno_pct": -34.778,
+    "max_drawdown_pct": -52.299
+   }
+  },
+  "teste_final": {
+   "nao_negociar": {
+    "retorno_pct": 0.0
+   },
+   "comprar_e_manter": {
+    "retorno_pct": 4.898,
+    "max_drawdown_pct": -25.425
+   }
+  }
+ },
+ "duracao_s": 128.0
+}

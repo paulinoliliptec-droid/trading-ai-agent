@@ -40,19 +40,5 @@ def load_candles(symbol: str, timeframe: str, source: str) -> pd.DataFrame:
     return pd.read_parquet(dataset_path(symbol, timeframe, source))
 
 
-class MongoRepository:
-    """Registos operacionais por tenant. Todas as escritas levam `tenant_id` (isolamento)."""
-
-    def __init__(self, uri: str, database: str = "trading_agent"):
-        from pymongo import MongoClient  # import tardio: o MongoDB é opcional em desenvolvimento
-
-        self.db = MongoClient(uri, appname="trading-ai-agent", serverSelectionTimeoutMS=5000)[database]
-
-    def insert(self, collection: str, tenant_id: str, doc: dict) -> str:
-        if not tenant_id:
-            raise ValueError("tenant_id é obrigatório em todos os registos")
-        res = self.db[collection].insert_one({**doc, "tenant_id": tenant_id, "created_at": datetime.now(UTC)})
-        return str(res.inserted_id)
-
-    def find(self, collection: str, tenant_id: str, query: dict | None = None, limit: int = 100) -> list[dict]:
-        return list(self.db[collection].find({**(query or {}), "tenant_id": tenant_id}, limit=limit))
+# A antiga `MongoRepository` passou para `trading_agent.persistence.repository` (coleções, índices e SQLite local).
+from trading_agent.persistence.repository import MongoRepository  # noqa: E402,F401  (compatibilidade)

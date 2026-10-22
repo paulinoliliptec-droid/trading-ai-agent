@@ -59,3 +59,47 @@ FEATURES_EXCLUDED_FROM_MODEL = {"dow"}  # usado em relatórios; fora do modelo p
 
 def model_columns(f: pd.DataFrame) -> list[str]:
     return [c for c in f.columns if c not in FEATURES_EXCLUDED_FROM_MODEL]
+
+
+def build_features_v2(df: pd.DataFrame, atr_window: int = 14, cost_pct: float | None = None) -> pd.DataFrame:
+    """Features da fase 2: as da v1 mais regimes, volatilidade realizada, liquidez e custos.
+
+    Todas usam janelas que acabam em t. `cost_pct` (custo ida e volta) permite a feature mais
+    importante do diagnóstico: o custo em unidades do movimento esperado (ATR).
+    """
+    f = build_features(df, atr_window)
+    c, h, lo, o = df["close"], df["high"], df["low"], df["open"]
+    logc = np.log(c)
+    r1 = logc.diff()
+    hl = np.log(h / lo) ** 2
+    co = np.log(c / o) ** 2
+    # Volatilidade realizada (Parkinson e Garman-Klass) e volatilidade relativa (curta vs longa)
+    f["vol_parkinson_24"] = np.sqrt(hl.rolling(24, min_periods=24).mean() / (4 * np.log(2)))
+    f["vol_gk_24"] = np.sqrt((0.5 * hl - (2 * np.log(2) - 1) * co).clip(lower=0).rolling(24, min_periods=24).mean())
+    vol_168 = r1.rolling(168, min_periods=168).std()
+    f["vol_rel_24_168"] = f["vol_24"] / vol_168.replace(0, np.nan)
+    # Regime de tendência e lateral: eficiência do movimento (1 = tendência limpa, 0 = vai e vem)
+    path = r1.abs().rolling(24, min_periods=24).sum()
+    f["efficiency_24"] = (logc.diff(24)).abs() / path.replace(0, np.nan)
+    f["efficiency_72"] = (logc.diff(72)).abs() / r1.abs().rolling(72, min_periods=72).sum().replace(0, np.nan)
+    a = atr(df, atr_window)
+    f["trend_slope_48_atr"] = (ema(c, 48) - ema(c, 48).shift(12)) / a.replace(0, np.nan)
+    f["range_compression_24"] = (h.rolling(24, min_periods=24).max() - lo.rolling(24, min_periods=24).min()) / a.replace(0, np.nan)
+    # Momentum ajustado à volatilidade
+    for k in (24, 72):
+        f[f"mom_vol_adj_{k}"] = logc.diff(k) / (r1.rolling(k, min_periods=k).std() * np.sqrt(k)).replace(0, np.nan)
+    # Volume e liquidez
+    vol = df["volume"].replace(0, np.nan)
+    lv = np.log(vol)
+    f["volume_chg_24"] = lv - lv.rolling(24, min_periods=24).mean()
+    dollar = (c * vol).replace(0, np.nan)
+    f["amihud_24"] = np.log((r1.abs() / dollar).rolling(24, min_periods=24).mean() + 1e-18)
+    # Custos: spread relativo ao seu histórico e custo em unidades de ATR
+    if "spread_bps" in f.columns:
+        sb = f["spread_bps"]
+        f["spread_z_168"] = (sb - sb.rolling(168, min_periods=48).mean()) / sb.rolling(168, min_periods=48).std().replace(0, np.nan)
+        cost_series = sb / 1e4 if cost_pct is None else sb / 1e4 + cost_pct
+    else:
+        cost_series = pd.Series(cost_pct if cost_pct is not None else np.nan, index=df.index)
+    f["cost_to_atr"] = cost_series / f["atr_pct"].replace(0, np.nan)
+    return f

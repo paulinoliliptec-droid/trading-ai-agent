@@ -72,3 +72,16 @@ def test_qualidade_forex_ignora_fim_de_semana():
     _, rep = clean_ohlcv(df, "1h", market_hours="forex")
     assert rep.missing_bars == 0
     assert np.isclose(rep.missing_ratio, 0.0)
+
+
+def test_reconciliacao_de_fontes(candles):
+    from trading_agent.data.reconcile import compare_sources
+
+    outra = candles.copy()
+    outra[["open", "high", "low", "close"]] *= 1.00002  # 0,2 bps de diferença: compatível
+    outra["volume"] = outra["volume"] * 0.01            # volume noutra escala: reportado, não decide
+    r = compare_sources(candles, outra)
+    assert r["compativel"] and r["dif_fecho_mediana_bps"] < 1
+    deslocada = candles.copy()
+    deslocada["close"] = deslocada["close"].shift(1).bfill()  # velas desfasadas uma hora: incompatível
+    assert not compare_sources(candles, deslocada)["compativel"]

@@ -20,6 +20,7 @@ def main() -> None:
     ap.add_argument("--eurusd-desde", default="2022-01-01")
     ap.add_argument("--btc-desde", default="2023-01-01")
     ap.add_argument("--so", choices=["EUR/USD", "BTC/USD"], default=None, help="recolher só um mercado")
+    ap.add_argument("--timeframe", default="1h", choices=["1h", "15m"], help="15m só para BTC/USD (Coinbase)")
     args = ap.parse_args()
     fim = datetime.now(UTC).replace(minute=0, second=0, microsecond=0)
 
@@ -32,9 +33,13 @@ def main() -> None:
             continue
         inicio = datetime.fromisoformat(desde).replace(tzinfo=UTC)
         print(f"[{src.name}] {symbol} {inicio:%Y-%m-%d} → {fim:%Y-%m-%d %H:%M}", flush=True)
-        raw = src.historical(symbol, "1h", inicio, fim)
-        df, rep = clean_ohlcv(raw, "1h", market_hours=hours)
-        path = save_candles(df, symbol, "1h", src.name, rep.as_dict())
+        if args.timeframe != "1h" and src.name != "coinbase":
+            print(f"[{src.name}] {args.timeframe} não disponível nesta fonte: ignorado", flush=True)
+            continue
+        raw = src.historical(symbol, args.timeframe, inicio, fim)
+        freq = {"1h": "1h", "15m": "15min"}[args.timeframe]
+        df, rep = clean_ohlcv(raw, freq, market_hours=hours)
+        path = save_candles(df, symbol, args.timeframe, src.name, rep.as_dict())
         print(json.dumps({"ficheiro": str(path), **rep.as_dict()}, ensure_ascii=False, indent=1), flush=True)
 
 

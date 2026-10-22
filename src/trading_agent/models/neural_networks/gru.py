@@ -2,7 +2,7 @@
 
 Pequena de propósito (1 camada, 32 unidades, dropout): com dezenas de milhares de velas
 horárias, redes maiores aprendem o ruído. Normalização com estatísticas SÓ do treino.
-Early stopping e calibração na validação. Não se presume que bata o XGBoost: compara-se.
+Early stopping na validação; calibração numa janela à parte quando é dada. Não se presume que bata o XGBoost: compara-se.
 """
 
 from __future__ import annotations
@@ -39,7 +39,8 @@ class GRUModel:
         X = np.stack([F[i - self.seq_len + 1 : i + 1] for i in ok]) if len(ok) else np.empty((0, self.seq_len, F.shape[1]))
         return X.astype(np.float32), ok
 
-    def fit(self, F_all: pd.DataFrame, y_all: pd.Series, tr: np.ndarray, val: np.ndarray) -> GRUModel:
+    def fit(self, F_all: pd.DataFrame, y_all: pd.Series, tr: np.ndarray, val: np.ndarray,
+            cal: np.ndarray | None = None) -> GRUModel:
         torch.manual_seed(self.seed)
         np.random.seed(self.seed)
         A = F_all.to_numpy(np.float64)
@@ -75,8 +76,9 @@ class GRUModel:
         if best_state:
             self.net.load_state_dict(best_state)
         self._Z = Z
-        raw = self._raw(iva)
-        self.calibrator = IsotonicRegression(out_of_bounds="clip", y_min=0.0, y_max=1.0).fit(raw, y[iva])
+        ical = cal[cal >= self.seq_len - 1] if cal is not None and len(cal) else iva
+        raw = self._raw(ical)
+        self.calibrator = IsotonicRegression(out_of_bounds="clip", y_min=0.0, y_max=1.0).fit(raw, y[ical])
         return self
 
     def _raw(self, idx: np.ndarray) -> np.ndarray:

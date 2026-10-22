@@ -14,11 +14,15 @@ from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.responses import FileResponse
 
 from trading_agent.config import ROOT, Secrets, load_config
+from trading_agent.notifications.telegram import account_views
+from trading_agent.persistence.repository import default_repository
+from trading_agent.persistence.state import default_store
 from trading_agent.risk.kill_switch import KillSwitch
 
-app = FastAPI(title="Trading AI Agent", version="0.1.0", description="Só simulação. Nenhuma ordem real.")
+app = FastAPI(title="Trading AI Agent", version="0.2.0", description="Só simulação. Nenhuma ordem real.")
 _secrets = Secrets()
-_kill = KillSwitch()
+_store = default_store()            # o MESMO estado do worker e do bot do Telegram
+_kill = KillSwitch(store=_store)
 
 
 def admin(authorization: str = Header(default="")) -> None:
@@ -36,17 +40,30 @@ def health() -> dict:
 @app.get("/status")
 def status() -> dict:
     cfg = load_config()
+    contas = {k.split(":")[-1]: {kk: (v or {}).get(kk) for kk in ("currency", "cash", "peak_equity", "last_equity")}
+              | {"posicoes": len((v or {}).get("positions", {})), "operacoes": len((v or {}).get("trades", []))}
+              for k in _store.keys("account:") for v in [_store.get(k)]}
     return {"modo": "simulação", "negociacao_real": cfg.live_trading_enabled, "kill_switch": _kill.is_engaged(),
-            "mercados": list(cfg.raw["markets"].keys())}
+            "mercados": list(cfg.raw["markets"].keys()), "contas": contas}
+
+
+@app.get("/decisions")
+def decisions(limit: int = 50) -> list[dict]:
+    return default_repository().find("decisions", "default", limit=min(limit, 500))
+
+
+@app.get("/portfolio")
+def portfolio() -> dict:
+    return {"texto": account_views(_store)["portfolio"]()}
 
 
 @app.get("/performance")
 def performance() -> dict:
-    reps = sorted((ROOT / "reports").glob("*.json"))
     out = {}
-    for p in reps:
+    for p in sorted((ROOT / "reports" / "fase2").glob("resumo_*.json")):
         d = json.loads(p.read_text())
-        out[d["par"]] = {"gerado_em": d["gerado_em"], "periodo_teste": d["periodo_teste"], "resultados": d["resultados"]}
+        out[d["simbolo"]] = {k: d.get(k) for k in ("gerado_em", "criterio_selecao", "nenhum_qualificado", "escolhido",
+                                                    "melhor_no_desenvolvimento", "simulacao_100_eur_risco_de_producao")}
     return out
 
 

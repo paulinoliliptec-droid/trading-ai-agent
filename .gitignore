@@ -11,3 +11,5 @@ data/cache/
 data/KILL_SWITCH*
 !data/.gitkeep
 models_artifacts/
+data/*.db
+data/*.db-*

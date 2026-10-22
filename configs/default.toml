@@ -11,9 +11,23 @@ max_daily_loss_pct = 0.02
 max_drawdown_pct = 0.10
 min_probability = 0.40         # com TP:SL de 2:1 o ponto morto é ~0,34 + custos; o filtro principal é a expectativa
 min_expected_edge_bps = 1.0
+min_capital = 50.0              # na moeda da conta: abaixo disto não se abre nada
+max_data_age_bars = 2           # última vela fechada com mais de 2 intervalos = dados desatualizados
+max_consecutive_api_errors = 3  # falhas seguidas da fonte de dados/corretora = parar de abrir
+max_bar_move_atr = 8.0          # vela que se move mais de 8 ATR = condição anómala
+
+[account]
+currency = "EUR"                # moeda da conta simulada; conversão explícita para a moeda de cotação
+initial_capital = 100.0         # por mercado; NÃO se presume que chega para todos os instrumentos
 
 [markets."EUR/USD"]
 asset_class = "forex"
+base_currency = "EUR"
+quote_currency = "USD"
+price_basis = "bid"             # as velas da Dukascopy são de bid; ask = bid + spread
+min_qty = 1.0                   # OANDA aceita 1 unidade; muitas corretoras exigem 1000 (micro-lote)
+qty_step = 1.0
+allow_short = true              # CFD/margem: vender a descoberto é permitido
 pip_size = 0.0001
 # Custo de execução simulado: o spread vem dos dados (bid/ask da Dukascopy); a isto soma-se
 fee_bps = 0.0                   # corretoras de retalho FX cobram no spread, não em comissão
@@ -23,6 +37,12 @@ max_leverage = 30.0            # tecto ESMA para clientes de retalho em pares ma
 
 [markets."BTC/USD"]
 asset_class = "crypto"
+base_currency = "BTC"
+quote_currency = "USD"
+price_basis = "mid"             # velas de negócios da Coinbase: tratadas como preço médio; spread pressuposto
+min_qty = 0.00005               # mínimo da Kraken para BTC/USD
+qty_step = 0.00000001
+allow_short = false             # à vista: só se compra o que se paga; vender a descoberto exige derivados
 fee_bps = 25.0                  # taxa taker de referência (Kraken nível de entrada: 0,25%); confirmar por conta
 spread_bps = 2.0                # spread típico assumido, os dados históricos não trazem bid/ask
 slippage_bps = 2.0
@@ -37,3 +57,77 @@ sl_atr_mult = 1.0
 atr_window = 14
 n_splits = 5
 embargo_bars = 24
+
+# ---------------------------------------------------------------------------------------------
+# Mercados preparados mas DESATIVADOS (fase 8). Cada um precisa de dados, modelos, custos e
+# limites próprios antes de ser ligado. Valores de contrato a confirmar na corretora escolhida.
+# ---------------------------------------------------------------------------------------------
+[markets."XAU/USD"]
+asset_class = "metal"
+base_currency = "XAU"
+quote_currency = "USD"
+price_basis = "bid"
+min_qty = 1.0                   # OANDA: 1 unidade = 1 onça troy
+qty_step = 1.0
+allow_short = true
+max_leverage = 20.0             # tecto ESMA para ouro (retalho)
+fee_bps = 0.0
+slippage_bps = 1.0
+enabled = false
+disabled_reason = "sem dados históricos recolhidos, sem modelo próprio; 1 onça vale milhares de USD: 100 € não chegam com 0,5% de risco"
+
+[markets."WTI/USD"]
+asset_class = "commodity"
+base_currency = "WTI"
+quote_currency = "USD"
+price_basis = "bid"
+min_qty = 1.0                   # CFD por barril (confirmar)
+qty_step = 1.0
+allow_short = true
+max_leverage = 10.0             # tecto ESMA para matérias-primas exceto ouro
+fee_bps = 0.0
+slippage_bps = 2.0
+enabled = false
+disabled_reason = "sem dados históricos recolhidos nem modelo próprio"
+
+[markets."SPX500/USD"]
+asset_class = "index"
+base_currency = "SPX500"
+quote_currency = "USD"
+price_basis = "bid"
+min_qty = 1.0                   # CFD de índice, 1 unidade = 1 ponto x 1 USD (confirmar)
+qty_step = 1.0
+allow_short = true
+max_leverage = 20.0             # tecto ESMA para índices principais
+fee_bps = 0.0
+slippage_bps = 1.0
+enabled = false
+disabled_reason = "sem dados históricos recolhidos nem modelo próprio; horário de sessão próprio"
+
+[markets."AAPL/USD"]
+asset_class = "equity"
+base_currency = "AAPL"
+quote_currency = "USD"
+price_basis = "mid"
+min_qty = 0.0001                # ações fracionadas (confirmar disponibilidade na corretora)
+qty_step = 0.0001
+allow_short = false             # à vista; vender a descoberto exige empréstimo de títulos
+max_leverage = 1.0
+fee_bps = 5.0
+slippage_bps = 2.0
+enabled = false
+disabled_reason = "sem dados históricos recolhidos nem modelo próprio; eventos corporativos (resultados, dividendos) por tratar"
+
+[markets."MES"]
+asset_class = "future"
+base_currency = "MES"
+quote_currency = "USD"
+price_basis = "mid"
+min_qty = 1.0                   # Micro E-mini S&P 500: 1 contrato = 5 USD por ponto
+qty_step = 1.0
+allow_short = true
+max_leverage = 1.0              # margem de futuros não é modelada como alavancagem de CFD
+fee_bps = 0.0
+slippage_bps = 1.0
+enabled = false
+disabled_reason = "futuros reais não implementados (vencimentos, rolagem, margem da câmara); 1 contrato tem nocional de dezenas de milhares de USD: 100 € não chegam"

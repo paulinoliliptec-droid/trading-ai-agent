@@ -1,0 +1,13 @@
+[Unit]
+Description=Trading AI Agent: bot do Telegram
+After=docker.service network-online.target
+Requires=docker.service
+
+[Service]
+EnvironmentFile=/etc/trading/image
+ExecStart=/usr/bin/docker run --rm --name telegram --env-file /etc/trading/env ${IMAGE} python scripts/run_telegram_bot.py
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=83"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -25,7 +25,7 @@ dependencies = [
 
 [project.optional-dependencies]
 nn = ["torch>=2.2"]
-dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.4"]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.4", "mongomock>=4.1", "bandit>=1.7", "pip-audit>=2.7"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -42,3 +42,8 @@ target-version = "py311"
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP"]
 ignore = ["E501"]
+
+[tool.bandit]
+# B101: assert só em testes; B311: random não criptográfico (reamostragem estatística, não segurança);
+# B301/B403: pickle/joblib só para artefactos do próprio projeto, com SHA-256 verificado (models/registry.py).
+skips = ["B101", "B311", "B301", "B403"]

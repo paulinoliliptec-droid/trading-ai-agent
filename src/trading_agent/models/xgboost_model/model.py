@@ -1,8 +1,9 @@
 """Modelo B: XGBoost, probabilidade de o take-profit vir antes do stop-loss.
 
 Hiperparâmetros conservadores e FIXOS (árvores rasas, regularização), sem busca extensa:
-a busca de parâmetros é a forma mais rápida de sobreajustar séries financeiras. Early stopping
-e calibração isotónica usam a janela de validação, nunca o teste.
+a busca de parâmetros é a forma mais rápida de sobreajustar séries financeiras. O early
+stopping usa a validação; a calibração isotónica usa uma janela de CALIBRAÇÃO à parte (se não
+for dada, a validação, como na fase 1). Nunca o teste.
 """
 
 from __future__ import annotations
@@ -26,13 +27,18 @@ class XGBoostModel:
         self.calibrator: IsotonicRegression | None = None
         self.columns: list[str] = []
 
-    def fit(self, X_tr: pd.DataFrame, y_tr: pd.Series, X_val: pd.DataFrame, y_val: pd.Series) -> XGBoostModel:
+    def fit(self, X_tr: pd.DataFrame, y_tr: pd.Series, X_val: pd.DataFrame, y_val: pd.Series,
+            X_cal: pd.DataFrame | None = None, y_cal: pd.Series | None = None) -> XGBoostModel:
         self.columns = list(X_tr.columns)
         self.model = XGBClassifier(**self.params)
         self.model.fit(X_tr, y_tr, eval_set=[(X_val, y_val)], verbose=False)
-        raw = self.model.predict_proba(X_val)[:, 1]
-        self.calibrator = IsotonicRegression(out_of_bounds="clip", y_min=0.0, y_max=1.0).fit(raw, y_val)
+        Xc, yc = (X_cal, y_cal) if X_cal is not None and len(X_cal) else (X_val, y_val)
+        raw = self.model.predict_proba(Xc)[:, 1]
+        self.calibrator = IsotonicRegression(out_of_bounds="clip", y_min=0.0, y_max=1.0).fit(raw, yc)
         return self
+
+    def predict_raw(self, X: pd.DataFrame) -> np.ndarray:
+        return self.model.predict_proba(X[self.columns])[:, 1]
 
     def predict_proba(self, X: pd.DataFrame) -> np.ndarray:
         raw = self.model.predict_proba(X[self.columns])[:, 1]
