@@ -7,6 +7,7 @@ chats em `TELEGRAM_ALLOWED_CHAT_IDS`; qualquer outro recebe uma recusa e fica re
 
 from __future__ import annotations
 
+import html
 import logging
 from collections.abc import Callable
 from dataclasses import dataclass, field
@@ -53,15 +54,17 @@ class TelegramNotifier:
         return not self.token
 
     def notify(self, event: Event, body: str) -> None:
-        text = f"{TAG} <b>{event.value}</b> [SIMULAÇÃO]\n{body}"
+        text = f"{TAG} <b>{html.escape(event.value)}</b> [SIMULAÇÃO]\n{html.escape(body)}"   # «0.17 < 0.4» não é HTML
         for chat in self.chat_ids:
             self.sent.append((chat, text))
             if self.dry_run:
                 log.info("telegram (seco) → %s: %s", chat, text)
                 continue
             try:
-                self.client.post(f"https://api.telegram.org/bot{self.token}/sendMessage",
-                                 json={"chat_id": chat, "text": text, "parse_mode": "HTML"})
+                r = self.client.post(f"https://api.telegram.org/bot{self.token}/sendMessage",
+                                     json={"chat_id": chat, "text": text, "parse_mode": "HTML"})
+                if r.status_code != 200:
+                    log.warning("telegram recusou a mensagem (%s): %s", r.status_code, r.text[:200])
             except httpx.HTTPError as e:  # uma notificação falhada nunca pára o sistema
                 log.warning("telegram falhou: %s", type(e).__name__)
 

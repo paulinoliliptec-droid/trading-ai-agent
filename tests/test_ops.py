@@ -155,3 +155,9 @@ def test_observacao_compara_com_o_movimento_seguinte():
     assert r["taxa_acerto"] == 1.0 and round(r["ret_bruto_medio_bps"], 1) == round((100 + 98.04) / 2, 1)
     assert r["ret_liquido_medio_bps"] < r["ret_bruto_medio_bps"]
     assert r["motivos_veto"] == {"expectativa abaixo do mínimo (# bps)": 1}
+
+
+def test_notificacao_escapa_html():
+    n = TelegramNotifier(token=None, chat_ids={1})
+    n.notify(Event.SIGNAL_REJECTED, "probabilidade 0.177 < 0.4 & custo > 1")
+    assert "0.177 &lt; 0.4 &amp; custo &gt; 1" in n.sent[0][1] and "<b>" in n.sent[0][1]
