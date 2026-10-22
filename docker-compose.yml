@@ -1,29 +1,28 @@
-# Desenvolvimento local: API, agente BTC/USD (paper), bot do Telegram e MongoDB. Só simulação.
+# Observação com MongoDB Atlas (MONGODB_URI vem do .env; nenhum MongoDB local arranca). Só simulação.
+#   docker compose up -d                                         API + agente BTC/USD em observação
+#   docker compose --profile telegram up -d                      + bot do Telegram (uma única instância)
+# Desenvolvimento com MongoDB em contentor (sem Atlas):
+#   docker compose -f docker-compose.yml -f docker-compose.local.yml up
+# As portas ficam só em 127.0.0.1: nada administrativo fica exposto fora da máquina.
 x-app: &app
   build: .
   env_file: [.env]
   environment:
-    MONGODB_URI: mongodb://mongo:27017/trading_agent
+    TRADING_ENV: ${TRADING_ENV:-observacao}
   volumes:
     - ./data:/app/data
     - ./reports:/app/reports
     - ./models_artifacts:/app/models_artifacts
-  depends_on: [mongo]
   restart: unless-stopped
 services:
   api:
     <<: *app
-    ports: ["8080:8080"]
+    ports: ["127.0.0.1:8080:8080"]
   agent-btc:
     <<: *app
-    command: ["python", "scripts/run_agent.py", "--symbol", "BTC/USD", "--modo", "paper"]
+    command: ["python", "scripts/run_agent.py", "--symbol", "BTC/USD", "--modo", "${AGENT_MODE:-observacao}"]
   telegram:
     <<: *app
     command: ["python", "scripts/run_telegram_bot.py"]
     profiles: ["telegram"]   # só arranca com --profile telegram (precisa de token)
-  mongo:
-    image: mongo:7
-    ports: ["27017:27017"]
-    volumes: [mongo-data:/data/db]
-volumes:
-  mongo-data:
+    restart: on-failure:3    # um conflito com outro consumidor do bot não deve ficar em ciclo infinito
