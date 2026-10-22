@@ -16,6 +16,12 @@ import httpx
 
 log = logging.getLogger(__name__)
 
+TAG = "[TRADING AI]"   # o bot é partilhado com outra aplicação: todas as mensagens deste sistema levam esta marca
+
+
+class BotConflict(RuntimeError):
+    """Outro consumidor do mesmo bot (webhook registado ou outro `getUpdates`): não se compete por mensagens."""
+
 
 class Event(StrEnum):
     STARTED = "Sistema iniciado"
@@ -47,7 +53,7 @@ class TelegramNotifier:
         return not self.token
 
     def notify(self, event: Event, body: str) -> None:
-        text = f"<b>{event.value}</b> [SIMULAÇÃO]\n{body}"
+        text = f"{TAG} <b>{event.value}</b> [SIMULAÇÃO]\n{body}"
         for chat in self.chat_ids:
             self.sent.append((chat, text))
             if self.dry_run:
@@ -113,18 +119,36 @@ class TelegramBot:
 
     def _reply(self, chat_id: int, text: str) -> None:
         try:
-            self.client.post(f"https://api.telegram.org/bot{self.token}/sendMessage", json={"chat_id": chat_id, "text": text})
+            self.client.post(f"https://api.telegram.org/bot{self.token}/sendMessage",
+                             json={"chat_id": chat_id, "text": f"{TAG}\n{text}"})
         except httpx.HTTPError as e:
             log.warning("telegram falhou: %s", type(e).__name__)
+
+    def _api(self, method: str, **params) -> dict:
+        return self.client.get(f"https://api.telegram.org/bot{self.token}/{method}", params=params).json()
+
+    def check_exclusive(self, delete_webhook: bool = False) -> None:
+        """Long polling só funciona sem webhook. Por omissão recusa arrancar se houver um (pode ser de outra
+        aplicação); apagá-lo é uma decisão explícita do dono (`delete_webhook=True`)."""
+        info = self._api("getWebhookInfo").get("result") or {}
+        if info.get("url"):
+            if not delete_webhook:
+                raise BotConflict("o bot tem um webhook registado (outra aplicação a receber mensagens). "
+                                  "Confirmar que está inativa e arrancar com --apagar-webhook.")
+            self._api("deleteWebhook", drop_pending_updates="false")
+            log.warning("webhook do bot apagado por decisão explícita do dono")
 
     def poll_once(self) -> int:
         try:
             r = self.client.get(f"https://api.telegram.org/bot{self.token}/getUpdates",
                                 params={"offset": self.offset, "timeout": 30, "allowed_updates": '["message"]'})
-            updates = r.json().get("result", [])
+            body = r.json()
         except (httpx.HTTPError, ValueError) as e:
             log.warning("getUpdates falhou: %s", type(e).__name__)
             return 0
+        if r.status_code == 409:  # outro processo a ler o mesmo bot, ou um webhook registado entretanto
+            raise BotConflict(body.get("description", "conflito no getUpdates"))
+        updates = body.get("result", [])
         for u in updates:
             self.offset = max(self.offset, u["update_id"] + 1)
             msg = u.get("message") or {}
