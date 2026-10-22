@@ -75,6 +75,7 @@ def run_backtest(bars: pd.DataFrame, features: pd.DataFrame, signals: pd.DataFra
     sig = signals.reindex(times)
     side_arr = sig["side"].fillna(0).to_numpy(int)
     prob_arr = sig["prob"].fillna(0.0).to_numpy(float)
+    exp_arr = sig["exp_ret"].to_numpy(float) if "exp_ret" in sig.columns else np.full(len(times), np.nan)
     f = features.reindex(times)
     atr_pct = f["atr_pct"].to_numpy(float)
     spread_bps = f["spread_bps"].to_numpy(float) if "spread_bps" in f.columns else np.full(len(times), np.nan)
@@ -98,7 +99,7 @@ def run_backtest(bars: pd.DataFrame, features: pd.DataFrame, signals: pd.DataFra
         sbps = spread_bps[i] if not np.isnan(spread_bps[i]) else spec.default_spread_bps
         cost = spec.round_trip_cost_pct(sbps)
         prop = Proposal(spec.symbol, s, float(prob_arr[i]), cfg.tp_mult * atr_pct[i], cfg.sl_mult * atr_pct[i], cost,
-                        float(sbps), float(atr_pct[i]))
+                        float(sbps), float(atr_pct[i]), None if np.isnan(exp_arr[i]) else float(exp_arr[i]))
         st = PortfolioState(eq, acc.peak_equity, acc.day_start_equity, len(acc.positions_),
                             acc.exposure_by_symbol(), available_equity=acc.available(),
                             bar_move_atr=float((h[i] - lo[i]) / (atr_pct[i] * c[i])) if atr_pct[i] > 0 else 0.0)

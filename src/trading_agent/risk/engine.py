@@ -22,6 +22,9 @@ class Proposal:
     cost_pct: float           # custo estimado ida e volta (spread + comissões + slippage)
     spread_bps: float
     atr_pct: float
+    # Retorno bruto esperado estimado fora do treino (calibração). Se existir, substitui a fórmula
+    # TP/SL, que trata as saídas por tempo como perdas completas.
+    expected_gross_ret: float | None = None
 
 
 @dataclass
@@ -70,7 +73,10 @@ class RiskEngine:
             reasons.append("corretora indisponível")
         if p.probability < L.min_probability:
             reasons.append(f"probabilidade {p.probability:.3f} < {L.min_probability}")
-        edge = expected_edge(p.probability, p.tp_pct, p.sl_pct, p.cost_pct)
+        if p.expected_gross_ret is not None:
+            edge = p.expected_gross_ret - p.cost_pct
+        else:
+            edge = expected_edge(p.probability, p.tp_pct, p.sl_pct, p.cost_pct)
         if edge * 1e4 < L.min_expected_edge_bps:
             reasons.append(f"expectativa {edge * 1e4:.2f} bps < {L.min_expected_edge_bps} bps depois de custos")
         if p.spread_bps > L.max_spread_bps:
