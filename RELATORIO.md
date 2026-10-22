@@ -1,6 +1,6 @@
 # Relatório da fase 2: Trading AI Agent
 
-**Data:** 22/10/2026 · **Repositório:** `paulinoliliptec-droid/trading-ai-agent` (privado) · **Branch:** `fase-2-auditoria`
+**Data:** 22/10/2026 · **Repositório:** `paulinoliliptec-droid/trading-ai-agent` (privado) · **Branch:** `main` (fase 2 integrada pela pull request #1)
 **Só simulação.** Nenhuma ordem real, nenhuma credencial com permissão de negociar ou levantar fundos.
 
 > O relatório da fase 1 está no histórico do Git (commit `92c6f74`). Os números dele não são comparáveis um a um
@@ -233,4 +233,4 @@ Desenho fixado antes dos resultados (detalhe em `docs/research-results-fase2.md`
   - `docs/research-results-fase2.md` e `docs/research-results-fase2-tabelas.md`;
   - `docs/mongodb.md`;
   - `docs/adr/0003-fase2-execucao-e-aprovacao.md`.
-- **Commits na branch:** `a21aaf8`, `fa36300`, `866a531`, `4b0a42d`, `57571ca`, `e7ded62`, `989df1a` e o deste relatório.
+- **Commits da fase 2:** `a21aaf8`, `fa36300`, `866a531`, `4b0a42d`, `57571ca`, `e7ded62`, `989df1a` e o deste relatório.
