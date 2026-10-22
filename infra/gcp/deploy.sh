@@ -28,8 +28,9 @@ run() { if [[ "${CONFIRMO:-}" == "sim" ]]; then echo "+ $*"; "$@"; else echo "[p
 
 # 0) Verificações só de leitura: projeto certo, faturação ativa, colisões de nomes.
 gcloud projects describe "$PROJECT" --format='value(projectId)' >/dev/null
-gcloud billing projects describe "$PROJECT" --billing-project "$PROJECT" --format='value(billingEnabled)' 2>/dev/null \
-  | grep -qi true || { echo "Faturação não confirmada em $PROJECT: parar."; exit 1; }
+# A Cloud Billing API não está ativa no projeto; o Secret Manager recusa com BILLING_DISABLED sem faturação.
+gcloud secrets list --project "$PROJECT" --limit 1 >/dev/null 2>&1 \
+  || { echo "Faturação não confirmada em $PROJECT (Secret Manager recusou): parar."; exit 1; }
 for s in "${SECRETS[@]}"; do
   gcloud secrets describe "$s" --project "$PROJECT" >/dev/null 2>&1 && echo "segredo $s já existe (reutilizado)"
 done

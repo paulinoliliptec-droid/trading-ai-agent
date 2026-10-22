@@ -3,6 +3,9 @@
 set -euo pipefail
 meta() { curl -s -H "Metadata-Flavor: Google" "http://metadata.google.internal/computeMetadata/v1/instance/attributes/$1"; }
 IMAGE=$(meta image); BUCKET=$(meta bucket); P=$(meta prefix)
+# e2-micro tem 1 GB: swap de 2 GB para os picos de importação (pandas, xgboost) do worker e do bot
+if [ ! -f /swapfile ]; then fallocate -l 2G /swapfile && chmod 600 /swapfile && mkswap /swapfile && echo '/swapfile none swap sw 0 0' >> /etc/fstab; fi
+swapon -a || true
 apt-get update -y && apt-get install -y docker.io
 gcloud auth configure-docker "$(echo "$IMAGE" | cut -d/ -f1)" --quiet
 secret() { gcloud secrets versions access latest --secret "$P-$1" 2>/dev/null || true; }   # só os segredos com o prefixo próprio
