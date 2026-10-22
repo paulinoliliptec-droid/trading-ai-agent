@@ -1,0 +1,18 @@
+# Desenvolvimento local: API + MongoDB. Só simulação.
+services:
+  api:
+    build: .
+    ports: ["8080:8080"]
+    env_file: [.env]
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/trading_agent
+    volumes:
+      - ./data:/app/data
+      - ./reports:/app/reports
+    depends_on: [mongo]
+  mongo:
+    image: mongo:7
+    ports: ["27017:27017"]
+    volumes: [mongo-data:/data/db]
+volumes:
+  mongo-data:

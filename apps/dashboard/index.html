@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trading AI Agent</title>
+<style>
+  :root { --bg:#0f1115; --fg:#e7e9ee; --muted:#9aa3b2; --card:#181b22; --line:#262a33; --pos:#3fb27f; --neg:#e5645c; }
+  @media (prefers-color-scheme: light) { :root { --bg:#f6f7f9; --fg:#14161a; --muted:#5b6472; --card:#fff; --line:#e3e6ea; } }
+  body { margin:0; font:15px/1.45 system-ui, sans-serif; background:var(--bg); color:var(--fg); }
+  main { max-width:1100px; margin:0 auto; padding:24px 16px; }
+  h1 { font-size:20px; margin:0 0 4px; } .muted { color:var(--muted); }
+  .badge { display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid var(--line); font-size:12px; }
+  table { width:100%; border-collapse:collapse; margin:12px 0 28px; background:var(--card); }
+  th, td { padding:8px 10px; border-bottom:1px solid var(--line); text-align:right; white-space:nowrap; }
+  th:first-child, td:first-child { text-align:left; }
+  .pos { color:var(--pos); } .neg { color:var(--neg); }
+  .wrap { overflow-x:auto; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Trading AI Agent</h1>
+  <p class="muted">Investigação e paper trading. <span class="badge" id="modo">a carregar…</span> <span class="badge" id="kill"></span></p>
+  <div id="relatorios"></div>
+</main>
+<script>
+const fmt = (v) => v === null || v === undefined ? "—" : (typeof v === "number" ? v.toLocaleString("pt-PT") : v);
+const cls = (v) => typeof v === "number" ? (v > 0 ? "pos" : v < 0 ? "neg" : "") : "";
+async function carregar() {
+  const s = await (await fetch("/status")).json();
+  document.getElementById("modo").textContent = s.negociacao_real ? "NEGOCIAÇÃO REAL" : "só simulação";
+  document.getElementById("kill").textContent = s.kill_switch ? "kill switch ACCIONADO" : "kill switch desarmado";
+  const p = await (await fetch("/performance")).json();
+  const alvo = document.getElementById("relatorios");
+  for (const [par, r] of Object.entries(p)) {
+    const linhas = Object.entries(r.resultados).map(([m, x]) =>
+      `<tr><td>${m}</td><td>${fmt(x.operacoes)}</td><td class="${cls(x.retorno_liquido_pct ?? x.retorno_pct)}">${fmt(x.retorno_liquido_pct ?? x.retorno_pct)}</td>
+       <td class="${cls(x.expectativa_bps_por_operacao)}">${fmt(x.expectativa_bps_por_operacao)}</td><td>${fmt(x.profit_factor)}</td>
+       <td>${fmt(x.max_drawdown_pct)}</td><td>${fmt(x.taxa_acerto_pct)}</td></tr>`).join("");
+    alvo.insertAdjacentHTML("beforeend", `<h2>${par}</h2><p class="muted">Teste fora da amostra: ${r.periodo_teste.join(" → ")}</p>
+      <div class="wrap"><table><tr><th>Modelo</th><th>Operações</th><th>Retorno líquido %</th><th>Expectativa (bps/op.)</th>
+      <th>Profit factor</th><th>Max DD %</th><th>Acerto %</th></tr>${linhas}</table></div>`);
+  }
+}
+carregar();
+</script>
+</body>
+</html>

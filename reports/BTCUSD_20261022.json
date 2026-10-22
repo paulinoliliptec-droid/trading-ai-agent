@@ -1,0 +1,302 @@
+{
+ "gerado_em": "2026-10-22T16:55:42.426603+00:00",
+ "par": "BTC/USD",
+ "fonte": "coinbase",
+ "dados": {
+  "rows": 33364,
+  "start": "2023-01-01 00:00:00+00:00",
+  "end": "2026-10-22 16:00:00+00:00",
+  "quality": {
+   "rows": 33364,
+   "start": "2023-01-01 00:00:00+00:00",
+   "end": "2026-10-22 16:00:00+00:00",
+   "duplicates_removed": 111,
+   "missing_bars": 13,
+   "missing_ratio": 0.00039,
+   "invalid_bars_removed": 0,
+   "largest_gap": "0 days 06:00:00",
+   "notes": []
+  },
+  "synthetic": false
+ },
+ "periodo_teste": [
+  "2024-11-28 01:00:00+00:00",
+  "2026-10-22 14:00:00+00:00"
+ ],
+ "amostras_validas": 33263,
+ "rotulagem": {
+  "horizonte_velas": 24,
+  "tp_atr": 2.0,
+  "sl_atr": 1.0,
+  "taxa_tp_comprado": 0.3123,
+  "taxa_tp_vendido": 0.2994
+ },
+ "custo_tipico_ida_volta_bps": 56.0,
+ "features": [
+  "ret_1",
+  "ret_3",
+  "ret_6",
+  "ret_12",
+  "ret_24",
+  "vol_24",
+  "vol_72",
+  "rsi_14",
+  "ema_12_48",
+  "close_ema_96",
+  "atr_pct",
+  "mom_24",
+  "range_pos_24",
+  "hour_sin",
+  "hour_cos",
+  "volume_z_72"
+ ],
+ "importancia_xgboost_fold0": {
+  "close_ema_96": 0.10544021281001031,
+  "vol_72": 0.09528884732677498,
+  "ret_24": 0.08418147830430141,
+  "mom_24": 0.08349787350032763,
+  "rsi_14": 0.08104451007114631,
+  "vol_24": 0.07852665664634274,
+  "volume_z_72": 0.06138343944809088,
+  "ema_12_48": 0.059821756193327844,
+  "range_pos_24": 0.05751231915084323,
+  "ret_1": 0.05338128580309827
+ },
+ "resultados": {
+  "A_regras": {
+   "operacoes": 0,
+   "retorno_liquido_pct": 0.0,
+   "max_drawdown_pct": 0.0,
+   "nota": "sem operações (equivale a não negociar)",
+   "vetos_do_risco": {
+    "probabilidade": 10051,
+    "expectativa": 10051
+   }
+  },
+  "B_xgboost": {
+   "operacoes": 14,
+   "retorno_liquido_pct": -1.337,
+   "taxa_acerto_pct": 42.86,
+   "ganho_medio_bps": 56.04,
+   "perda_media_bps": -125.99,
+   "expectativa_bps_por_operacao": -47.979,
+   "custo_medio_bps": 56.0,
+   "profit_factor": 0.334,
+   "max_drawdown_pct": -1.945,
+   "sharpe_anualizado": "não calculado (menos de 30 operações)",
+   "saidas": {
+    "sl": 8,
+    "tp": 6
+   },
+   "vetos_do_risco": {},
+   "limiares_por_fold": [
+    0.6,
+    0.6,
+    0.6,
+    0.6,
+    0.6
+   ],
+   "classificacao_teste_lado_comprado": {
+    "amostras": 16632,
+    "taxa_base": 0.3024,
+    "roc_auc": 0.5214,
+    "brier": 0.2119,
+    "log_loss": 0.628,
+    "precision": 0.575,
+    "recall": 0.0046,
+    "calibracao": [
+     {
+      "prevista": 0.237,
+      "observada": 0.266,
+      "n": 3362
+     },
+     {
+      "prevista": 0.307,
+      "observada": 0.304,
+      "n": 3806
+     },
+     {
+      "prevista": 0.318,
+      "observada": 0.329,
+      "n": 3982
+     },
+     {
+      "prevista": 0.336,
+      "observada": 0.288,
+      "n": 3346
+     },
+     {
+      "prevista": 0.371,
+      "observada": 0.33,
+      "n": 2136
+     }
+    ]
+   },
+   "classificacao_teste_lado_vendido": {
+    "amostras": 16632,
+    "taxa_base": 0.3119,
+    "roc_auc": 0.4971,
+    "brier": 0.2163,
+    "log_loss": 0.6291,
+    "precision": 0.0,
+    "recall": 0.0,
+    "calibracao": [
+     {
+      "prevista": 0.249,
+      "observada": 0.313,
+      "n": 3427
+     },
+     {
+      "prevista": 0.302,
+      "observada": 0.328,
+      "n": 4716
+     },
+     {
+      "prevista": 0.316,
+      "observada": 0.292,
+      "n": 2814
+     },
+     {
+      "prevista": 0.339,
+      "observada": 0.28,
+      "n": 3136
+     },
+     {
+      "prevista": 0.389,
+      "observada": 0.341,
+      "n": 2539
+     }
+    ]
+   }
+  },
+  "C_gru": {
+   "operacoes": 19,
+   "retorno_liquido_pct": -2.362,
+   "taxa_acerto_pct": 36.84,
+   "ganho_medio_bps": 103.78,
+   "perda_media_bps": -159.78,
+   "expectativa_bps_por_operacao": -62.676,
+   "custo_medio_bps": 56.0,
+   "profit_factor": 0.379,
+   "max_drawdown_pct": -2.508,
+   "sharpe_anualizado": "não calculado (menos de 30 operações)",
+   "saidas": {
+    "sl": 12,
+    "tp": 6,
+    "tempo": 1
+   },
+   "vetos_do_risco": {
+    "expectativa": 223
+   },
+   "limiares_por_fold": [
+    0.55,
+    0.4,
+    0.6,
+    0.6,
+    0.6
+   ],
+   "classificacao_teste_lado_comprado": {
+    "amostras": 16632,
+    "taxa_base": 0.3024,
+    "roc_auc": 0.5141,
+    "brier": 0.2138,
+    "log_loss": 0.6387,
+    "precision": 0.125,
+    "recall": 0.0006,
+    "calibracao": [
+     {
+      "prevista": 0.23,
+      "observada": 0.282,
+      "n": 4367
+     },
+     {
+      "prevista": 0.286,
+      "observada": 0.31,
+      "n": 2593
+     },
+     {
+      "prevista": 0.314,
+      "observada": 0.313,
+      "n": 3074
+     },
+     {
+      "prevista": 0.333,
+      "observada": 0.308,
+      "n": 3458
+     },
+     {
+      "prevista": 0.367,
+      "observada": 0.308,
+      "n": 3140
+     }
+    ]
+   },
+   "classificacao_teste_lado_vendido": {
+    "amostras": 16632,
+    "taxa_base": 0.3119,
+    "roc_auc": 0.4901,
+    "brier": 0.2179,
+    "log_loss": 0.6318,
+    "precision": 0.3684,
+    "recall": 0.0013,
+    "calibracao": [
+     {
+      "prevista": 0.248,
+      "observada": 0.313,
+      "n": 3596
+     },
+     {
+      "prevista": 0.277,
+      "observada": 0.336,
+      "n": 3057
+     },
+     {
+      "prevista": 0.322,
+      "observada": 0.306,
+      "n": 3389
+     },
+     {
+      "prevista": 0.343,
+      "observada": 0.292,
+      "n": 3478
+     },
+     {
+      "prevista": 0.377,
+      "observada": 0.316,
+      "n": 3112
+     }
+    ]
+   }
+  },
+  "A_regras_sem_filtro_de_expectativa_diagnostico": {
+   "operacoes": 96,
+   "retorno_liquido_pct": -10.033,
+   "taxa_acerto_pct": 34.38,
+   "ganho_medio_bps": 100.14,
+   "perda_media_bps": -136.1,
+   "expectativa_bps_por_operacao": -54.895,
+   "custo_medio_bps": 56.0,
+   "profit_factor": 0.385,
+   "max_drawdown_pct": -10.033,
+   "sharpe_anualizado": -2.675,
+   "saidas": {
+    "sl": 62,
+    "tp": 32,
+    "tempo": 2
+   },
+   "vetos_do_risco": {
+    "drawdown": 9593
+   }
+  },
+  "nao_negociar": {
+   "operacoes": 0,
+   "retorno_liquido_pct": 0.0,
+   "max_drawdown_pct": 0.0
+  },
+  "comprar_e_manter_referencia": {
+   "retorno_pct": -15.138,
+   "max_drawdown_pct": -53.854
+  }
+ },
+ "duracao_s": 109.4
+}
