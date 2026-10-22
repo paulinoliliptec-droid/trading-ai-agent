@@ -1,0 +1,1521 @@
+{
+ "gerado_em": "2026-10-22T19:37:46.146316+00:00",
+ "simbolo": "BTC/USD",
+ "modelos": [
+  "A",
+  "B",
+  "C",
+  "D"
+ ],
+ "n_configuracoes_x_modelos": 40,
+ "criterio_selecao": "desenvolvimento: >= 30 operações e IC95% inferior da expectativa líquida > 0 (bootstrap por blocos)",
+ "escolhido": null,
+ "nenhum_qualificado": true,
+ "melhor_no_desenvolvimento": {
+  "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2_janela8760",
+  "modelo": "C_gru",
+  "qualificado": false,
+  "desenvolvimento": {
+   "operacoes": 80,
+   "retorno_liquido_pct": -5.116,
+   "taxa_acerto_pct": 37.5,
+   "expectativa_bruta_bps": 25.11,
+   "custo_medio_bps": 56.054,
+   "expectativa_bps_por_operacao": -30.943,
+   "profit_factor": 0.55,
+   "max_drawdown_pct": -5.543,
+   "sharpe_anualizado": -1.897,
+   "ic95_liquida_bps": [
+    -51.82,
+    -6.63
+   ],
+   "auc": 0.5198,
+   "brier_skill": -0.01001
+  },
+  "teste_final": {
+   "operacoes": 1,
+   "retorno_liquido_pct": -0.06,
+   "taxa_acerto_pct": 0.0,
+   "expectativa_bruta_bps": 26.113,
+   "custo_medio_bps": 56.057,
+   "expectativa_bps_por_operacao": -29.944,
+   "profit_factor": 0.0,
+   "max_drawdown_pct": -0.06,
+   "sharpe_anualizado": "não calculado (menos de 30 operações)",
+   "ic95_liquida_bps": null,
+   "auc": 0.4953,
+   "brier_skill": -0.00633
+  }
+ },
+ "simulacao_100_eur_risco_de_producao": {
+  "configuracao": "BTCUSD_1h_h24_tp2_sl1_v2_janela8760 / C_gru",
+  "resultados": {
+   "desenvolvimento": {
+    "operacoes": 80,
+    "retorno_liquido_pct": -5.119,
+    "taxa_acerto_pct": 37.5,
+    "expectativa_bruta_bps": 25.11,
+    "custo_medio_bps": 56.054,
+    "expectativa_bps_por_operacao": -30.943,
+    "profit_factor": 0.549,
+    "max_drawdown_pct": -5.547,
+    "sharpe_anualizado": -1.898,
+    "ic95_liquida_bps": [
+     -51.82,
+     -6.63
+    ],
+    "auc": null,
+    "brier_skill": null,
+    "vetos_do_risco": {
+     "probabilidade": 12051,
+     "expectativa": 12685
+    }
+   },
+   "teste_final": {
+    "operacoes": 1,
+    "retorno_liquido_pct": -0.06,
+    "taxa_acerto_pct": 0.0,
+    "expectativa_bruta_bps": 26.113,
+    "custo_medio_bps": 56.057,
+    "expectativa_bps_por_operacao": -29.944,
+    "profit_factor": 0.0,
+    "max_drawdown_pct": -0.06,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null,
+    "vetos_do_risco": {
+     "probabilidade": 6421,
+     "expectativa": 6637
+    }
+   }
+  }
+ },
+ "tabela": [
+  {
+   "experiencia": "BTCUSD_15m_h16_tp2_sl1_v2",
+   "modelo": "A_regras",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   }
+  },
+  {
+   "experiencia": "BTCUSD_15m_h16_tp2_sl1_v2",
+   "modelo": "B_xgboost",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.5215,
+    "brier_skill": -0.01236
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.5444,
+    "brier_skill": 0.0024
+   }
+  },
+  {
+   "experiencia": "BTCUSD_15m_h16_tp2_sl1_v2",
+   "modelo": "C_gru",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 10,
+    "retorno_liquido_pct": -1.31,
+    "taxa_acerto_pct": 0.0,
+    "expectativa_bruta_bps": -9.93,
+    "custo_medio_bps": 55.955,
+    "expectativa_bps_por_operacao": -65.885,
+    "profit_factor": 0.0,
+    "max_drawdown_pct": -1.31,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -79.13,
+     -53.66
+    ],
+    "auc": 0.5349,
+    "brier_skill": -0.0028
+   },
+   "teste_final": {
+    "operacoes": 9,
+    "retorno_liquido_pct": -0.995,
+    "taxa_acerto_pct": 0.0,
+    "expectativa_bruta_bps": 0.495,
+    "custo_medio_bps": 55.985,
+    "expectativa_bps_por_operacao": -55.489,
+    "profit_factor": 0.0,
+    "max_drawdown_pct": -0.995,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -57.51,
+     -53.46
+    ],
+    "auc": 0.5525,
+    "brier_skill": 0.00277
+   }
+  },
+  {
+   "experiencia": "BTCUSD_15m_h16_tp2_sl1_v2",
+   "modelo": "D_ensemble_BC",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 34,
+    "retorno_liquido_pct": -3.87,
+    "taxa_acerto_pct": 2.94,
+    "expectativa_bruta_bps": -2.01,
+    "custo_medio_bps": 55.978,
+    "expectativa_bps_por_operacao": -57.987,
+    "profit_factor": 0.046,
+    "max_drawdown_pct": -3.87,
+    "sharpe_anualizado": -2.522,
+    "ic95_liquida_bps": [
+     -63.41,
+     -52.34
+    ],
+    "auc": 0.5358,
+    "brier_skill": -0.01236
+   },
+   "teste_final": {
+    "operacoes": 10,
+    "retorno_liquido_pct": -1.114,
+    "taxa_acerto_pct": 0.0,
+    "expectativa_bruta_bps": 0.037,
+    "custo_medio_bps": 55.983,
+    "expectativa_bps_por_operacao": -55.946,
+    "profit_factor": 0.0,
+    "max_drawdown_pct": -1.114,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -58.02,
+     -53.79
+    ],
+    "auc": 0.5524,
+    "brier_skill": 0.0026
+   }
+  },
+  {
+   "experiencia": "BTCUSD_15m_h16_tp1_sl1_v2",
+   "modelo": "A_regras",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   }
+  },
+  {
+   "experiencia": "BTCUSD_15m_h16_tp1_sl1_v2",
+   "modelo": "B_xgboost",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.488,
+    "brier_skill": -0.00544
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.4964,
+    "brier_skill": -0.00216
+   }
+  },
+  {
+   "experiencia": "BTCUSD_15m_h16_tp1_sl1_v2",
+   "modelo": "C_gru",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.4973,
+    "brier_skill": -0.00136
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.501,
+    "brier_skill": -0.00307
+   }
+  },
+  {
+   "experiencia": "BTCUSD_15m_h16_tp1_sl1_v2",
+   "modelo": "D_ensemble_BC",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.4902,
+    "brier_skill": -0.00482
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.5074,
+    "brier_skill": -0.00397
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2",
+   "modelo": "A_regras",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2",
+   "modelo": "B_xgboost",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 1,
+    "retorno_liquido_pct": -0.225,
+    "taxa_acerto_pct": 0.0,
+    "expectativa_bruta_bps": -56.663,
+    "custo_medio_bps": 55.823,
+    "expectativa_bps_por_operacao": -112.487,
+    "profit_factor": 0.0,
+    "max_drawdown_pct": -0.225,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": null,
+    "auc": 0.5033,
+    "brier_skill": -0.01374
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.506,
+    "brier_skill": -0.00917
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2",
+   "modelo": "C_gru",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 4,
+    "retorno_liquido_pct": -0.627,
+    "taxa_acerto_pct": 25.0,
+    "expectativa_bruta_bps": -22.517,
+    "custo_medio_bps": 55.924,
+    "expectativa_bps_por_operacao": -78.441,
+    "profit_factor": 0.188,
+    "max_drawdown_pct": -0.627,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": null,
+    "auc": 0.5105,
+    "brier_skill": -0.01511
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.5219,
+    "brier_skill": -0.0046
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2",
+   "modelo": "D_ensemble_BC",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 24,
+    "retorno_liquido_pct": -3.161,
+    "taxa_acerto_pct": 25.0,
+    "expectativa_bruta_bps": -10.83,
+    "custo_medio_bps": 55.952,
+    "expectativa_bps_por_operacao": -66.782,
+    "profit_factor": 0.204,
+    "max_drawdown_pct": -3.233,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -92.95,
+     -39.93
+    ],
+    "auc": 0.5091,
+    "brier_skill": -0.0187
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.5054,
+    "brier_skill": -0.00812
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp1_sl1_v2",
+   "modelo": "A_regras",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp1_sl1_v2",
+   "modelo": "B_xgboost",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 6,
+    "retorno_liquido_pct": -1.074,
+    "taxa_acerto_pct": 0.0,
+    "expectativa_bruta_bps": -33.955,
+    "custo_medio_bps": 55.887,
+    "expectativa_bps_por_operacao": -89.842,
+    "profit_factor": 0.0,
+    "max_drawdown_pct": -1.074,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -109.47,
+     -70.21
+    ],
+    "auc": 0.4925,
+    "brier_skill": -0.01279
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.5194,
+    "brier_skill": -0.00141
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp1_sl1_v2",
+   "modelo": "C_gru",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 11,
+    "retorno_liquido_pct": -1.135,
+    "taxa_acerto_pct": 27.27,
+    "expectativa_bruta_bps": 4.235,
+    "custo_medio_bps": 55.994,
+    "expectativa_bps_por_operacao": -51.76,
+    "profit_factor": 0.273,
+    "max_drawdown_pct": -1.159,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -87.16,
+     -15.21
+    ],
+    "auc": 0.4932,
+    "brier_skill": -0.01868
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.5103,
+    "brier_skill": -0.00233
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp1_sl1_v2",
+   "modelo": "D_ensemble_BC",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 16,
+    "retorno_liquido_pct": -1.998,
+    "taxa_acerto_pct": 18.75,
+    "expectativa_bruta_bps": -6.988,
+    "custo_medio_bps": 55.963,
+    "expectativa_bps_por_operacao": -62.951,
+    "profit_factor": 0.176,
+    "max_drawdown_pct": -2.022,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -90.74,
+     -33.47
+    ],
+    "auc": 0.4927,
+    "brier_skill": -0.02332
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.5196,
+    "brier_skill": -0.00146
+   }
+  },
+  {
+   "experiencia": "BTCUSD_4h_h12_tp2_sl1_v2",
+   "modelo": "A_regras",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   }
+  },
+  {
+   "experiencia": "BTCUSD_4h_h12_tp2_sl1_v2",
+   "modelo": "B_xgboost",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 52,
+    "retorno_liquido_pct": -5.709,
+    "taxa_acerto_pct": 30.77,
+    "expectativa_bruta_bps": -0.314,
+    "custo_medio_bps": 55.983,
+    "expectativa_bps_por_operacao": -56.296,
+    "profit_factor": 0.424,
+    "max_drawdown_pct": -5.709,
+    "sharpe_anualizado": -2.305,
+    "ic95_liquida_bps": [
+     -92.31,
+     -16.9
+    ],
+    "auc": 0.5227,
+    "brier_skill": -0.00285
+   },
+   "teste_final": {
+    "operacoes": 47,
+    "retorno_liquido_pct": -5.116,
+    "taxa_acerto_pct": 27.66,
+    "expectativa_bruta_bps": 0.982,
+    "custo_medio_bps": 55.985,
+    "expectativa_bps_por_operacao": -55.003,
+    "profit_factor": 0.448,
+    "max_drawdown_pct": -5.598,
+    "sharpe_anualizado": -2.371,
+    "ic95_liquida_bps": [
+     -92.73,
+     -15.28
+    ],
+    "auc": 0.5008,
+    "brier_skill": -0.13502
+   }
+  },
+  {
+   "experiencia": "BTCUSD_4h_h12_tp2_sl1_v2",
+   "modelo": "C_gru",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.5382,
+    "brier_skill": -0.00424
+   },
+   "teste_final": {
+    "operacoes": 12,
+    "retorno_liquido_pct": 0.027,
+    "taxa_acerto_pct": 41.67,
+    "expectativa_bruta_bps": 60.964,
+    "custo_medio_bps": 56.152,
+    "expectativa_bps_por_operacao": 4.812,
+    "profit_factor": 1.009,
+    "max_drawdown_pct": -1.642,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -102.25,
+     119.38
+    ],
+    "auc": 0.4819,
+    "brier_skill": -0.06839
+   }
+  },
+  {
+   "experiencia": "BTCUSD_4h_h12_tp2_sl1_v2",
+   "modelo": "D_ensemble_BC",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 52,
+    "retorno_liquido_pct": -5.709,
+    "taxa_acerto_pct": 30.77,
+    "expectativa_bruta_bps": -0.314,
+    "custo_medio_bps": 55.983,
+    "expectativa_bps_por_operacao": -56.296,
+    "profit_factor": 0.424,
+    "max_drawdown_pct": -5.709,
+    "sharpe_anualizado": -2.305,
+    "ic95_liquida_bps": [
+     -92.31,
+     -16.9
+    ],
+    "auc": 0.5389,
+    "brier_skill": -0.00443
+   },
+   "teste_final": {
+    "operacoes": 48,
+    "retorno_liquido_pct": -6.38,
+    "taxa_acerto_pct": 25.0,
+    "expectativa_bruta_bps": -11.359,
+    "custo_medio_bps": 55.951,
+    "expectativa_bps_por_operacao": -67.31,
+    "profit_factor": 0.407,
+    "max_drawdown_pct": -6.793,
+    "sharpe_anualizado": -2.718,
+    "ic95_liquida_bps": [
+     -98.45,
+     -34.16
+    ],
+    "auc": 0.495,
+    "brier_skill": -0.16557
+   }
+  },
+  {
+   "experiencia": "BTCUSD_4h_h12_tp1_sl1_v2",
+   "modelo": "A_regras",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   }
+  },
+  {
+   "experiencia": "BTCUSD_4h_h12_tp1_sl1_v2",
+   "modelo": "B_xgboost",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.5172,
+    "brier_skill": -0.00261
+   },
+   "teste_final": {
+    "operacoes": 2,
+    "retorno_liquido_pct": -0.422,
+    "taxa_acerto_pct": 0.0,
+    "expectativa_bruta_bps": -49.643,
+    "custo_medio_bps": 55.845,
+    "expectativa_bps_por_operacao": -105.488,
+    "profit_factor": 0.0,
+    "max_drawdown_pct": -0.422,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": null,
+    "auc": 0.4705,
+    "brier_skill": -0.03389
+   }
+  },
+  {
+   "experiencia": "BTCUSD_4h_h12_tp1_sl1_v2",
+   "modelo": "C_gru",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 28,
+    "retorno_liquido_pct": -3.487,
+    "taxa_acerto_pct": 46.43,
+    "expectativa_bruta_bps": -13.188,
+    "custo_medio_bps": 55.949,
+    "expectativa_bps_por_operacao": -69.136,
+    "profit_factor": 0.457,
+    "max_drawdown_pct": -3.487,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -116.53,
+     -24.86
+    ],
+    "auc": 0.4986,
+    "brier_skill": -0.03357
+   },
+   "teste_final": {
+    "operacoes": 11,
+    "retorno_liquido_pct": -1.559,
+    "taxa_acerto_pct": 45.45,
+    "expectativa_bruta_bps": -22.346,
+    "custo_medio_bps": 55.913,
+    "expectativa_bps_por_operacao": -78.258,
+    "profit_factor": 0.433,
+    "max_drawdown_pct": -2.387,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -180.33,
+     24.86
+    ],
+    "auc": 0.4686,
+    "brier_skill": -0.03945
+   }
+  },
+  {
+   "experiencia": "BTCUSD_4h_h12_tp1_sl1_v2",
+   "modelo": "D_ensemble_BC",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 36,
+    "retorno_liquido_pct": -2.697,
+    "taxa_acerto_pct": 58.33,
+    "expectativa_bruta_bps": 13.565,
+    "custo_medio_bps": 56.024,
+    "expectativa_bps_por_operacao": -42.459,
+    "profit_factor": 0.569,
+    "max_drawdown_pct": -3.396,
+    "sharpe_anualizado": -1.413,
+    "ic95_liquida_bps": [
+     -88.74,
+     -1.49
+    ],
+    "auc": 0.5151,
+    "brier_skill": -0.03102
+   },
+   "teste_final": {
+    "operacoes": 6,
+    "retorno_liquido_pct": -1.697,
+    "taxa_acerto_pct": 16.67,
+    "expectativa_bruta_bps": -115.161,
+    "custo_medio_bps": 55.656,
+    "expectativa_bps_por_operacao": -170.817,
+    "profit_factor": 0.101,
+    "max_drawdown_pct": -1.697,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -268.69,
+     -72.94
+    ],
+    "auc": 0.4793,
+    "brier_skill": -0.0574
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1d_h10_tp2_sl1_v2",
+   "modelo": "A_regras",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1d_h10_tp2_sl1_v2",
+   "modelo": "B_xgboost",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 60,
+    "retorno_liquido_pct": -9.238,
+    "taxa_acerto_pct": 28.33,
+    "expectativa_bruta_bps": -84.465,
+    "custo_medio_bps": 55.745,
+    "expectativa_bps_por_operacao": -140.209,
+    "profit_factor": 0.536,
+    "max_drawdown_pct": -9.238,
+    "sharpe_anualizado": -1.905,
+    "ic95_liquida_bps": [
+     -244.41,
+     -33.36
+    ],
+    "auc": 0.425,
+    "brier_skill": -0.15739
+   },
+   "teste_final": {
+    "operacoes": 11,
+    "retorno_liquido_pct": -1.513,
+    "taxa_acerto_pct": 36.36,
+    "expectativa_bruta_bps": -54.645,
+    "custo_medio_bps": 55.842,
+    "expectativa_bps_por_operacao": -110.486,
+    "profit_factor": 0.558,
+    "max_drawdown_pct": -2.741,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -227.51,
+     -3.07
+    ],
+    "auc": 0.4689,
+    "brier_skill": -0.07969
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1d_h10_tp2_sl1_v2",
+   "modelo": "C_gru",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 60,
+    "retorno_liquido_pct": -5.978,
+    "taxa_acerto_pct": 33.33,
+    "expectativa_bruta_bps": -29.958,
+    "custo_medio_bps": 55.901,
+    "expectativa_bps_por_operacao": -85.859,
+    "profit_factor": 0.677,
+    "max_drawdown_pct": -7.192,
+    "sharpe_anualizado": -1.199,
+    "ic95_liquida_bps": [
+     -164.98,
+     -5.03
+    ],
+    "auc": 0.5495,
+    "brier_skill": -0.34549
+   },
+   "teste_final": {
+    "operacoes": 20,
+    "retorno_liquido_pct": -1.903,
+    "taxa_acerto_pct": 30.0,
+    "expectativa_bruta_bps": -21.54,
+    "custo_medio_bps": 55.932,
+    "expectativa_bps_por_operacao": -77.472,
+    "profit_factor": 0.658,
+    "max_drawdown_pct": -3.221,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -206.59,
+     57.45
+    ],
+    "auc": 0.4651,
+    "brier_skill": -1.3351
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1d_h10_tp2_sl1_v2",
+   "modelo": "D_ensemble_BC",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 56,
+    "retorno_liquido_pct": -5.27,
+    "taxa_acerto_pct": 33.93,
+    "expectativa_bruta_bps": -25.802,
+    "custo_medio_bps": 55.914,
+    "expectativa_bps_por_operacao": -81.716,
+    "profit_factor": 0.692,
+    "max_drawdown_pct": -6.494,
+    "sharpe_anualizado": -1.077,
+    "ic95_liquida_bps": [
+     -177.79,
+     5.47
+    ],
+    "auc": 0.5281,
+    "brier_skill": -0.36148
+   },
+   "teste_final": {
+    "operacoes": 20,
+    "retorno_liquido_pct": -0.928,
+    "taxa_acerto_pct": 35.0,
+    "expectativa_bruta_bps": 16.314,
+    "custo_medio_bps": 56.04,
+    "expectativa_bps_por_operacao": -39.726,
+    "profit_factor": 0.818,
+    "max_drawdown_pct": -2.741,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -158.9,
+     80.22
+    ],
+    "auc": 0.4505,
+    "brier_skill": -1.39277
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1d_h10_tp1_sl1_v2",
+   "modelo": "A_regras",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1d_h10_tp1_sl1_v2",
+   "modelo": "B_xgboost",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 61,
+    "retorno_liquido_pct": -8.297,
+    "taxa_acerto_pct": 39.34,
+    "expectativa_bruta_bps": -58.703,
+    "custo_medio_bps": 55.818,
+    "expectativa_bps_por_operacao": -114.52,
+    "profit_factor": 0.502,
+    "max_drawdown_pct": -9.215,
+    "sharpe_anualizado": -2.206,
+    "ic95_liquida_bps": [
+     -213.1,
+     -17.96
+    ],
+    "auc": 0.5128,
+    "brier_skill": -0.14755
+   },
+   "teste_final": {
+    "operacoes": 9,
+    "retorno_liquido_pct": -0.837,
+    "taxa_acerto_pct": 44.44,
+    "expectativa_bruta_bps": 8.853,
+    "custo_medio_bps": 56.018,
+    "expectativa_bps_por_operacao": -47.166,
+    "profit_factor": 0.6,
+    "max_drawdown_pct": -1.478,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -155.8,
+     62.75
+    ],
+    "auc": 0.4455,
+    "brier_skill": -0.11663
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1d_h10_tp1_sl1_v2",
+   "modelo": "C_gru",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 77,
+    "retorno_liquido_pct": -6.936,
+    "taxa_acerto_pct": 46.75,
+    "expectativa_bruta_bps": -16.207,
+    "custo_medio_bps": 55.939,
+    "expectativa_bps_por_operacao": -72.145,
+    "profit_factor": 0.633,
+    "max_drawdown_pct": -7.528,
+    "sharpe_anualizado": -1.66,
+    "ic95_liquida_bps": [
+     -139.07,
+     -6.23
+    ],
+    "auc": 0.5342,
+    "brier_skill": -0.16581
+   },
+   "teste_final": {
+    "operacoes": 10,
+    "retorno_liquido_pct": 0.012,
+    "taxa_acerto_pct": 60.0,
+    "expectativa_bruta_bps": 58.983,
+    "custo_medio_bps": 56.152,
+    "expectativa_bps_por_operacao": 2.831,
+    "profit_factor": 1.006,
+    "max_drawdown_pct": -1.283,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -158.32,
+     136.88
+    ],
+    "auc": 0.5374,
+    "brier_skill": -0.1442
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1d_h10_tp1_sl1_v2",
+   "modelo": "D_ensemble_BC",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 77,
+    "retorno_liquido_pct": -5.03,
+    "taxa_acerto_pct": 50.65,
+    "expectativa_bruta_bps": 7.611,
+    "custo_medio_bps": 56.007,
+    "expectativa_bps_por_operacao": -48.395,
+    "profit_factor": 0.723,
+    "max_drawdown_pct": -5.794,
+    "sharpe_anualizado": -1.202,
+    "ic95_liquida_bps": [
+     -113.71,
+     18.33
+    ],
+    "auc": 0.5434,
+    "brier_skill": -0.26413
+   },
+   "teste_final": {
+    "operacoes": 14,
+    "retorno_liquido_pct": -1.619,
+    "taxa_acerto_pct": 42.86,
+    "expectativa_bruta_bps": -17.082,
+    "custo_medio_bps": 55.942,
+    "expectativa_bps_por_operacao": -73.024,
+    "profit_factor": 0.543,
+    "max_drawdown_pct": -1.814,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -157.55,
+     20.53
+    ],
+    "auc": 0.4927,
+    "brier_skill": -0.1889
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp2_sl1_v1",
+   "modelo": "A_regras",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp2_sl1_v1",
+   "modelo": "B_xgboost",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 3,
+    "retorno_liquido_pct": -0.032,
+    "taxa_acerto_pct": 66.67,
+    "expectativa_bruta_bps": 50.863,
+    "custo_medio_bps": 56.13,
+    "expectativa_bps_por_operacao": -5.266,
+    "profit_factor": 0.823,
+    "max_drawdown_pct": -0.272,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": null,
+    "auc": 0.5049,
+    "brier_skill": -0.01097
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": 0.5184,
+    "brier_skill": -0.00075
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp2_sl1_v1",
+   "modelo": "C_gru",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 7,
+    "retorno_liquido_pct": 0.4,
+    "taxa_acerto_pct": 57.14,
+    "expectativa_bruta_bps": 104.758,
+    "custo_medio_bps": 56.28,
+    "expectativa_bps_por_operacao": 48.478,
+    "profit_factor": 1.484,
+    "max_drawdown_pct": -0.599,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -47.23,
+     145.2
+    ],
+    "auc": 0.5158,
+    "brier_skill": -0.00576
+   },
+   "teste_final": {
+    "operacoes": 4,
+    "retorno_liquido_pct": -0.193,
+    "taxa_acerto_pct": 50.0,
+    "expectativa_bruta_bps": 32.001,
+    "custo_medio_bps": 56.074,
+    "expectativa_bps_por_operacao": -24.073,
+    "profit_factor": 0.576,
+    "max_drawdown_pct": -0.529,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": null,
+    "auc": 0.5232,
+    "brier_skill": -0.00132
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp2_sl1_v1",
+   "modelo": "D_ensemble_BC",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 22,
+    "retorno_liquido_pct": -1.242,
+    "taxa_acerto_pct": 40.91,
+    "expectativa_bruta_bps": 34.083,
+    "custo_medio_bps": 56.08,
+    "expectativa_bps_por_operacao": -21.997,
+    "profit_factor": 0.563,
+    "max_drawdown_pct": -2.167,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -62.72,
+     29.16
+    ],
+    "auc": 0.5128,
+    "brier_skill": -0.01164
+   },
+   "teste_final": {
+    "operacoes": 4,
+    "retorno_liquido_pct": -0.193,
+    "taxa_acerto_pct": 50.0,
+    "expectativa_bruta_bps": 32.001,
+    "custo_medio_bps": 56.074,
+    "expectativa_bps_por_operacao": -24.073,
+    "profit_factor": 0.576,
+    "max_drawdown_pct": -0.529,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": null,
+    "auc": 0.5278,
+    "brier_skill": -0.00142
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2_janela8760",
+   "modelo": "A_regras",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "retorno_liquido_pct": 0.0,
+    "taxa_acerto_pct": null,
+    "expectativa_bruta_bps": null,
+    "custo_medio_bps": null,
+    "expectativa_bps_por_operacao": null,
+    "profit_factor": null,
+    "max_drawdown_pct": 0.0,
+    "sharpe_anualizado": null,
+    "ic95_liquida_bps": null,
+    "auc": null,
+    "brier_skill": null
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2_janela8760",
+   "modelo": "B_xgboost",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 4,
+    "retorno_liquido_pct": -0.573,
+    "taxa_acerto_pct": 25.0,
+    "expectativa_bruta_bps": -15.839,
+    "custo_medio_bps": 55.939,
+    "expectativa_bps_por_operacao": -71.778,
+    "profit_factor": 0.116,
+    "max_drawdown_pct": -0.648,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": null,
+    "auc": 0.5102,
+    "brier_skill": -0.00858
+   },
+   "teste_final": {
+    "operacoes": 17,
+    "retorno_liquido_pct": -2.672,
+    "taxa_acerto_pct": 23.53,
+    "expectativa_bruta_bps": -23.559,
+    "custo_medio_bps": 55.916,
+    "expectativa_bps_por_operacao": -79.475,
+    "profit_factor": 0.193,
+    "max_drawdown_pct": -2.672,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -135.93,
+     -18.84
+    ],
+    "auc": 0.503,
+    "brier_skill": -0.01271
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2_janela8760",
+   "modelo": "C_gru",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 80,
+    "retorno_liquido_pct": -5.116,
+    "taxa_acerto_pct": 37.5,
+    "expectativa_bruta_bps": 25.11,
+    "custo_medio_bps": 56.054,
+    "expectativa_bps_por_operacao": -30.943,
+    "profit_factor": 0.55,
+    "max_drawdown_pct": -5.543,
+    "sharpe_anualizado": -1.897,
+    "ic95_liquida_bps": [
+     -51.82,
+     -6.63
+    ],
+    "auc": 0.5198,
+    "brier_skill": -0.01001
+   },
+   "teste_final": {
+    "operacoes": 1,
+    "retorno_liquido_pct": -0.06,
+    "taxa_acerto_pct": 0.0,
+    "expectativa_bruta_bps": 26.113,
+    "custo_medio_bps": 56.057,
+    "expectativa_bps_por_operacao": -29.944,
+    "profit_factor": 0.0,
+    "max_drawdown_pct": -0.06,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": null,
+    "auc": 0.4953,
+    "brier_skill": -0.00633
+   }
+  },
+  {
+   "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2_janela8760",
+   "modelo": "D_ensemble_BC",
+   "qualificado": false,
+   "desenvolvimento": {
+    "operacoes": 70,
+    "retorno_liquido_pct": -4.84,
+    "taxa_acerto_pct": 37.14,
+    "expectativa_bruta_bps": 22.73,
+    "custo_medio_bps": 56.047,
+    "expectativa_bps_por_operacao": -33.317,
+    "profit_factor": 0.513,
+    "max_drawdown_pct": -5.215,
+    "sharpe_anualizado": -1.992,
+    "ic95_liquida_bps": [
+     -55.97,
+     -9.56
+    ],
+    "auc": 0.5197,
+    "brier_skill": -0.01386
+   },
+   "teste_final": {
+    "operacoes": 11,
+    "retorno_liquido_pct": -2.067,
+    "taxa_acerto_pct": 18.18,
+    "expectativa_bruta_bps": -38.834,
+    "custo_medio_bps": 55.874,
+    "expectativa_bps_por_operacao": -94.708,
+    "profit_factor": 0.15,
+    "max_drawdown_pct": -2.075,
+    "sharpe_anualizado": "não calculado (menos de 30 operações)",
+    "ic95_liquida_bps": [
+     -158.12,
+     -29.2
+    ],
+    "auc": 0.4951,
+    "brier_skill": -0.01581
+   }
+  }
+ ]
+}

@@ -1,0 +1,866 @@
+[
+ {
+  "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "desenvolvimento",
+  "operacoes": 1168,
+  "bruto_bps": 4.271,
+  "custo_bps": 0.0,
+  "liquido_bps": 4.271,
+  "ic95_bruto_bps": [
+   -2.14,
+   11.04
+  ],
+  "ic95_liquido_bps": [
+   -2.14,
+   11.04
+  ],
+  "retorno_pct": 9.908
+ },
+ {
+  "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "teste_final",
+  "operacoes": 31,
+  "bruto_bps": -25.954,
+  "custo_bps": 0.0,
+  "liquido_bps": -25.954,
+  "ic95_bruto_bps": [
+   -95.09,
+   49.59
+  ],
+  "ic95_liquido_bps": [
+   -95.09,
+   49.59
+  ],
+  "retorno_pct": -1.666
+ },
+ {
+  "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "desenvolvimento",
+  "operacoes": 17,
+  "bruto_bps": -18.305,
+  "custo_bps": 27.968,
+  "liquido_bps": -46.273,
+  "ic95_bruto_bps": [
+   -51.57,
+   20.61
+  ],
+  "ic95_liquido_bps": [
+   -79.49,
+   -7.42
+  ],
+  "retorno_pct": -1.564
+ },
+ {
+  "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "teste_final",
+  "operacoes": 32,
+  "bruto_bps": -25.498,
+  "custo_bps": 27.962,
+  "liquido_bps": -53.46,
+  "ic95_bruto_bps": [
+   -92.04,
+   44.17
+  ],
+  "ic95_liquido_bps": [
+   -119.91,
+   16.11
+  ],
+  "retorno_pct": -3.461
+ },
+ {
+  "experiencia": "BTCUSD_1h_h24_tp1_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "desenvolvimento",
+  "operacoes": 2043,
+  "bruto_bps": 0.621,
+  "custo_bps": 0.0,
+  "liquido_bps": 0.621,
+  "ic95_bruto_bps": [
+   -2.24,
+   3.71
+  ],
+  "ic95_liquido_bps": [
+   -2.24,
+   3.71
+  ],
+  "retorno_pct": 2.412
+ },
+ {
+  "experiencia": "BTCUSD_1h_h24_tp1_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "teste_final",
+  "operacoes": 27,
+  "bruto_bps": 10.89,
+  "custo_bps": 0.0,
+  "liquido_bps": 10.89,
+  "ic95_bruto_bps": [
+   -9.35,
+   32.87
+  ],
+  "ic95_liquido_bps": [
+   -9.35,
+   32.87
+  ],
+  "retorno_pct": 0.587
+ },
+ {
+  "experiencia": "BTCUSD_1h_h24_tp1_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "desenvolvimento",
+  "operacoes": 8,
+  "bruto_bps": -39.307,
+  "custo_bps": 27.942,
+  "liquido_bps": -67.249,
+  "ic95_bruto_bps": [
+   -62.49,
+   -8.45
+  ],
+  "ic95_liquido_bps": [
+   -90.39,
+   -36.43
+  ],
+  "retorno_pct": -1.072
+ },
+ {
+  "experiencia": "BTCUSD_1h_h24_tp1_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "teste_final",
+  "operacoes": 0,
+  "bruto_bps": null,
+  "custo_bps": null,
+  "liquido_bps": null,
+  "ic95_bruto_bps": [
+   null,
+   null
+  ],
+  "ic95_liquido_bps": [
+   null,
+   null
+  ],
+  "retorno_pct": 0.0
+ },
+ {
+  "experiencia": "BTCUSD_4h_h12_tp2_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "desenvolvimento",
+  "operacoes": 244,
+  "bruto_bps": 7.964,
+  "custo_bps": 0.0,
+  "liquido_bps": 7.964,
+  "ic95_bruto_bps": [
+   -13.63,
+   29.59
+  ],
+  "ic95_liquido_bps": [
+   -13.63,
+   29.59
+  ],
+  "retorno_pct": 3.433
+ },
+ {
+  "experiencia": "BTCUSD_4h_h12_tp2_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "teste_final",
+  "operacoes": 75,
+  "bruto_bps": -5.228,
+  "custo_bps": 0.0,
+  "liquido_bps": -5.228,
+  "ic95_bruto_bps": [
+   -34.96,
+   28.2
+  ],
+  "ic95_liquido_bps": [
+   -34.96,
+   28.2
+  ],
+  "retorno_pct": -0.816
+ },
+ {
+  "experiencia": "BTCUSD_4h_h12_tp2_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "desenvolvimento",
+  "operacoes": 116,
+  "bruto_bps": 22.904,
+  "custo_bps": 28.029,
+  "liquido_bps": -5.124,
+  "ic95_bruto_bps": [
+   -6.44,
+   55.48
+  ],
+  "ic95_liquido_bps": [
+   -34.42,
+   27.4
+  ],
+  "retorno_pct": -1.936
+ },
+ {
+  "experiencia": "BTCUSD_4h_h12_tp2_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "teste_final",
+  "operacoes": 65,
+  "bruto_bps": -3.339,
+  "custo_bps": 27.99,
+  "liquido_bps": -31.33,
+  "ic95_bruto_bps": [
+   -38.96,
+   40.44
+  ],
+  "ic95_liquido_bps": [
+   -66.9,
+   12.39
+  ],
+  "retorno_pct": -3.963
+ },
+ {
+  "experiencia": "BTCUSD_4h_h12_tp1_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "desenvolvimento",
+  "operacoes": 587,
+  "bruto_bps": -0.485,
+  "custo_bps": 0.0,
+  "liquido_bps": -0.485,
+  "ic95_bruto_bps": [
+   -13.12,
+   11.35
+  ],
+  "ic95_liquido_bps": [
+   -13.12,
+   11.35
+  ],
+  "retorno_pct": -1.272
+ },
+ {
+  "experiencia": "BTCUSD_4h_h12_tp1_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "teste_final",
+  "operacoes": 153,
+  "bruto_bps": -13.113,
+  "custo_bps": 0.0,
+  "liquido_bps": -13.113,
+  "ic95_bruto_bps": [
+   -40.59,
+   12.1
+  ],
+  "ic95_liquido_bps": [
+   -40.59,
+   12.1
+  ],
+  "retorno_pct": -4.281
+ },
+ {
+  "experiencia": "BTCUSD_4h_h12_tp1_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "desenvolvimento",
+  "operacoes": 58,
+  "bruto_bps": 26.971,
+  "custo_bps": 28.035,
+  "liquido_bps": -1.064,
+  "ic95_bruto_bps": [
+   3.96,
+   50.97
+  ],
+  "ic95_liquido_bps": [
+   -24.04,
+   22.9
+  ],
+  "retorno_pct": -0.234
+ },
+ {
+  "experiencia": "BTCUSD_4h_h12_tp1_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "teste_final",
+  "operacoes": 22,
+  "bruto_bps": 9.223,
+  "custo_bps": 28.011,
+  "liquido_bps": -18.788,
+  "ic95_bruto_bps": [
+   -21.92,
+   39.86
+  ],
+  "ic95_liquido_bps": [
+   -49.88,
+   11.8
+  ],
+  "retorno_pct": -0.827
+ },
+ {
+  "experiencia": "BTCUSD_1d_h10_tp2_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "desenvolvimento",
+  "operacoes": 88,
+  "bruto_bps": -49.249,
+  "custo_bps": 0.0,
+  "liquido_bps": -49.249,
+  "ic95_bruto_bps": [
+   -137.62,
+   41.01
+  ],
+  "ic95_liquido_bps": [
+   -137.62,
+   41.01
+  ],
+  "retorno_pct": -4.396
+ },
+ {
+  "experiencia": "BTCUSD_1d_h10_tp2_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "teste_final",
+  "operacoes": 22,
+  "bruto_bps": 42.214,
+  "custo_bps": 0.0,
+  "liquido_bps": 42.214,
+  "ic95_bruto_bps": [
+   -108.21,
+   208.1
+  ],
+  "ic95_liquido_bps": [
+   -108.21,
+   208.1
+  ],
+  "retorno_pct": 0.865
+ },
+ {
+  "experiencia": "BTCUSD_1d_h10_tp2_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "desenvolvimento",
+  "operacoes": 60,
+  "bruto_bps": -86.338,
+  "custo_bps": 27.874,
+  "liquido_bps": -114.212,
+  "ic95_bruto_bps": [
+   -190.88,
+   20.82
+  ],
+  "ic95_liquido_bps": [
+   -218.61,
+   -7.2
+  ],
+  "retorno_pct": -7.758
+ },
+ {
+  "experiencia": "BTCUSD_1d_h10_tp2_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "teste_final",
+  "operacoes": 11,
+  "bruto_bps": -56.104,
+  "custo_bps": 27.923,
+  "liquido_bps": -84.027,
+  "ic95_bruto_bps": [
+   -173.55,
+   51.78
+  ],
+  "ic95_liquido_bps": [
+   -201.31,
+   23.7
+  ],
+  "retorno_pct": -1.204
+ },
+ {
+  "experiencia": "BTCUSD_1d_h10_tp1_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "desenvolvimento",
+  "operacoes": 90,
+  "bruto_bps": -26.388,
+  "custo_bps": 0.0,
+  "liquido_bps": -26.388,
+  "ic95_bruto_bps": [
+   -106.0,
+   48.75
+  ],
+  "ic95_liquido_bps": [
+   -106.0,
+   48.75
+  ],
+  "retorno_pct": -2.533
+ },
+ {
+  "experiencia": "BTCUSD_1d_h10_tp1_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "teste_final",
+  "operacoes": 9,
+  "bruto_bps": 5.736,
+  "custo_bps": 0.0,
+  "liquido_bps": 5.736,
+  "ic95_bruto_bps": [
+   -103.67,
+   116.42
+  ],
+  "ic95_liquido_bps": [
+   -103.67,
+   116.42
+  ],
+  "retorno_pct": -0.226
+ },
+ {
+  "experiencia": "BTCUSD_1d_h10_tp1_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "desenvolvimento",
+  "operacoes": 90,
+  "bruto_bps": -30.344,
+  "custo_bps": 27.952,
+  "liquido_bps": -58.296,
+  "ic95_bruto_bps": [
+   -105.59,
+   40.74
+  ],
+  "ic95_liquido_bps": [
+   -133.44,
+   12.68
+  ],
+  "retorno_pct": -6.511
+ },
+ {
+  "experiencia": "BTCUSD_1d_h10_tp1_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "teste_final",
+  "operacoes": 9,
+  "bruto_bps": 7.294,
+  "custo_bps": 28.011,
+  "liquido_bps": -20.717,
+  "ic95_bruto_bps": [
+   -101.88,
+   117.75
+  ],
+  "ic95_liquido_bps": [
+   -129.74,
+   89.58
+  ],
+  "retorno_pct": -0.57
+ },
+ {
+  "experiencia": "EURUSD_1h_h24_tp2_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "desenvolvimento",
+  "operacoes": 1129,
+  "bruto_bps": -0.021,
+  "custo_bps": 0.0,
+  "liquido_bps": -0.021,
+  "ic95_bruto_bps": [
+   -0.93,
+   0.91
+  ],
+  "ic95_liquido_bps": [
+   -0.93,
+   0.91
+  ],
+  "retorno_pct": -1.753
+ },
+ {
+  "experiencia": "EURUSD_1h_h24_tp2_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "teste_final",
+  "operacoes": 97,
+  "bruto_bps": 1.345,
+  "custo_bps": 0.0,
+  "liquido_bps": 1.345,
+  "ic95_bruto_bps": [
+   -0.91,
+   3.58
+  ],
+  "ic95_liquido_bps": [
+   -0.91,
+   3.58
+  ],
+  "retorno_pct": 7.047
+ },
+ {
+  "experiencia": "EURUSD_1h_h24_tp2_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "desenvolvimento",
+  "operacoes": 820,
+  "bruto_bps": 0.199,
+  "custo_bps": 0.386,
+  "liquido_bps": -0.187,
+  "ic95_bruto_bps": [
+   -0.99,
+   1.32
+  ],
+  "ic95_liquido_bps": [
+   -1.38,
+   0.94
+  ],
+  "retorno_pct": -6.408
+ },
+ {
+  "experiencia": "EURUSD_1h_h24_tp2_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "teste_final",
+  "operacoes": 96,
+  "bruto_bps": 1.531,
+  "custo_bps": 0.378,
+  "liquido_bps": 1.153,
+  "ic95_bruto_bps": [
+   -0.83,
+   4.07
+  ],
+  "ic95_liquido_bps": [
+   -1.21,
+   3.69
+  ],
+  "retorno_pct": 5.188
+ },
+ {
+  "experiencia": "EURUSD_1h_h24_tp1_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "desenvolvimento",
+  "operacoes": 722,
+  "bruto_bps": 0.257,
+  "custo_bps": 0.001,
+  "liquido_bps": 0.256,
+  "ic95_bruto_bps": [
+   -0.96,
+   1.47
+  ],
+  "ic95_liquido_bps": [
+   -0.96,
+   1.47
+  ],
+  "retorno_pct": 8.398
+ },
+ {
+  "experiencia": "EURUSD_1h_h24_tp1_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "teste_final",
+  "operacoes": 571,
+  "bruto_bps": -0.671,
+  "custo_bps": 0.0,
+  "liquido_bps": -0.671,
+  "ic95_bruto_bps": [
+   -1.56,
+   0.22
+  ],
+  "ic95_liquido_bps": [
+   -1.56,
+   0.22
+  ],
+  "retorno_pct": -17.645
+ },
+ {
+  "experiencia": "EURUSD_1h_h24_tp1_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "desenvolvimento",
+  "operacoes": 366,
+  "bruto_bps": 0.58,
+  "custo_bps": 0.563,
+  "liquido_bps": 0.016,
+  "ic95_bruto_bps": [
+   -1.5,
+   2.54
+  ],
+  "ic95_liquido_bps": [
+   -2.07,
+   2.0
+  ],
+  "retorno_pct": -2.639
+ },
+ {
+  "experiencia": "EURUSD_1h_h24_tp1_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "teste_final",
+  "operacoes": 209,
+  "bruto_bps": -0.473,
+  "custo_bps": 0.52,
+  "liquido_bps": -0.993,
+  "ic95_bruto_bps": [
+   -1.88,
+   0.99
+  ],
+  "ic95_liquido_bps": [
+   -2.41,
+   0.47
+  ],
+  "retorno_pct": -10.086
+ },
+ {
+  "experiencia": "EURUSD_4h_h12_tp2_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "desenvolvimento",
+  "operacoes": 475,
+  "bruto_bps": -1.661,
+  "custo_bps": 0.0,
+  "liquido_bps": -1.661,
+  "ic95_bruto_bps": [
+   -5.28,
+   1.76
+  ],
+  "ic95_liquido_bps": [
+   -5.28,
+   1.76
+  ],
+  "retorno_pct": -3.484
+ },
+ {
+  "experiencia": "EURUSD_4h_h12_tp2_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "teste_final",
+  "operacoes": 271,
+  "bruto_bps": -1.799,
+  "custo_bps": 0.0,
+  "liquido_bps": -1.799,
+  "ic95_bruto_bps": [
+   -4.82,
+   1.33
+  ],
+  "ic95_liquido_bps": [
+   -4.82,
+   1.33
+  ],
+  "retorno_pct": -11.14
+ },
+ {
+  "experiencia": "EURUSD_4h_h12_tp2_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "desenvolvimento",
+  "operacoes": 482,
+  "bruto_bps": -1.612,
+  "custo_bps": 0.403,
+  "liquido_bps": -2.015,
+  "ic95_bruto_bps": [
+   -5.04,
+   1.75
+  ],
+  "ic95_liquido_bps": [
+   -5.45,
+   1.35
+  ],
+  "retorno_pct": -10.065
+ },
+ {
+  "experiencia": "EURUSD_4h_h12_tp2_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "teste_final",
+  "operacoes": 272,
+  "bruto_bps": -2.204,
+  "custo_bps": 0.395,
+  "liquido_bps": -2.599,
+  "ic95_bruto_bps": [
+   -5.21,
+   0.81
+  ],
+  "ic95_liquido_bps": [
+   -5.6,
+   0.4
+  ],
+  "retorno_pct": -15.095
+ },
+ {
+  "experiencia": "EURUSD_4h_h12_tp1_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "desenvolvimento",
+  "operacoes": 449,
+  "bruto_bps": -0.268,
+  "custo_bps": 0.0,
+  "liquido_bps": -0.269,
+  "ic95_bruto_bps": [
+   -2.68,
+   2.3
+  ],
+  "ic95_liquido_bps": [
+   -2.68,
+   2.3
+  ],
+  "retorno_pct": -3.241
+ },
+ {
+  "experiencia": "EURUSD_4h_h12_tp1_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "teste_final",
+  "operacoes": 50,
+  "bruto_bps": 0.41,
+  "custo_bps": 0.0,
+  "liquido_bps": 0.41,
+  "ic95_bruto_bps": [
+   -4.49,
+   5.39
+  ],
+  "ic95_liquido_bps": [
+   -4.49,
+   5.39
+  ],
+  "retorno_pct": -0.062
+ },
+ {
+  "experiencia": "EURUSD_4h_h12_tp1_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "desenvolvimento",
+  "operacoes": 440,
+  "bruto_bps": 0.175,
+  "custo_bps": 0.402,
+  "liquido_bps": -0.227,
+  "ic95_bruto_bps": [
+   -2.29,
+   2.61
+  ],
+  "ic95_liquido_bps": [
+   -2.7,
+   2.21
+  ],
+  "retorno_pct": -2.686
+ },
+ {
+  "experiencia": "EURUSD_4h_h12_tp1_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "teste_final",
+  "operacoes": 52,
+  "bruto_bps": -0.411,
+  "custo_bps": 0.395,
+  "liquido_bps": -0.806,
+  "ic95_bruto_bps": [
+   -5.13,
+   4.19
+  ],
+  "ic95_liquido_bps": [
+   -5.52,
+   3.79
+  ],
+  "retorno_pct": -1.146
+ },
+ {
+  "experiencia": "EURUSD_1d_h10_tp2_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "desenvolvimento",
+  "operacoes": 86,
+  "bruto_bps": -18.516,
+  "custo_bps": 0.0,
+  "liquido_bps": -18.516,
+  "ic95_bruto_bps": [
+   -31.53,
+   -5.35
+  ],
+  "ic95_liquido_bps": [
+   -31.53,
+   -5.35
+  ],
+  "retorno_pct": -10.956
+ },
+ {
+  "experiencia": "EURUSD_1d_h10_tp2_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "teste_final",
+  "operacoes": 43,
+  "bruto_bps": 7.871,
+  "custo_bps": 0.0,
+  "liquido_bps": 7.871,
+  "ic95_bruto_bps": [
+   -7.53,
+   24.22
+  ],
+  "ic95_liquido_bps": [
+   -7.53,
+   24.22
+  ],
+  "retorno_pct": 3.399
+ },
+ {
+  "experiencia": "EURUSD_1d_h10_tp2_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "desenvolvimento",
+  "operacoes": 86,
+  "bruto_bps": -19.178,
+  "custo_bps": 0.435,
+  "liquido_bps": -19.614,
+  "ic95_bruto_bps": [
+   -33.09,
+   -5.14
+  ],
+  "ic95_liquido_bps": [
+   -33.58,
+   -5.55
+  ],
+  "retorno_pct": -11.24
+ },
+ {
+  "experiencia": "EURUSD_1d_h10_tp2_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "teste_final",
+  "operacoes": 35,
+  "bruto_bps": 12.719,
+  "custo_bps": 0.422,
+  "liquido_bps": 12.298,
+  "ic95_bruto_bps": [
+   -9.19,
+   34.61
+  ],
+  "ic95_liquido_bps": [
+   -9.61,
+   34.18
+  ],
+  "retorno_pct": 3.976
+ },
+ {
+  "experiencia": "EURUSD_1d_h10_tp1_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "desenvolvimento",
+  "operacoes": 133,
+  "bruto_bps": -17.497,
+  "custo_bps": 0.0,
+  "liquido_bps": -17.498,
+  "ic95_bruto_bps": [
+   -28.31,
+   -5.72
+  ],
+  "ic95_liquido_bps": [
+   -28.31,
+   -5.72
+  ],
+  "retorno_pct": -14.216
+ },
+ {
+  "experiencia": "EURUSD_1d_h10_tp1_sl1_v2",
+  "fator_custos": 0.0,
+  "periodo": "teste_final",
+  "operacoes": 53,
+  "bruto_bps": -9.551,
+  "custo_bps": 0.0,
+  "liquido_bps": -9.551,
+  "ic95_bruto_bps": [
+   -26.67,
+   6.77
+  ],
+  "ic95_liquido_bps": [
+   -26.67,
+   6.77
+  ],
+  "retorno_pct": -4.289
+ },
+ {
+  "experiencia": "EURUSD_1d_h10_tp1_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "desenvolvimento",
+  "operacoes": 133,
+  "bruto_bps": -14.583,
+  "custo_bps": 0.437,
+  "liquido_bps": -15.02,
+  "ic95_bruto_bps": [
+   -25.08,
+   -3.7
+  ],
+  "ic95_liquido_bps": [
+   -25.57,
+   -4.12
+  ],
+  "retorno_pct": -12.477
+ },
+ {
+  "experiencia": "EURUSD_1d_h10_tp1_sl1_v2",
+  "fator_custos": 0.5,
+  "periodo": "teste_final",
+  "operacoes": 53,
+  "bruto_bps": -10.835,
+  "custo_bps": 0.415,
+  "liquido_bps": -11.25,
+  "ic95_bruto_bps": [
+   -27.02,
+   6.74
+  ],
+  "ic95_liquido_bps": [
+   -27.43,
+   6.33
+  ],
+  "retorno_pct": -5.305
+ }
+]

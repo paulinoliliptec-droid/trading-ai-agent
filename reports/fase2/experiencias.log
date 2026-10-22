@@ -1,0 +1,231 @@
+BTCUSD_15m_h16_tp2_sl1_v2: 71946 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=20102 val=4314 calib=4314 teste=7194 (12s)
+  fold 1: treino=25138 val=5393 calib=5393 teste=7195 (33s)
+  fold 2: treino=30175 val=6472 calib=6472 teste=7195 (49s)
+  fold 3: treino=35212 val=7551 calib=7551 teste=7194 (72s)
+  fold 4: treino=40246 val=8631 calib=8631 teste=7195 (98s)
+  fold 5: treino=45283 val=9710 calib=9710 teste=7195 (121s)
+BTCUSD_15m_h16_tp2_sl1_v2 concluída em 131s
+BTCUSD_15m_h16_tp1_sl1_v2: 71948 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=20103 val=4314 calib=4314 teste=7194 (15s)
+  fold 1: treino=25139 val=5393 calib=5393 teste=7195 (32s)
+  fold 2: treino=30176 val=6472 calib=6472 teste=7195 (45s)
+  fold 3: treino=35211 val=7552 calib=7552 teste=7195 (71s)
+  fold 4: treino=40248 val=8631 calib=8631 teste=7195 (100s)
+  fold 5: treino=45285 val=9710 calib=9710 teste=7195 (120s)
+BTCUSD_15m_h16_tp1_sl1_v2 concluída em 128s
+BTCUSD_1h_h24_tp2_sl1_v2: 33195 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=9230 val=1988 calib=1988 teste=3319 (8s)
+  fold 1: treino=11555 val=2485 calib=2485 teste=3320 (17s)
+  fold 2: treino=13879 val=2983 calib=2983 teste=3319 (26s)
+  fold 3: treino=16202 val=3481 calib=3481 teste=3320 (36s)
+  fold 4: treino=18526 val=3979 calib=3979 teste=3319 (44s)
+  fold 5: treino=20849 val=4477 calib=4477 teste=3320 (64s)
+BTCUSD_1h_h24_tp2_sl1_v2 concluída em 71s
+BTCUSD_1h_h24_tp1_sl1_v2: 33195 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=9230 val=1988 calib=1988 teste=3319 (6s)
+  fold 1: treino=11555 val=2485 calib=2485 teste=3320 (17s)
+  fold 2: treino=13879 val=2983 calib=2983 teste=3319 (25s)
+  fold 3: treino=16202 val=3481 calib=3481 teste=3320 (32s)
+  fold 4: treino=18526 val=3979 calib=3979 teste=3319 (40s)
+  fold 5: treino=20849 val=4477 calib=4477 teste=3320 (50s)
+BTCUSD_1h_h24_tp1_sl1_v2 concluída em 58s
+BTCUSD_4h_h12_tp2_sl1_v2: 8170 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=2256 val=488 calib=488 teste=817 (2s)
+  fold 1: treino=2829 val=610 calib=610 teste=817 (5s)
+  fold 2: treino=3400 val=733 calib=733 teste=817 (8s)
+  fold 3: treino=3971 val=856 calib=856 teste=817 (13s)
+  fold 4: treino=4544 val=978 calib=978 teste=817 (20s)
+  fold 5: treino=5115 val=1101 calib=1101 teste=817 (23s)
+BTCUSD_4h_h12_tp2_sl1_v2 concluída em 28s
+BTCUSD_4h_h12_tp1_sl1_v2: 8170 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=2256 val=488 calib=488 teste=817 (1s)
+  fold 1: treino=2829 val=610 calib=610 teste=817 (2s)
+  fold 2: treino=3400 val=733 calib=733 teste=817 (4s)
+  fold 3: treino=3971 val=856 calib=856 teste=817 (10s)
+  fold 4: treino=4544 val=978 calib=978 teste=817 (12s)
+  fold 5: treino=5115 val=1101 calib=1101 teste=817 (15s)
+BTCUSD_4h_h12_tp1_sl1_v2 concluída em 20s
+BTCUSD_1d_h10_tp2_sl1_v2: 1213 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=313 val=71 calib=71 teste=121 (0s)
+  fold 1: treino=398 val=89 calib=89 teste=121 (1s)
+  fold 2: treino=483 val=107 calib=107 teste=122 (2s)
+  fold 3: treino=569 val=125 calib=125 teste=121 (4s)
+  fold 4: treino=652 val=144 calib=144 teste=121 (5s)
+  fold 5: treino=737 val=162 calib=162 teste=122 (6s)
+BTCUSD_1d_h10_tp2_sl1_v2 concluída em 12s
+BTCUSD_1d_h10_tp1_sl1_v2: 1220 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=316 val=71 calib=71 teste=122 (0s)
+  fold 1: treino=400 val=90 calib=90 teste=122 (1s)
+  fold 2: treino=486 val=108 calib=108 teste=122 (2s)
+  fold 3: treino=572 val=126 calib=126 teste=122 (2s)
+  fold 4: treino=658 val=144 calib=144 teste=122 (3s)
+  fold 5: treino=742 val=163 calib=163 teste=122 (3s)
+BTCUSD_1d_h10_tp1_sl1_v2 concluída em 9s
+BTCUSD_1h_h24_tp2_sl1_v1: 33268 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=9251 val=1992 calib=1992 teste=3326 (6s)
+  fold 1: treino=11579 val=2491 calib=2491 teste=3327 (12s)
+  fold 2: treino=13908 val=2990 calib=2990 teste=3327 (24s)
+  fold 3: treino=16237 val=3489 calib=3489 teste=3327 (33s)
+  fold 4: treino=18566 val=3988 calib=3988 teste=3327 (40s)
+  fold 5: treino=20895 val=4487 calib=4487 teste=3327 (52s)
+BTCUSD_1h_h24_tp2_sl1_v1 concluída em 61s
+BTCUSD_1h_h24_tp2_sl1_v2_janela8760: 33195 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=8760 val=1988 calib=1988 teste=3319 (12s)
+  fold 1: treino=8760 val=2485 calib=2485 teste=3320 (17s)
+  fold 2: treino=8760 val=2983 calib=2983 teste=3319 (24s)
+  fold 3: treino=8760 val=3481 calib=3481 teste=3320 (30s)
+  fold 4: treino=8760 val=3979 calib=3979 teste=3319 (35s)
+  fold 5: treino=8760 val=4477 calib=4477 teste=3320 (42s)
+BTCUSD_1h_h24_tp2_sl1_v2_janela8760 concluída em 52s
+{
+ "simbolo": "BTC/USD",
+ "nenhum_qualificado": true,
+ "escolhido": null,
+ "melhor_no_desenvolvimento": {
+  "experiencia": "BTCUSD_1h_h24_tp2_sl1_v2_janela8760",
+  "modelo": "C_gru",
+  "qualificado": false,
+  "desenvolvimento": {
+   "operacoes": 80,
+   "retorno_liquido_pct": -5.116,
+   "taxa_acerto_pct": 37.5,
+   "expectativa_bruta_bps": 25.11,
+   "custo_medio_bps": 56.054,
+   "expectativa_bps_por_operacao": -30.943,
+   "profit_factor": 0.55,
+   "max_drawdown_pct": -5.543,
+   "sharpe_anualizado": -1.897,
+   "ic95_liquida_bps": [
+    -51.82,
+    -6.63
+   ],
+   "auc": 0.5198,
+   "brier_skill": -0.01001
+  },
+  "teste_final": {
+   "operacoes": 1,
+   "retorno_liquido_pct": -0.06,
+   "taxa_acerto_pct": 0.0,
+   "expectativa_bruta_bps": 26.113,
+   "custo_medio_bps": 56.057,
+   "expectativa_bps_por_operacao": -29.944,
+   "profit_factor": 0.0,
+   "max_drawdown_pct": -0.06,
+   "sharpe_anualizado": "não calculado (menos de 30 operações)",
+   "ic95_liquida_bps": null,
+   "auc": 0.4953,
+   "brier_skill": -0.00633
+  }
+ }
+}
+resumo: /home/user/trading-ai-agent/reports/fase2/resumo_BTCUSD.json
+EURUSD_1h_h24_tp2_sl1_v2: 29423 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=8175 val=1761 calib=1761 teste=2942 (12s)
+  fold 1: treino=10233 val=2203 calib=2203 teste=2942 (24s)
+  fold 2: treino=12293 val=2644 calib=2644 teste=2943 (36s)
+  fold 3: treino=14354 val=3085 calib=3085 teste=2942 (51s)
+  fold 4: treino=16412 val=3527 calib=3527 teste=2942 (65s)
+  fold 5: treino=18472 val=3968 calib=3968 teste=2943 (80s)
+EURUSD_1h_h24_tp2_sl1_v2 concluída em 101s
+EURUSD_1h_h24_tp1_sl1_v2: 29426 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=8176 val=1761 calib=1761 teste=2942 (7s)
+  fold 1: treino=10234 val=2203 calib=2203 teste=2943 (16s)
+  fold 2: treino=12295 val=2644 calib=2644 teste=2943 (35s)
+  fold 3: treino=14354 val=3086 calib=3086 teste=2942 (49s)
+  fold 4: treino=16414 val=3527 calib=3527 teste=2943 (65s)
+  fold 5: treino=18475 val=3968 calib=3968 teste=2943 (84s)
+EURUSD_1h_h24_tp1_sl1_v2 concluída em 98s
+EURUSD_4h_h12_tp2_sl1_v2: 7142 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=1968 val=426 calib=426 teste=714 (3s)
+  fold 1: treino=2468 val=533 calib=533 teste=714 (7s)
+  fold 2: treino=2968 val=640 calib=640 teste=715 (12s)
+  fold 3: treino=3467 val=748 calib=748 teste=714 (17s)
+  fold 4: treino=3967 val=855 calib=855 teste=714 (22s)
+  fold 5: treino=4467 val=962 calib=962 teste=715 (28s)
+EURUSD_4h_h12_tp2_sl1_v2 concluída em 41s
+EURUSD_4h_h12_tp1_sl1_v2: 7145 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=1970 val=426 calib=426 teste=714 (2s)
+  fold 1: treino=2468 val=534 calib=534 teste=715 (4s)
+  fold 2: treino=2969 val=641 calib=641 teste=714 (10s)
+  fold 3: treino=3469 val=748 calib=748 teste=715 (18s)
+  fold 4: treino=3970 val=855 calib=855 teste=714 (22s)
+  fold 5: treino=4470 val=962 calib=962 teste=715 (27s)
+EURUSD_4h_h12_tp1_sl1_v2 concluída em 39s
+EURUSD_1d_h10_tp2_sl1_v2: 1058 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=271 val=61 calib=61 teste=105 (1s)
+  fold 1: treino=344 val=77 calib=77 teste=106 (2s)
+  fold 2: treino=418 val=93 calib=93 teste=106 (5s)
+  fold 3: treino=492 val=109 calib=109 teste=106 (8s)
+  fold 4: treino=566 val=125 calib=125 teste=106 (9s)
+  fold 5: treino=640 val=141 calib=141 teste=106 (12s)
+EURUSD_1d_h10_tp2_sl1_v2 concluída em 20s
+EURUSD_1d_h10_tp1_sl1_v2: 1062 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=270 val=62 calib=62 teste=106 (1s)
+  fold 1: treino=344 val=78 calib=78 teste=106 (1s)
+  fold 2: treino=420 val=93 calib=93 teste=107 (3s)
+  fold 3: treino=495 val=109 calib=109 teste=106 (4s)
+  fold 4: treino=569 val=125 calib=125 teste=106 (4s)
+  fold 5: treino=643 val=141 calib=141 teste=107 (6s)
+EURUSD_1d_h10_tp1_sl1_v2 concluída em 14s
+EURUSD_1h_h24_tp2_sl1_v1: 29496 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=8194 val=1766 calib=1766 teste=2949 (38s)
+  fold 1: treino=10259 val=2208 calib=2208 teste=2950 (86s)
+  fold 2: treino=12325 val=2650 calib=2650 teste=2950 (136s)
+  fold 3: treino=14389 val=3093 calib=3093 teste=2949 (171s)
+  fold 4: treino=16454 val=3535 calib=3535 teste=2950 (189s)
+  fold 5: treino=18518 val=3978 calib=3978 teste=2950 (208s)
+EURUSD_1h_h24_tp2_sl1_v1 concluída em 222s
+EURUSD_1h_h24_tp2_sl1_v2_janela6240: 29423 amostras, modelos ('A', 'B', 'C', 'D')
+  fold 0: treino=6240 val=1761 calib=1761 teste=2942 (7s)
+  fold 1: treino=6240 val=2203 calib=2203 teste=2942 (17s)
+  fold 2: treino=6240 val=2644 calib=2644 teste=2943 (24s)
+  fold 3: treino=6240 val=3085 calib=3085 teste=2942 (33s)
+  fold 4: treino=6240 val=3527 calib=3527 teste=2942 (40s)
+  fold 5: treino=6240 val=3968 calib=3968 teste=2943 (48s)
+EURUSD_1h_h24_tp2_sl1_v2_janela6240 concluída em 62s
+{
+ "simbolo": "EUR/USD",
+ "nenhum_qualificado": true,
+ "escolhido": null,
+ "melhor_no_desenvolvimento": {
+  "experiencia": "EURUSD_1d_h10_tp2_sl1_v2",
+  "modelo": "A_regras",
+  "qualificado": false,
+  "desenvolvimento": {
+   "operacoes": 36,
+   "retorno_liquido_pct": 2.1,
+   "taxa_acerto_pct": 44.44,
+   "expectativa_bruta_bps": 13.453,
+   "custo_medio_bps": 0.941,
+   "expectativa_bps_por_operacao": 12.512,
+   "profit_factor": 1.214,
+   "max_drawdown_pct": -2.785,
+   "sharpe_anualizado": 0.39,
+   "ic95_liquida_bps": [
+    -18.5,
+    50.16
+   ],
+   "auc": null,
+   "brier_skill": null
+  },
+  "teste_final": {
+   "operacoes": 17,
+   "retorno_liquido_pct": 0.247,
+   "taxa_acerto_pct": 47.06,
+   "expectativa_bruta_bps": 0.946,
+   "custo_medio_bps": 0.817,
+   "expectativa_bps_por_operacao": 0.129,
+   "profit_factor": 1.055,
+   "max_drawdown_pct": -2.525,
+   "sharpe_anualizado": "não calculado (menos de 30 operações)",
+   "ic95_liquida_bps": [
+    -21.57,
+    22.2
+   ],
+   "auc": null,
+   "brier_skill": null
+  }
+ }
+}
+resumo: /home/user/trading-ai-agent/reports/fase2/resumo_EURUSD.json

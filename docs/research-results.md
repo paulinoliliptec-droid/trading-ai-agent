@@ -1,3 +1,7 @@
+> **Fase 1 (histórico).** Estes números vêm do motor da fase 1, que a auditoria da fase 2 mostrou ter defeitos (equity
+> com resultados futuros, stops em gap otimistas, vendas a descoberto em BTC à vista). Resultados atuais em
+> [research-results-fase2.md](research-results-fase2.md).
+
 # Resultados da investigação
 
 > Dados **reais**; nada sintético nos relatórios (`synthetic=false` no manifesto). Resultados fora da amostra,

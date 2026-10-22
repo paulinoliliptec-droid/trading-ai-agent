@@ -57,10 +57,17 @@ def main() -> None:
                          f"{f(dv.get('custo_medio_bps'), 1)} | {f(dv.get('expectativa_bps_por_operacao'), 1)} | {ci(dv)} | "
                          f"{f(c.get('roc_auc'), 3)} | {f(c.get('brier_skill'), 4)} | {'sim' if m['qualificado_no_desenvolvimento'] else 'não'} | "
                          f"{tf.get('operacoes', 0)} | {f(tf.get('expectativa_bps_por_operacao'), 1)} | {f(tf.get('retorno_liquido_pct'), 2)} |")
-        L += ["", "### Referências (mesmos períodos)", "", "| Experiência | Período | Comprar e manter (%) | Max DD comprar e manter (%) |", "|---|---|---|---|"]
-        for r in reps[:1] + [x for x in reps if x["spec"]["timeframe"] != reps[0]["spec"]["timeframe"]][:0]:
+        L += ["", "### Referências (mesmos períodos; «não negociar» = 0%)", "",
+              "| Intervalo | Período | Datas | Comprar e manter (%) | Max DD comprar e manter (%) |", "|---|---|---|---|---|"]
+        vistos = set()
+        for r in reps:
+            tfr = r["spec"]["timeframe"]
+            if tfr in vistos:
+                continue
+            vistos.add(tfr)
             for p, v in r["referencias"].items():
-                L.append(f"| {r['experiencia']} | {p} | {f(v['comprar_e_manter']['retorno_pct'])} | {f(v['comprar_e_manter']['max_drawdown_pct'])} |")
+                datas = " a ".join(x[:10] for x in r["periodos"][p])
+                L.append(f"| {tfr} | {p} | {datas} | {f(v['comprar_e_manter']['retorno_pct'])} | {f(v['comprar_e_manter']['max_drawdown_pct'])} |")
         L += ["", "### Estabilidade do XGBoost por fold (AUC no treino vs fora da amostra, Brier skill, ECE)", "",
               "| Experiência | AUC treino (média) | AUC fora (média) | AUC fora (mín–máx) | Brier skill (média) | ECE (média) |", "|---|---|---|---|---|---|"]
         for r in reps:

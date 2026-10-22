@@ -41,6 +41,8 @@ def walk_forward(t1: pd.Series, n_splits: int = 5, test_frac: float = 0.5, val_f
                  embargo: int = 24, calib_frac: float = 0.0) -> list[Fold]:
     """`test_frac` da amostra (a parte mais recente) divide-se em `n_splits` blocos de teste."""
     n = len(t1)
+    if n < 10 * n_splits:
+        raise ValueError(f"amostras válidas insuficientes para walk-forward: {n} (features ou rótulos todos em falta?)")
     first_test = int(n * (1 - test_frac))
     edges = np.linspace(first_test, n, n_splits + 1).astype(int)
     times = t1.index

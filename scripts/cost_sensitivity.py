@@ -1,6 +1,6 @@
 """Diagnóstico (NÃO seleção): o XGBoost teria vantagem com custos mais baixos, ou não prevê de todo?
 
-Repete as experiências v2 só com o modelo B, com os custos multiplicados por 0 e 0,5
+Repete as experiências v2 só com o modelo B, com os custos multiplicados por 0 e 0,5 (spread real do Forex por 0,001, ≈0)
 (comissão, slippage e spread, incluindo o spread real das velas de Forex). Se nem com custo
 zero a expectativa bruta fora da amostra for positiva com confiança, o problema é a previsão,
 não a corretora. Resultados em reports/fase2/sensibilidade_custos.json.
@@ -38,7 +38,8 @@ def main() -> None:
                     c = scaled(cfg, sym, k)
                     bars = load_bars(spec, c.market(sym)["asset_class"])
                     if "spread" in bars.columns:
-                        bars = bars.assign(spread=bars["spread"] * k)
+                        # ≈0 em vez de 0: com spread nulo a feature spread_z (desvio-padrão 0) ficaria toda em falta
+                        bars = bars.assign(spread=bars["spread"] * max(k, 0.001))
                     rep, _ = run_experiment(spec, c, ("B",), log=lambda *_: None, bars=bars)
                     b = rep["modelos"]["B_xgboost"]
                     for per in ("desenvolvimento", "teste_final"):
