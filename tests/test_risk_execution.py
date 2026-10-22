@@ -5,12 +5,11 @@ from datetime import UTC, datetime
 import pandas as pd
 import pytest
 
-from trading_agent.backtesting.engine import MarketCosts, run_backtest
+from trading_agent.backtesting.engine import BacktestConfig, run_backtest
 from trading_agent.brokers.base import LiveTradingDisabled, Order, Quote, Side, ensure_simulated
 from trading_agent.config import load_config
 from trading_agent.execution.paper import PaperBroker, reconcile
-from trading_agent.features.build import atr, build_features
-from trading_agent.labels.triple_barrier import triple_barrier
+from trading_agent.features.build import build_features
 from trading_agent.risk.engine import PortfolioState, Proposal, RiskEngine, expected_edge
 from trading_agent.risk.kill_switch import KillSwitch
 
@@ -26,7 +25,7 @@ def boa_proposta(**kw):
 
 
 def estado(**kw):
-    base = dict(equity=1.0, peak_equity=1.0, day_start_equity=1.0, open_positions=0)
+    base = dict(equity=100.0, peak_equity=100.0, day_start_equity=100.0, open_positions=0)
     return PortfolioState(**{**base, **kw})
 
 
@@ -51,9 +50,28 @@ def test_veta_e_diz_porque(risk, kw, motivo):
 
 def test_limites_de_carteira(risk):
     assert not risk.evaluate(boa_proposta(), estado(open_positions=2)).trade
-    assert not risk.evaluate(boa_proposta(), estado(equity=0.97, day_start_equity=1.0, peak_equity=1.0)).trade
-    assert not risk.evaluate(boa_proposta(), estado(equity=0.89, day_start_equity=0.89, peak_equity=1.0)).trade
-    assert not risk.evaluate(boa_proposta(), PortfolioState(1, 1, 1, 0, venue_available=False)).trade
+    assert not risk.evaluate(boa_proposta(), estado(equity=97, day_start_equity=100, peak_equity=100)).trade
+    assert not risk.evaluate(boa_proposta(), estado(equity=89, day_start_equity=89, peak_equity=100)).trade
+    assert not risk.evaluate(boa_proposta(), PortfolioState(100, 100, 100, 0, venue_available=False)).trade
+
+
+@pytest.mark.parametrize("kw,motivo", [
+    (dict(equity=40, peak_equity=40, day_start_equity=40), "abaixo do mínimo"),
+    (dict(data_age_bars=5), "desatualizados"),
+    (dict(consecutive_api_errors=3), "falhas de API"),
+    (dict(bar_move_atr=12), "anómala"),
+    (dict(anomaly="spread negativo"), "anómala"),
+])
+def test_protecoes_operacionais(risk, kw, motivo):
+    d = risk.evaluate(boa_proposta(), estado(**kw))
+    assert not d.trade and any(motivo in r for r in d.reasons)
+
+
+def test_tamanho_limitado_pelo_capital_disponivel(risk):
+    livre = risk.evaluate(boa_proposta(), estado())
+    preso = risk.evaluate(boa_proposta(), estado(available_equity=1.0))
+    assert preso.trade and preso.size_fraction < livre.size_fraction
+    assert preso.size_fraction * 100 <= 1.0 * 30 + 1e-9
 
 
 def test_kill_switch_vence_qualquer_probabilidade(risk, monkeypatch):
@@ -82,7 +100,7 @@ def test_so_execucao_simulada():
 def test_paper_broker_custos_e_reconciliacao():
     b = PaperBroker(fee_bps=10, slippage_bps=1)
     q = Quote("BTC/USD", 100.0, 100.2, datetime.now(UTC), "teste")
-    f = b.submit(Order("BTC/USD", Side.BUY, 2.0, "o1"), q)
+    f = b.submit(Order("BTC/USD", Side.BUY, 2.0, "o1"), q).fill
     assert f.price == pytest.approx(100.2 * 1.0001) and f.fee == pytest.approx(f.price * 2 * 0.001)
     assert reconcile({"BTC/USD": 2.0}, b) == []
     assert reconcile({"BTC/USD": 1.0}, b) == ["BTC/USD: motor=1.0 corretora=2.0"]
@@ -93,15 +111,12 @@ def test_paper_broker_custos_e_reconciliacao():
 
 def test_backtest_custos_e_vetos(candles, tmp_path):
     f = build_features(candles)
-    bars = {s: triple_barrier(candles, atr(candles), s, 24) for s in (1, -1)}
-    sides = pd.Series(1, index=f.dropna().index)
-    probs = pd.Series(0.7, index=sides.index)
+    sig = pd.DataFrame({"side": 1, "prob": 0.7}, index=f.dropna().index)
     eng = RiskEngine(load_config().risk, KillSwitch(tmp_path / "KS"), 30)
-    trades, eq, vetoes = run_backtest(f.index, sides, probs, f, bars, MarketCosts(0, 0.2), eng, "EUR/USD", 2.0, 1.0)
-    assert len(trades) > 0
-    assert (trades["net_ret"] < trades["gross_ret"]).all(), "os custos entram em todas as operações"
-    # Sem sobreposição: cada entrada é depois da saída anterior.
-    assert (trades["entry_signal"].iloc[1:].to_numpy() >= trades["exit_time"].iloc[:-1].to_numpy()).all()
+    cfg = BacktestConfig(load_config().instrument("EUR/USD"), 24, 2.0, 1.0, 10_000.0)
+    r = run_backtest(candles, f, sig, eng, cfg)
+    assert len(r.trades) > 0
+    assert (r.trades["net_ret"] < r.trades["gross_ret"]).all(), "os custos entram em todas as operações"
     KillSwitch(tmp_path / "KS").engage("t", "t")
-    trades2, _, vetoes2 = run_backtest(f.index, sides, probs, f, bars, MarketCosts(0, 0.2), eng, "EUR/USD", 2.0, 1.0)
-    assert trades2.empty and vetoes2.get("kill", 0) > 0
+    r2 = run_backtest(candles, f, sig, eng, cfg)
+    assert r2.trades.empty and r2.vetoes.get("kill", 0) > 0

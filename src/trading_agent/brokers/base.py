@@ -24,6 +24,7 @@ class Side(StrEnum):
 
 class OrderStatus(StrEnum):
     NEW = "new"
+    PARTIALLY_FILLED = "partially_filled"
     FILLED = "filled"
     REJECTED = "rejected"
     CANCELLED = "cancelled"
@@ -57,6 +58,13 @@ class Order:
     tenant_id: str = "default"
     status: OrderStatus = OrderStatus.NEW
     reason: str = ""
+    filled_qty: float = 0.0
+    max_bars: int | None = None          # encerramento por limite temporal (em velas)
+    expires_at: datetime | None = None   # encerramento por limite temporal (relógio)
+    intent: str = "open"                 # «open» abre posição; «close» reduz/fecha
+    sl_distance: float | None = None     # stop a esta distância do preço de EXECUÇÃO (quando o preço ainda não se sabe)
+    tp_distance: float | None = None
+    meta: dict = field(default_factory=dict)
 
 
 @dataclass

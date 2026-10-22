@@ -11,9 +11,23 @@ max_daily_loss_pct = 0.02
 max_drawdown_pct = 0.10
 min_probability = 0.40         # com TP:SL de 2:1 o ponto morto é ~0,34 + custos; o filtro principal é a expectativa
 min_expected_edge_bps = 1.0
+min_capital = 50.0              # na moeda da conta: abaixo disto não se abre nada
+max_data_age_bars = 2           # última vela fechada com mais de 2 intervalos = dados desatualizados
+max_consecutive_api_errors = 3  # falhas seguidas da fonte de dados/corretora = parar de abrir
+max_bar_move_atr = 8.0          # vela que se move mais de 8 ATR = condição anómala
+
+[account]
+currency = "EUR"                # moeda da conta simulada; conversão explícita para a moeda de cotação
+initial_capital = 100.0         # por mercado; NÃO se presume que chega para todos os instrumentos
 
 [markets."EUR/USD"]
 asset_class = "forex"
+base_currency = "EUR"
+quote_currency = "USD"
+price_basis = "bid"             # as velas da Dukascopy são de bid; ask = bid + spread
+min_qty = 1.0                   # OANDA aceita 1 unidade; muitas corretoras exigem 1000 (micro-lote)
+qty_step = 1.0
+allow_short = true              # CFD/margem: vender a descoberto é permitido
 pip_size = 0.0001
 # Custo de execução simulado: o spread vem dos dados (bid/ask da Dukascopy); a isto soma-se
 fee_bps = 0.0                   # corretoras de retalho FX cobram no spread, não em comissão
@@ -23,6 +37,12 @@ max_leverage = 30.0            # tecto ESMA para clientes de retalho em pares ma
 
 [markets."BTC/USD"]
 asset_class = "crypto"
+base_currency = "BTC"
+quote_currency = "USD"
+price_basis = "mid"             # velas de negócios da Coinbase: tratadas como preço médio; spread pressuposto
+min_qty = 0.00005               # mínimo da Kraken para BTC/USD
+qty_step = 0.00000001
+allow_short = false             # à vista: só se compra o que se paga; vender a descoberto exige derivados
 fee_bps = 25.0                  # taxa taker de referência (Kraken nível de entrada: 0,25%); confirmar por conta
 spread_bps = 2.0                # spread típico assumido, os dados históricos não trazem bid/ask
 slippage_bps = 2.0

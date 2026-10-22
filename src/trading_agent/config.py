@@ -46,6 +46,10 @@ class RiskLimits:
     max_drawdown_pct: float
     min_probability: float
     min_expected_edge_bps: float
+    min_capital: float = 0.0
+    max_data_age_bars: float = 2.0
+    max_consecutive_api_errors: int = 3
+    max_bar_move_atr: float = 8.0
 
 
 @dataclass(frozen=True)
@@ -58,6 +62,15 @@ class AppConfig:
 
     def market(self, symbol: str) -> dict:
         return self.raw["markets"][symbol]
+
+    def instrument(self, symbol: str):
+        from trading_agent.execution.instruments import InstrumentSpec
+
+        return InstrumentSpec.from_config(symbol, self.market(symbol))
+
+    @property
+    def account(self) -> dict:
+        return self.raw.get("account", {"currency": "USD", "initial_capital": 10_000.0})
 
 
 def load_config(path: Path | str = DEFAULT_CONFIG) -> AppConfig:

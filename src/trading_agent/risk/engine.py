@@ -32,6 +32,11 @@ class PortfolioState:
     open_positions: int
     exposure_by_symbol: dict[str, float] = field(default_factory=dict)  # fração do capital
     venue_available: bool = True
+    available_equity: float | None = None   # capital disponível (equity − capital comprometido)
+    data_age_bars: float = 0.0              # idade da última vela fechada, em intervalos
+    consecutive_api_errors: int = 0         # falhas seguidas da fonte de dados ou da corretora
+    bar_move_atr: float = 0.0               # amplitude da última vela em ATR (deteção de anomalias)
+    anomaly: str | None = None              # outra condição anómala detetada a montante
 
 
 @dataclass
@@ -80,6 +85,16 @@ class RiskEngine:
             reasons.append("drawdown máximo atingido")
         if p.sl_pct <= 0:
             reasons.append("stop-loss inválido")
+        if L.min_capital and s.equity < L.min_capital:
+            reasons.append(f"capital {s.equity:.2f} abaixo do mínimo {L.min_capital}")
+        if s.data_age_bars > L.max_data_age_bars:
+            reasons.append(f"dados desatualizados ({s.data_age_bars:.1f} intervalos)")
+        if s.consecutive_api_errors >= L.max_consecutive_api_errors:
+            reasons.append(f"falhas de API seguidas: {s.consecutive_api_errors}")
+        if s.bar_move_atr > L.max_bar_move_atr:
+            reasons.append(f"condição anómala: vela de {s.bar_move_atr:.1f} ATR")
+        if s.anomaly:
+            reasons.append(f"condição anómala: {s.anomaly}")
 
         # Tamanho: perda no stop = max_loss_per_trade_pct do capital, com tectos de alavancagem e exposição.
         size = 0.0
@@ -87,6 +102,9 @@ class RiskEngine:
             size = L.max_loss_per_trade_pct / (p.sl_pct + p.cost_pct)
         cap_exposure = L.max_exposure_per_asset_pct * self.max_leverage
         size = min(size, self.max_leverage, cap_exposure - s.exposure_by_symbol.get(p.symbol, 0.0))
+        if s.available_equity is not None and s.equity > 0:
+            # o nocional cabe no capital disponível (com a alavancagem do instrumento)
+            size = min(size, max(s.available_equity, 0.0) * self.max_leverage / s.equity)
         if size <= 0:
             reasons.append("sem margem de exposição para este ativo")
         trade = not reasons
