@@ -1,15 +1,26 @@
-# Desenvolvimento local: API + MongoDB. Só simulação.
+# Desenvolvimento local: API, agente BTC/USD (paper), bot do Telegram e MongoDB. Só simulação.
+x-app: &app
+  build: .
+  env_file: [.env]
+  environment:
+    MONGODB_URI: mongodb://mongo:27017/trading_agent
+  volumes:
+    - ./data:/app/data
+    - ./reports:/app/reports
+    - ./models_artifacts:/app/models_artifacts
+  depends_on: [mongo]
+  restart: unless-stopped
 services:
   api:
-    build: .
+    <<: *app
     ports: ["8080:8080"]
-    env_file: [.env]
-    environment:
-      MONGODB_URI: mongodb://mongo:27017/trading_agent
-    volumes:
-      - ./data:/app/data
-      - ./reports:/app/reports
-    depends_on: [mongo]
+  agent-btc:
+    <<: *app
+    command: ["python", "scripts/run_agent.py", "--symbol", "BTC/USD", "--modo", "paper"]
+  telegram:
+    <<: *app
+    command: ["python", "scripts/run_telegram_bot.py"]
+    profiles: ["telegram"]   # só arranca com --profile telegram (precisa de token)
   mongo:
     image: mongo:7
     ports: ["27017:27017"]

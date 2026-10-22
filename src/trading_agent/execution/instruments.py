@@ -76,7 +76,7 @@ class FxConverter:
 
 
 def capital_sufficiency(spec: InstrumentSpec, capital: float, price: float, stop_pct: float,
-                        max_loss_pct: float, fx_to_quote: float = 1.0) -> dict:
+                        max_loss_pct: float, fx_to_quote: float = 1.0, max_exposure_pct: float | None = None) -> dict:
     """Diz se um capital chega para negociar o instrumento respeitando o risco por operação.
 
     `capital` na moeda da conta; `fx_to_quote` converte-a para a moeda de cotação. Compara o
@@ -85,6 +85,8 @@ def capital_sufficiency(spec: InstrumentSpec, capital: float, price: float, stop
     risk_budget = capital * max_loss_pct * fx_to_quote
     notional_allowed = risk_budget / stop_pct if stop_pct > 0 else 0.0
     notional_allowed = min(notional_allowed, capital * fx_to_quote * spec.max_leverage)
+    if max_exposure_pct is not None:  # o mesmo tecto de exposição por ativo do motor de risco
+        notional_allowed = min(notional_allowed, capital * fx_to_quote * max_exposure_pct * spec.max_leverage)
     min_notional = spec.min_qty * price
     loss_at_min = min_notional * stop_pct / fx_to_quote
     return {

@@ -94,6 +94,10 @@ class MongoRepository(Repository):
         return list(cur.sort("ts", -1 if newest_first else 1).limit(limit))
 
 
+_FIND_NEWEST = "SELECT doc FROM docs WHERE collection=? AND tenant_id=? ORDER BY ts DESC, id DESC"
+_FIND_OLDEST = "SELECT doc FROM docs WHERE collection=? AND tenant_id=? ORDER BY ts ASC, id ASC"
+
+
 class SqliteRepository(Repository):
     def __init__(self, path: Path | str):
         self.path = Path(path)
@@ -124,9 +128,9 @@ class SqliteRepository(Repository):
     def find(self, collection: str, tenant_id: str, query: dict | None = None, limit: int = 100,
              newest_first: bool = True) -> list[dict]:
         _check(collection, tenant_id)
+        sql = _FIND_NEWEST if newest_first else _FIND_OLDEST
         with self._lock, self._conn() as c:
-            rows = c.execute(f"SELECT doc FROM docs WHERE collection=? AND tenant_id=? ORDER BY ts {'DESC' if newest_first else 'ASC'}, id "
-                             f"{'DESC' if newest_first else 'ASC'}", (collection, tenant_id)).fetchall()
+            rows = c.execute(sql, (collection, tenant_id)).fetchall()
         out = []
         for (raw,) in rows:
             d = json.loads(raw)

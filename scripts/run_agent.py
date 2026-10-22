@@ -48,6 +48,8 @@ def main() -> None:
     ap.add_argument("--intervalo", type=float, default=60.0)
     ap.add_argument("--ciclos", type=int, default=None, help="número de ciclos (por omissão, contínuo)")
     args = ap.parse_args()
+    if "/" not in args.symbol:  # «BTCUSD» (nomes de serviços systemd) → «BTC/USD»
+        args.symbol = f"{args.symbol[:3]}/{args.symbol[3:]}"
     cfg, sec = load_config(), Secrets()
     reg = ModelRegistry()
     model_id = args.model_id or reg.latest(args.symbol, "aprovado") or reg.latest(args.symbol)
