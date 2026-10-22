@@ -15,6 +15,11 @@
 1. **Custos de BTC mais baixos e reais.** Com taxa taker de retalho (0,25% por lado) nenhum horizonte compensa.
    Medir a vantagem bruta com ordens limite (taxa maker) e com a tabela real da conta; o diagnóstico de
    sensibilidade (`scripts/cost_sensitivity.py`) diz se vale a pena.
+   **Resultado (22/10/2026, a partir de `reports/fase2/sensibilidade_custos.json`, sem novas tentativas): refutada.**
+   Mesmo com custo ZERO, nenhuma configuração de BTC tem expectativa bruta com IC95% acima de zero no
+   desenvolvimento (a melhor, 1h tp2/sl1, tem +4,3 bps com IC95% [−2,1; 11,0] e −26 bps no teste final). Uma taxa
+   maker realista (0,16% a 0,40% por lado) fica entre os fatores 0,5 e 1 testados, onde tudo é negativo. O problema é a
+   previsão, não a corretora: seguir para as hipóteses 2 e 3.
 2. **Informação que as velas não têm.** Funding e open interest dos perpétuos, fluxo de ordens (desequilíbrio do
    livro), dados on-chain; em Forex, diferenciais de taxas de juro e calendário macro com datas de publicação
    fiáveis (o módulo qualitativo já respeita a regra «publicado até t»).
