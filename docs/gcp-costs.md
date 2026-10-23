@@ -89,3 +89,20 @@ subscrições, Atlas dedicado (M10 ou superior) e um worker por tenant.
 2. Ativar APIs: Cloud Run, Artifact Registry, Cloud Scheduler, Secret Manager, Cloud Storage.
 3. Criar os segredos (OANDA Practice, Telegram, MongoDB) e uma conta de serviço com acesso mínimo.
 4. `infra/gcp/deploy.sh` (preparado, não executado).
+
+### Implantado a 23/10/2026 (aprovado pelo dono)
+
+No projeto `serafy-agentics`, todos com o prefixo `trading-ai` e a etiqueta `app=trading-ai`:
+
+| Recurso | Nome |
+|---|---|
+| API ativada | `compute.googleapis.com` (a única nova) |
+| Conta de serviço | `trading-ai-agent@serafy-agentics.iam.gserviceaccount.com` (logWriter e artifactregistry.reader no projeto; acesso só aos seus segredos e ao seu bucket) |
+| Segredos | `trading-ai-mongodb-uri`, `trading-ai-telegram-bot-token`, `trading-ai-telegram-allowed-chat-ids`, `trading-ai-api-admin-token` |
+| Bucket | `gs://serafy-agentics-trading-ai-dados` (us-central1) com `models_artifacts/` |
+| Artifact Registry | `us-central1-docker.pkg.dev/serafy-agentics/trading-ai/agent` (~3 GB por imagem, quase todo PyTorch) |
+| IP estático | `trading-ai-worker-ip`, autorizado no Atlas como entrada permanente |
+| VM | `trading-ai-worker` (e2-micro, us-central1-a, 30 GB pd-standard, swap de 2 GB), sem regras de firewall de entrada |
+
+Nenhum recurso da Serafy foi alterado. Para remover tudo: apagar a VM, o IP, o repositório, o bucket, os 4 segredos e a
+conta de serviço com o prefixo `trading-ai`.
