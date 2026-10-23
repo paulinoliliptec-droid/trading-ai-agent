@@ -3,7 +3,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 WORKDIR /app
 COPY pyproject.toml README.md ./
 COPY src ./src
-RUN pip install --no-cache-dir . && pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+# editável: o código fica em /app/src e ROOT (configs, data, models_artifacts) resolve para /app
+RUN pip install --no-cache-dir -e . && pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
 COPY apps ./apps
 COPY configs ./configs
 COPY scripts ./scripts
