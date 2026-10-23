@@ -42,19 +42,19 @@ def status() -> dict:
     cfg = load_config()
     contas = {k.split(":")[-1]: {kk: (v or {}).get(kk) for kk in ("currency", "cash", "peak_equity", "last_equity")}
               | {"posicoes": len((v or {}).get("positions", {})), "operacoes": len((v or {}).get("trades", []))}
-              for k in _store.keys("account:") for v in [_store.get(k)]}
+              for k in _store.keys(f"account:{_secrets.tenant_id}:") for v in [_store.get(k)]}
     return {"modo": "simulação", "negociacao_real": cfg.live_trading_enabled, "kill_switch": _kill.is_engaged(),
             "mercados": list(cfg.raw["markets"].keys()), "contas": contas}
 
 
 @app.get("/decisions")
 def decisions(limit: int = 50) -> list[dict]:
-    return default_repository().find("decisions", "default", limit=min(limit, 500))
+    return default_repository().find("decisions", _secrets.tenant_id, limit=min(limit, 500))
 
 
 @app.get("/portfolio")
 def portfolio() -> dict:
-    return {"texto": account_views(_store)["portfolio"]()}
+    return {"texto": account_views(_store, _secrets.tenant_id)["portfolio"]()}
 
 
 @app.get("/performance")

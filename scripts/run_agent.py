@@ -44,7 +44,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--symbol", default="BTC/USD")
     ap.add_argument("--model-id")
-    ap.add_argument("--modo", choices=["paper", "observacao"], default="paper")
+    ap.add_argument("--modo", choices=["paper", "observacao"], default="observacao")
     ap.add_argument("--intervalo", type=float, default=60.0)
     ap.add_argument("--ciclos", type=int, default=None, help="número de ciclos (por omissão, contínuo)")
     args = ap.parse_args()
@@ -57,7 +57,7 @@ def main() -> None:
         raise SystemExit(f"Não há modelo treinado para {args.symbol}: correr scripts/train_model.py primeiro.")
     policy, meta = reg.load(model_id)
     store, repo = default_store(), default_repository()
-    repo.insert("model_versions", "default", {k: meta[k] for k in ("model_id", "symbol", "timeframe", "status", "created_at", "sha256")},
+    repo.insert("model_versions", sec.tenant_id, {k: meta[k] for k in ("model_id", "symbol", "timeframe", "status", "created_at", "sha256")},
                 unique_key="model_id")
     fx = None
     if cfg.account["currency"] != cfg.instrument(args.symbol).quote_currency:
@@ -66,7 +66,7 @@ def main() -> None:
     worker = AgentWorker(cfg, policy, meta, data_source(args.symbol, sec), store, repo, KillSwitch(store=store),
                          TelegramNotifier(sec.telegram_bot_token.get_secret_value() if sec.telegram_bot_token else None,
                                           sec.allowed_chat_ids() or {0}),
-                         WorkerConfig(mode=args.modo, interval_s=args.intervalo), fx_source=fx)
+                         WorkerConfig(tenant_id=sec.tenant_id, mode=args.modo, interval_s=args.intervalo), fx_source=fx)
     worker.run_forever(max_cycles=args.ciclos)
 
 

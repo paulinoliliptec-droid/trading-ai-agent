@@ -8,7 +8,7 @@ que o código desta fase recusa ligar.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from enum import StrEnum
 
 from trading_agent.config import RiskLimits
@@ -46,6 +46,14 @@ class Tenant:
     def can(self, uid: str, action: str) -> bool:
         role = self.members.get(uid)
         return role is not None and action in PERMISSIONS[role]
+
+    subscription: str = "nenhuma"                            # estrutura pronta; nenhuma subscrição paga ativa
+
+    def to_doc(self) -> dict:
+        """Registo guardável (sem credenciais: só os nomes dos segredos)."""
+        return {"tenant_id": self.tenant_id, "name": self.name, "risk": asdict(self.risk),
+                "brokers": [asdict(b) for b in self.brokers], "members": {k: v.value for k, v in self.members.items()},
+                "live_trading_allowed": self.live_trading_allowed, "subscription": self.subscription}
 
     def enable_live_trading(self) -> None:
         raise PermissionError("Negociação real para tenants exige validação jurídica e regulatória (CMVM, BdP, MiCA).")

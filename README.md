@@ -40,6 +40,17 @@ pytest -q
 uvicorn apps.api.main:app --port 8080                  # API e painel
 ```
 
+### Modo de observação com Atlas e Telegram (operação pessoal)
+
+```bash
+atlas auth login && scripts/atlas_setup.sh             # utilizador readWrite@trading_agent e MONGODB_URI no .env
+python scripts/mongo_init.py && python scripts/tenant_init.py
+python scripts/run_agent.py --symbol BTC/USD           # observação por omissão: decide e regista, não abre posições
+python scripts/run_telegram_bot.py                     # UMA instância por bot; sai se houver webhook ou outro consumidor
+docker compose --profile telegram up -d                # o mesmo em contentores, com o Atlas (sem MongoDB local)
+python scripts/observation_report.py --dias 5          # relatório do teste de cinco dias (docs/observacao-5-dias.md)
+```
+
 ## Documentação
 
 | Documento | Conteúdo |
@@ -54,5 +65,7 @@ uvicorn apps.api.main:app --port 8080                  # API e painel
 | [docs/research-results-fase2-tabelas.md](docs/research-results-fase2-tabelas.md) | Todas as tabelas (geradas) |
 | [docs/mongodb.md](docs/mongodb.md) | Coleções, índices e o que falta para o Atlas |
 | [docs/data-sources.md](docs/data-sources.md) | Fontes e corretoras verificadas |
-| [docs/gcp-costs.md](docs/gcp-costs.md) | Arquitetura GCP e custos por cenário |
+| [docs/gcp-costs.md](docs/gcp-costs.md) | Arquitetura GCP e custos por cenário (operação pessoal no projeto da Serafy) |
+| [docs/fase3-integracao.md](docs/fase3-integracao.md) | Resumo da fase 3: Atlas, Telegram, GCP, estado e pendentes |
+| [docs/observacao-5-dias.md](docs/observacao-5-dias.md) | Programa do teste de observação de cinco dias |
 | [docs/adr/](docs/adr/) | Decisões de arquitetura |

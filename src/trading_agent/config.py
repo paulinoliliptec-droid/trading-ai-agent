@@ -30,6 +30,7 @@ class Secrets(BaseSettings):
     telegram_allowed_chat_ids: str = ""  # lista separada por vírgulas
     mongodb_uri: SecretStr | None = None
     api_admin_token: SecretStr | None = None
+    tenant_id: str = "default"           # não é segredo; na operação pessoal: «pessoal» (scripts/tenant_init.py)
 
     def allowed_chat_ids(self) -> set[int]:
         return {int(x) for x in self.telegram_allowed_chat_ids.split(",") if x.strip().lstrip("-").isdigit()}

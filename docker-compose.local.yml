@@ -1,0 +1,16 @@
+# Sobreposição para desenvolvimento: MongoDB em contentor, sem porta publicada (só a rede interna do Compose).
+x-local: &local
+  environment:
+    TRADING_ENV: desenvolvimento
+    MONGODB_URI: mongodb://mongo:27017/trading_agent
+  depends_on: [mongo]
+services:
+  api: *local
+  agent-btc: *local
+  telegram: *local
+  mongo:
+    image: mongo:7
+    volumes: [mongo-data:/data/db]
+    restart: unless-stopped
+volumes:
+  mongo-data:
