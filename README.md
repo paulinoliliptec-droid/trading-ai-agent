@@ -55,6 +55,7 @@ python scripts/observation_report.py --dias 5          # relatório do teste de 
 
 | Documento | Conteúdo |
 |---|---|
+| [RELATORIO_FASE3.md](RELATORIO_FASE3.md) | **Relatório da fase 3: integração, hipóteses H1, H2 e H3, conclusões e recomendações** |
 | [RELATORIO.md](RELATORIO.md) | Relatório da fase 2: problemas, correções, testes, resultados, estado e próximos passos |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Camadas, fluxo treino/inferência, regras garantidas pelos testes |
 | [REQUIREMENTS.md](REQUIREMENTS.md) | Requisitos e estado |

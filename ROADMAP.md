@@ -4,7 +4,7 @@
 |---|---|---|---|
 | 1. Investigação inicial | Dados reais, features, modelos A/B/C, backtest com custos, risco | Feita (22/10/2026) | |
 | 2. Auditoria e evolução | Backtest cronológico, conta virtual, agente persistente, horizontes, regimes, MongoDB, Telegram, CI | **Feita (22/10/2026), com resultado negativo: nenhuma configuração tem vantagem líquida** | |
-| 3. Nova hipótese | Procurar vantagem onde o custo pesa menos ou onde há informação que as velas não têm (ver abaixo) | Próxima | Uma configuração qualifica no desenvolvimento E é positiva no teste final (a regra do registo de modelos) |
+| 3. Nova hipótese | Procurar vantagem onde o custo pesa menos ou onde há informação que as velas não têm (ver abaixo) | H1, H2 e H3 testadas a 23/10/2026: nenhuma confirmada (RELATORIO_FASE3.md) | Uma configuração qualifica no desenvolvimento E é positiva no teste final (a regra do registo de modelos) |
 | 4. Paper trading contínuo | Worker na GCP com o modelo aprovado, Telegram e Atlas ligados | Pronto a ligar, à espera de um modelo aprovado e das credenciais | 3 meses de paper trading coerentes com o backtest (desvio explicado) |
 | 5. Endurecimento | Monitorização, alertas, testes de falha | | Incidentes simulados tratados sem intervenção manual |
 | 6. Real com capital próprio (opcional) | Execução real numa conta própria, limites mínimos | | Decisão explícita do dono, revisão de risco, conta na corretora em nome próprio |
@@ -23,6 +23,9 @@
 2. **Informação que as velas não têm.** Funding e open interest dos perpétuos, fluxo de ordens (desequilíbrio do
    livro), dados on-chain; em Forex, diferenciais de taxas de juro e calendário macro com datas de publicação
    fiáveis (o módulo qualitativo já respeita a regra «publicado até t»).
+   **Resultado (23/10/2026): NÃO confirmada** (`reports/h2/resultado.md`). Funding, prémio do perpétuo, open
+   interest e fluxo taker juntaram-se às features v2: nenhuma das 4 configurações qualificou; com custo zero, o
+   AUC fica em ~0,50 com e sem os dados novos. 4 tentativas novas, 79 no total.
 3. **Outro alvo.** Prever volatilidade (mais previsível do que a direção) e usá-la para dimensionar ou filtrar uma
    estratégia simples, em vez de prever qual barreira vem primeiro.
    **Resultado (23/10/2026): NÃO confirmada** (`docs/research-results-h3.md`). O HAR prevê a volatilidade melhor do
