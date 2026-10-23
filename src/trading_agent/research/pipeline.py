@@ -78,12 +78,23 @@ def load_bars(spec: ExperimentSpec, asset_class: str) -> pd.DataFrame:
     return resample_ohlcv(load_candles(spec.symbol, "1h", spec.source), spec.timeframe, asset_class)
 
 
+def _derivative_feats(index: pd.DatetimeIndex, timeframe: str) -> pd.DataFrame:
+    from trading_agent.data.derivatives import derivative_features, resample_hourly
+    from trading_agent.data.store import DATA_DIR
+
+    h = pd.read_parquet(DATA_DIR / "raw" / "derivados_BTCUSD_1h.parquet")
+    bar_hours = int(BAR[timeframe] / pd.Timedelta(hours=1))
+    return derivative_features(resample_hourly(h, timeframe), bar_hours).reindex(index)
+
+
 def prepare(spec: ExperimentSpec, cfg: AppConfig, bars: pd.DataFrame | None = None) -> Prepared:
     m = cfg.market(spec.symbol)
     inst = cfg.instrument(spec.symbol)
     bars = load_bars(spec, m["asset_class"]) if bars is None else bars
     extra_cost = (2 * inst.fee_bps + 2 * inst.slippage_bps + (0 if "spread" in bars.columns else inst.default_spread_bps)) / 1e4
-    feats = build_features_v2(bars, 14, extra_cost) if spec.feature_set == "v2" else build_features(bars, 14)
+    feats = build_features_v2(bars, 14, extra_cost) if spec.feature_set in ("v2", "v3") else build_features(bars, 14)
+    if spec.feature_set == "v3":   # hipótese 2: v2 + derivados e fluxo (docs/h2-derivados-preregisto.md)
+        feats = feats.join(_derivative_feats(bars.index, spec.timeframe))
     a = atr(bars, 14)
     sides = (1, -1) if inst.allow_short else (1,)
     labels = {s: triple_barrier(bars, a, s, spec.horizon_bars, spec.tp_mult, spec.sl_mult) for s in (1, -1)}

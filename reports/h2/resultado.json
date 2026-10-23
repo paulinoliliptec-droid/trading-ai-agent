@@ -1,0 +1,551 @@
+{
+ "gerado_em": "2026-10-23T00:33:10.435093+00:00",
+ "preregisto": "docs/h2-derivados-preregisto.md",
+ "experiencias": {
+  "BTCUSD_1h_h24_tp2_sl1_v3": {
+   "qualificado_no_desenvolvimento": false,
+   "desenvolvimento": {
+    "operacoes": 1,
+    "bruto_bps": -38.838,
+    "liquido_bps": -94.712,
+    "ic95_liquido_bps": [
+     null,
+     null
+    ],
+    "ic95_bruto_bps": [
+     null,
+     null
+    ],
+    "retorno_pct": -0.189,
+    "auc": 0.5054,
+    "brier_skill": -0.02122
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "bruto_bps": null,
+    "liquido_bps": null,
+    "ic95_liquido_bps": [
+     null,
+     null
+    ],
+    "ic95_bruto_bps": [
+     null,
+     null
+    ],
+    "retorno_pct": 0.0,
+    "auc": 0.5283,
+    "brier_skill": -0.00157
+   },
+   "periodos": {
+    "desenvolvimento": [
+     "2024-07-16 18:00:00+00:00",
+     "2026-01-19 14:00:00+00:00"
+    ],
+    "teste_final": [
+     "2026-01-19 15:00:00+00:00",
+     "2026-10-22 15:00:00+00:00"
+    ]
+   }
+  },
+  "BTCUSD_1h_h24_tp1_sl1_v3": {
+   "qualificado_no_desenvolvimento": false,
+   "desenvolvimento": {
+    "operacoes": 6,
+    "bruto_bps": -34.905,
+    "liquido_bps": -90.79,
+    "ic95_liquido_bps": [
+     -112.74,
+     -68.62
+    ],
+    "ic95_bruto_bps": [
+     -56.91,
+     -12.67
+    ],
+    "retorno_pct": -1.085,
+    "auc": 0.4915,
+    "brier_skill": -0.00932
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "bruto_bps": null,
+    "liquido_bps": null,
+    "ic95_liquido_bps": [
+     null,
+     null
+    ],
+    "ic95_bruto_bps": [
+     null,
+     null
+    ],
+    "retorno_pct": 0.0,
+    "auc": 0.47,
+    "brier_skill": -0.00466
+   },
+   "periodos": {
+    "desenvolvimento": [
+     "2024-07-16 18:00:00+00:00",
+     "2026-01-19 14:00:00+00:00"
+    ],
+    "teste_final": [
+     "2026-01-19 15:00:00+00:00",
+     "2026-10-22 15:00:00+00:00"
+    ]
+   }
+  },
+  "BTCUSD_4h_h12_tp2_sl1_v3": {
+   "qualificado_no_desenvolvimento": false,
+   "desenvolvimento": {
+    "operacoes": 112,
+    "bruto_bps": 5.55,
+    "liquido_bps": -50.451,
+    "ic95_liquido_bps": [
+     -76.01,
+     -26.14
+    ],
+    "ic95_bruto_bps": [
+     -20.08,
+     29.93
+    ],
+    "retorno_pct": -10.729,
+    "auc": 0.5161,
+    "brier_skill": -0.04608
+   },
+   "teste_final": {
+    "operacoes": 34,
+    "bruto_bps": -30.667,
+    "liquido_bps": -86.562,
+    "ic95_liquido_bps": [
+     -158.19,
+     -25.48
+    ],
+    "ic95_bruto_bps": [
+     -102.49,
+     30.59
+    ],
+    "retorno_pct": -5.11,
+    "auc": 0.5115,
+    "brier_skill": -0.09213
+   },
+   "periodos": {
+    "desenvolvimento": [
+     "2024-07-25 16:00:00+00:00",
+     "2026-01-23 00:00:00+00:00"
+    ],
+    "teste_final": [
+     "2026-01-23 04:00:00+00:00",
+     "2026-10-22 04:00:00+00:00"
+    ]
+   }
+  },
+  "BTCUSD_4h_h12_tp1_sl1_v3": {
+   "qualificado_no_desenvolvimento": false,
+   "desenvolvimento": {
+    "operacoes": 0,
+    "bruto_bps": null,
+    "liquido_bps": null,
+    "ic95_liquido_bps": [
+     null,
+     null
+    ],
+    "ic95_bruto_bps": [
+     null,
+     null
+    ],
+    "retorno_pct": 0.0,
+    "auc": 0.5155,
+    "brier_skill": -0.00406
+   },
+   "teste_final": {
+    "operacoes": 5,
+    "bruto_bps": 18.346,
+    "liquido_bps": -37.685,
+    "ic95_liquido_bps": [
+     -115.29,
+     39.92
+    ],
+    "ic95_bruto_bps": [
+     -59.47,
+     96.17
+    ],
+    "retorno_pct": -0.377,
+    "auc": 0.4867,
+    "brier_skill": -0.02047
+   },
+   "periodos": {
+    "desenvolvimento": [
+     "2024-07-25 16:00:00+00:00",
+     "2026-01-23 00:00:00+00:00"
+    ],
+    "teste_final": [
+     "2026-01-23 04:00:00+00:00",
+     "2026-10-22 04:00:00+00:00"
+    ]
+   }
+  }
+ },
+ "diagnostico_custo_zero": {
+  "BTCUSD_1h_h24_tp2_sl1_v3": {
+   "qualificado_no_desenvolvimento": false,
+   "desenvolvimento": {
+    "operacoes": 1252,
+    "bruto_bps": 1.044,
+    "liquido_bps": 1.044,
+    "ic95_liquido_bps": [
+     -5.85,
+     7.49
+    ],
+    "ic95_bruto_bps": [
+     -5.85,
+     7.49
+    ],
+    "retorno_pct": 2.067,
+    "auc": 0.5037,
+    "brier_skill": -0.02096
+   },
+   "teste_final": {
+    "operacoes": 47,
+    "bruto_bps": -6.344,
+    "liquido_bps": -6.344,
+    "ic95_liquido_bps": [
+     -26.59,
+     13.04
+    ],
+    "ic95_bruto_bps": [
+     -26.59,
+     13.04
+    ],
+    "retorno_pct": -0.603,
+    "auc": 0.5277,
+    "brier_skill": -0.00204
+   },
+   "periodos": {
+    "desenvolvimento": [
+     "2024-07-16 18:00:00+00:00",
+     "2026-01-19 14:00:00+00:00"
+    ],
+    "teste_final": [
+     "2026-01-19 15:00:00+00:00",
+     "2026-10-22 15:00:00+00:00"
+    ]
+   }
+  },
+  "BTCUSD_1h_h24_tp2_sl1_v2": {
+   "qualificado_no_desenvolvimento": false,
+   "desenvolvimento": {
+    "operacoes": 1168,
+    "bruto_bps": 4.271,
+    "liquido_bps": 4.271,
+    "ic95_liquido_bps": [
+     -2.14,
+     11.04
+    ],
+    "ic95_bruto_bps": [
+     -2.14,
+     11.04
+    ],
+    "retorno_pct": 9.908,
+    "auc": 0.5039,
+    "brier_skill": -0.01371
+   },
+   "teste_final": {
+    "operacoes": 31,
+    "bruto_bps": -25.954,
+    "liquido_bps": -25.954,
+    "ic95_liquido_bps": [
+     -95.09,
+     49.59
+    ],
+    "ic95_bruto_bps": [
+     -95.09,
+     49.59
+    ],
+    "retorno_pct": -1.666,
+    "auc": 0.5059,
+    "brier_skill": -0.00917
+   },
+   "periodos": {
+    "desenvolvimento": [
+     "2024-07-14 09:00:00+00:00",
+     "2026-01-18 19:00:00+00:00"
+    ],
+    "teste_final": [
+     "2026-01-18 20:00:00+00:00",
+     "2026-10-22 15:00:00+00:00"
+    ]
+   }
+  },
+  "BTCUSD_1h_h24_tp1_sl1_v3": {
+   "qualificado_no_desenvolvimento": false,
+   "desenvolvimento": {
+    "operacoes": 2108,
+    "bruto_bps": 0.989,
+    "liquido_bps": 0.989,
+    "ic95_liquido_bps": [
+     -1.75,
+     3.95
+    ],
+    "ic95_bruto_bps": [
+     -1.75,
+     3.95
+    ],
+    "retorno_pct": 4.096,
+    "auc": 0.4915,
+    "brier_skill": -0.00931
+   },
+   "teste_final": {
+    "operacoes": 0,
+    "bruto_bps": null,
+    "liquido_bps": null,
+    "ic95_liquido_bps": [
+     null,
+     null
+    ],
+    "ic95_bruto_bps": [
+     null,
+     null
+    ],
+    "retorno_pct": 0.0,
+    "auc": 0.47,
+    "brier_skill": -0.00466
+   },
+   "periodos": {
+    "desenvolvimento": [
+     "2024-07-16 18:00:00+00:00",
+     "2026-01-19 14:00:00+00:00"
+    ],
+    "teste_final": [
+     "2026-01-19 15:00:00+00:00",
+     "2026-10-22 15:00:00+00:00"
+    ]
+   }
+  },
+  "BTCUSD_1h_h24_tp1_sl1_v2": {
+   "qualificado_no_desenvolvimento": false,
+   "desenvolvimento": {
+    "operacoes": 2043,
+    "bruto_bps": 0.621,
+    "liquido_bps": 0.621,
+    "ic95_liquido_bps": [
+     -2.24,
+     3.71
+    ],
+    "ic95_bruto_bps": [
+     -2.24,
+     3.71
+    ],
+    "retorno_pct": 2.412,
+    "auc": 0.4929,
+    "brier_skill": -0.0144
+   },
+   "teste_final": {
+    "operacoes": 27,
+    "bruto_bps": 10.89,
+    "liquido_bps": 10.89,
+    "ic95_liquido_bps": [
+     -9.35,
+     32.87
+    ],
+    "ic95_bruto_bps": [
+     -9.35,
+     32.87
+    ],
+    "retorno_pct": 0.587,
+    "auc": 0.5179,
+    "brier_skill": -0.00125
+   },
+   "periodos": {
+    "desenvolvimento": [
+     "2024-07-14 09:00:00+00:00",
+     "2026-01-18 19:00:00+00:00"
+    ],
+    "teste_final": [
+     "2026-01-18 20:00:00+00:00",
+     "2026-10-22 15:00:00+00:00"
+    ]
+   }
+  },
+  "BTCUSD_4h_h12_tp2_sl1_v3": {
+   "qualificado_no_desenvolvimento": false,
+   "desenvolvimento": {
+    "operacoes": 384,
+    "bruto_bps": 1.214,
+    "liquido_bps": 1.214,
+    "ic95_liquido_bps": [
+     -16.89,
+     19.06
+    ],
+    "ic95_bruto_bps": [
+     -16.89,
+     19.06
+    ],
+    "retorno_pct": -0.28,
+    "auc": 0.5162,
+    "brier_skill": -0.04369
+   },
+   "teste_final": {
+    "operacoes": 210,
+    "bruto_bps": 3.67,
+    "liquido_bps": 3.67,
+    "ic95_liquido_bps": [
+     -21.41,
+     30.93
+    ],
+    "ic95_bruto_bps": [
+     -21.41,
+     30.93
+    ],
+    "retorno_pct": 1.321,
+    "auc": 0.4887,
+    "brier_skill": -0.10772
+   },
+   "periodos": {
+    "desenvolvimento": [
+     "2024-07-25 16:00:00+00:00",
+     "2026-01-23 00:00:00+00:00"
+    ],
+    "teste_final": [
+     "2026-01-23 04:00:00+00:00",
+     "2026-10-22 04:00:00+00:00"
+    ]
+   }
+  },
+  "BTCUSD_4h_h12_tp2_sl1_v2": {
+   "qualificado_no_desenvolvimento": false,
+   "desenvolvimento": {
+    "operacoes": 244,
+    "bruto_bps": 7.964,
+    "liquido_bps": 7.964,
+    "ic95_liquido_bps": [
+     -13.63,
+     29.59
+    ],
+    "ic95_bruto_bps": [
+     -13.63,
+     29.59
+    ],
+    "retorno_pct": 3.433,
+    "auc": 0.5229,
+    "brier_skill": -0.00099
+   },
+   "teste_final": {
+    "operacoes": 75,
+    "bruto_bps": -5.228,
+    "liquido_bps": -5.228,
+    "ic95_liquido_bps": [
+     -34.96,
+     28.2
+    ],
+    "ic95_bruto_bps": [
+     -34.96,
+     28.2
+    ],
+    "retorno_pct": -0.816,
+    "auc": 0.4986,
+    "brier_skill": -0.09733
+   },
+   "periodos": {
+    "desenvolvimento": [
+     "2024-07-26 20:00:00+00:00",
+     "2026-01-22 12:00:00+00:00"
+    ],
+    "teste_final": [
+     "2026-01-22 16:00:00+00:00",
+     "2026-10-22 04:00:00+00:00"
+    ]
+   }
+  },
+  "BTCUSD_4h_h12_tp1_sl1_v3": {
+   "qualificado_no_desenvolvimento": false,
+   "desenvolvimento": {
+    "operacoes": 552,
+    "bruto_bps": 0.93,
+    "liquido_bps": 0.93,
+    "ic95_liquido_bps": [
+     -13.2,
+     14.39
+    ],
+    "ic95_bruto_bps": [
+     -13.2,
+     14.39
+    ],
+    "retorno_pct": 0.086,
+    "auc": 0.5078,
+    "brier_skill": -0.00836
+   },
+   "teste_final": {
+    "operacoes": 176,
+    "bruto_bps": -8.765,
+    "liquido_bps": -8.765,
+    "ic95_liquido_bps": [
+     -35.92,
+     16.57
+    ],
+    "ic95_bruto_bps": [
+     -35.92,
+     16.57
+    ],
+    "retorno_pct": -3.402,
+    "auc": 0.4954,
+    "brier_skill": -0.02242
+   },
+   "periodos": {
+    "desenvolvimento": [
+     "2024-07-25 16:00:00+00:00",
+     "2026-01-23 00:00:00+00:00"
+    ],
+    "teste_final": [
+     "2026-01-23 04:00:00+00:00",
+     "2026-10-22 04:00:00+00:00"
+    ]
+   }
+  },
+  "BTCUSD_4h_h12_tp1_sl1_v2": {
+   "qualificado_no_desenvolvimento": false,
+   "desenvolvimento": {
+    "operacoes": 587,
+    "bruto_bps": -0.485,
+    "liquido_bps": -0.485,
+    "ic95_liquido_bps": [
+     -13.12,
+     11.35
+    ],
+    "ic95_bruto_bps": [
+     -13.12,
+     11.35
+    ],
+    "retorno_pct": -1.272,
+    "auc": 0.5175,
+    "brier_skill": -0.00322
+   },
+   "teste_final": {
+    "operacoes": 153,
+    "bruto_bps": -13.113,
+    "liquido_bps": -13.113,
+    "ic95_liquido_bps": [
+     -40.59,
+     12.1
+    ],
+    "ic95_bruto_bps": [
+     -40.59,
+     12.1
+    ],
+    "retorno_pct": -4.281,
+    "auc": 0.4705,
+    "brier_skill": -0.03389
+   },
+   "periodos": {
+    "desenvolvimento": [
+     "2024-07-26 20:00:00+00:00",
+     "2026-01-22 12:00:00+00:00"
+    ],
+    "teste_final": [
+     "2026-01-22 16:00:00+00:00",
+     "2026-10-22 04:00:00+00:00"
+    ]
+   }
+  }
+ },
+ "qualificadas": [],
+ "escolhida": null,
+ "hipotese_confirmada": false
+}
