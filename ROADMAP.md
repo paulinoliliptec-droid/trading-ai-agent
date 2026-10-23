@@ -25,6 +25,9 @@
    fiáveis (o módulo qualitativo já respeita a regra «publicado até t»).
 3. **Outro alvo.** Prever volatilidade (mais previsível do que a direção) e usá-la para dimensionar ou filtrar uma
    estratégia simples, em vez de prever qual barreira vem primeiro.
+   **Resultado (23/10/2026): NÃO confirmada** (`docs/research-results-h3.md`). O HAR prevê a volatilidade melhor do
+   que o EWMA, mas a volatilidade-alvo no BTC só reduz o risco: o Sharpe líquido não supera o de comprar e manter
+   (−0,06 com IC95% [−0,28; +0,13] no desenvolvimento). 3 tentativas novas, 75 no total.
 4. **Mais mercados com custos baixos** (pares Forex principais, índices) só depois de 1 a 3, para não multiplicar
    tentativas até aparecer um falso positivo.
 
