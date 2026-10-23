@@ -67,5 +67,6 @@ python scripts/observation_report.py --dias 5          # relatório do teste de 
 | [docs/data-sources.md](docs/data-sources.md) | Fontes e corretoras verificadas |
 | [docs/gcp-costs.md](docs/gcp-costs.md) | Arquitetura GCP e custos por cenário (operação pessoal no projeto da Serafy) |
 | [docs/fase3-integracao.md](docs/fase3-integracao.md) | Resumo da fase 3: Atlas, Telegram, GCP, estado e pendentes |
+| [docs/research-results-h3.md](docs/research-results-h3.md) | Hipótese 3 (volatilidade): pré-registo, resultados e leitura |
 | [docs/observacao-5-dias.md](docs/observacao-5-dias.md) | Programa do teste de observação de cinco dias |
 | [docs/adr/](docs/adr/) | Decisões de arquitetura |
