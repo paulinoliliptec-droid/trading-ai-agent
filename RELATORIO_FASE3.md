@@ -3,9 +3,11 @@
 **Data:** 23/10/2026 · **Modo:** só simulação (observação) · **Utilizador:** só o dono (tenant `pessoal`)
 
 > Resumo executivo. A infraestrutura está **ligada e a correr na Google Cloud** (MongoDB Atlas, Telegram e
-> worker em observação). As **três hipóteses de investigação** desta fase foram testadas com pré-registo e
-> **nenhuma se confirmou**. Ao todo são **79 tentativas**, e nenhuma mostrou vantagem líquida. Não há nenhum
-> modelo aprovado e o sistema continua em observação. Nada aqui é aconselhamento financeiro.
+> worker em observação). As **quatro hipóteses de investigação** desta fase foram testadas com pré-registo e
+> **nenhuma se confirmou**. Ao todo são **81 tentativas**. As 79 de previsão não mostraram vantagem nenhuma; a
+> única fonte de retorno real é o carry de funding (H4), mas rende abaixo de uma aplicação sem risco no período
+> recente. Não há nenhum modelo aprovado e o sistema continua em observação. Nada aqui é aconselhamento
+> financeiro.
 
 ---
 
@@ -18,7 +20,7 @@
 | **Google Cloud** | Projeto `serafy-agentics` (o que tem faturação). VM `trading-ai-worker` (e2-micro, us-central1) com o worker BTC/USD e o bot. Todos os recursos têm o prefixo `trading-ai`, permissões próprias e segredos no Secret Manager. Nenhum recurso da Serafy foi alterado. |
 | **Custo** | ~4 USD/mês com o nível gratuito da e2-micro, 11 a 12 USD/mês sem ele. Atlas: 0. |
 | **Docker** | O Compose com Atlas não arranca um MongoDB local; portas só em 127.0.0.1. A imagem passou a encontrar a configuração e os modelos. |
-| **Testes** | 82 testes automáticos a passar, mais a verificação ao vivo do circuito Telegram → Atlas → worker (kill switch partilhado, pedido de fecho tratado, sem reprocessar velas depois de um reinício). |
+| **Testes** | 86 testes automáticos a passar, mais a verificação ao vivo do circuito Telegram → Atlas → worker (kill switch partilhado, pedido de fecho tratado, sem reprocessar velas depois de um reinício). |
 | **SaaS** | A arquitetura multi-tenant mantém-se (tenants, papéis, segredos por tenant). Negociação real e subscrições estão desligadas por construção. |
 
 Bugs anteriores encontrados e corrigidos: a imagem Docker não encontrava a configuração (nenhum contentor
@@ -29,7 +31,7 @@ Teste de observação de cinco dias: começou a 23/10 e o relatório final está
 
 ---
 
-## 2. Investigação: três hipóteses, todas com pré-registo
+## 2. Investigação: quatro hipóteses, todas com pré-registo
 
 Regra comum: o critério de sucesso foi escrito e guardado no Git **antes** de correr. Seleção só no período de
 desenvolvimento; o teste final só se reporta. Custos reais de retalho (BTC: 25 bps de comissão, 2 de spread e
@@ -77,13 +79,39 @@ Juntaram-se às features da fase 2 (conjunto `v3`).
   formato e nestes horizontes, os derivados **não acrescentam poder preditivo sobre a direção**.
 - **Reprodutibilidade:** os números da `v2` sem custos coincidem exatamente com os da fase 2.
 
+### H4: carry de funding, neutro ao preço (comprado no spot, vendido no perpétuo)
+
+Pré-registo: `docs/h4-carry-funding-preregisto.md` · Resultados: `reports/h4/resultado.md`
+
+Não prevê nada: recebe o funding que os comprados alavancados pagam aos vendidos. O retorno é calculado sobre o
+capital (nocional + 50% de margem) e é líquido de custos (36 bps por lado nas duas pernas) e da variação da base.
+
+| Estratégia «sempre ligada» (escolhida) | Desenvolvimento (2023-01 a 2025-07) | Teste final (2025-07 a 2026-10) |
+|---|---|---|
+| Retorno anual líquido | **5,7%** | **2,3%** |
+| IC95% do retorno diário | [+1,1; +2,1] bps | [+0,3; +0,9] bps |
+| Drawdown máximo | −0,2% | −0,3% |
+| Funding médio (anual, sobre o nocional) | 8,8% | 4,0% |
+| Dias com funding negativo | 6,6% | 18,1% |
+
+- **Não confirmada**, por um critério: o retorno é real e positivo nos dois períodos (critérios 1 e 2 cumpridos),
+  mas no teste final fica **abaixo dos 4%** de uma aplicação de liquidez sem risco (critério 3).
+- A versão condicional (só com funding alto) rende menos: entra e sai mais vezes e paga mais custos.
+- **Tendência:** o funding está a cair (11,8% em 2024, 3,0% em 2026) e os dias negativos estão a aumentar.
+  Coincide com a entrada de capital institucional e de ETFs que arbitram esta diferença.
+- **Risco não modelado:** no desenvolvimento, o BTC subiu 59% em 30 dias. Com 50% de margem, o perpétuo vendido
+  seria liquidado com uma subida de ~40% sem reposição de margem. Executar isto exige monitorização e
+  transferências entre contas, além de acesso a perpétuos, que pode não existir a retalho em Portugal.
+
 ---
 
 ## 3. Conclusão científica
 
-Após **79 tentativas** com dois mercados (BTC/USD e EUR/USD), horizontes de 15 minutos a 1 dia, três famílias
-de modelos e três tipos de informação (preço e volume, volatilidade, derivados e fluxo), **não há evidência de
-uma vantagem direcional explorável** com custos de retalho. O resultado é consistente: o problema não está na
+Após **79 tentativas de previsão** com dois mercados (BTC/USD e EUR/USD), horizontes de 15 minutos a 1 dia, três
+famílias de modelos e três tipos de informação (preço e volume, volatilidade, derivados e fluxo), **não há
+evidência de uma vantagem direcional explorável** com custos de retalho. A única fonte de retorno real
+encontrada é **estrutural**, o carry de funding, e está a encolher: no período recente rende menos do que uma
+aplicação sem risco, com riscos operacionais que o modelo não cobre. O resultado é consistente: o problema não está na
 corretora nem no modelo, mas na falta de informação preditiva sobre a direção nestes horizontes.
 
 Isto **não** prova que não exista vantagem nenhuma. Prova que não existe nas abordagens testadas, com o rigor
@@ -97,19 +125,18 @@ aplicado.
    dias a 27/10 para fechar a validação operacional.
 3. **Volatilidade-alvo como ferramenta de risco**, não de lucro. Se o dono quiser uma exposição passiva ao BTC,
    reduz a volatilidade e o drawdown com quase o mesmo Sharpe.
-4. **Se a investigação continuar**, só com uma fonte de retorno **estrutural**, não preditiva. O candidato
-   natural é o **carry de funding** (comprado no spot e vendido no perpétuo, neutro ao preço). Dados
-   descritivos já recolhidos: funding médio de 7,2% ao ano entre 2023 e 2026, mas a cair (11,8% em 2024, 3,0% em
-   2026, com 26% de pagamentos negativos em 2026). Exige conta de derivados, que pode não estar disponível a
-   retalho em Portugal (MiCA/CMVM a confirmar), e custos de 4 pernas. **Não foi testado:** seria a hipótese 4,
-   com pré-registo próprio.
+4. **Carry de funding (H4):** não compensa hoje (2,3% ao ano contra 4% sem risco). Vale a pena **monitorizar**:
+   se o funding médio de 72 h voltar a níveis de 2024 (acima de ~10% ao ano) de forma sustentada, reavaliar com
+   uma conta de derivados real e com reposição de margem. Os dados atualizam-se com `scripts/fetch_derivatives.py`.
+5. **Não abrir mais hipóteses de previsão** sem uma fonte de informação genuinamente nova (por exemplo, dados
+   pagos de livro de ordens). Cada tentativa a mais aumenta o risco de um falso positivo.
 
 ## 5. Pendentes do dono
 
 - Relatório de observação a 27/10.
 - Renovar o acesso da Workstation ao Atlas depois de 28/10 (`scripts/atlas_setup.sh`).
 - Opcional: retirar o token do bot do serviço `agentos-angola` do projeto `serafy-agentics-fe12b`.
-- Rever e juntar os PRs #2 (integração), #3 (H3) e #4 (H2) à `main`.
+- PRs #2 (integração), #3 (H3), #4 (H2) e #5 (H4) juntos à `main` a 23/10/2026.
 
 ## 6. Onde está tudo
 
@@ -119,5 +146,6 @@ aplicado.
 | `docs/gcp-costs.md` | Recursos GCP criados e custos |
 | `docs/h3-volatilidade-preregisto.md`, `docs/research-results-h3.md`, `reports/h3/` | Hipótese 3 |
 | `docs/h2-derivados-preregisto.md`, `reports/h2/` | Hipótese 2 |
+| `docs/h4-carry-funding-preregisto.md`, `reports/h4/` | Hipótese 4 |
 | `ROADMAP.md` | Registo de hipóteses e tentativas |
 | `RELATORIO.md` | Relatório da fase 2 (histórico) |

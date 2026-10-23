@@ -4,7 +4,7 @@
 |---|---|---|---|
 | 1. Investigação inicial | Dados reais, features, modelos A/B/C, backtest com custos, risco | Feita (22/10/2026) | |
 | 2. Auditoria e evolução | Backtest cronológico, conta virtual, agente persistente, horizontes, regimes, MongoDB, Telegram, CI | **Feita (22/10/2026), com resultado negativo: nenhuma configuração tem vantagem líquida** | |
-| 3. Nova hipótese | Procurar vantagem onde o custo pesa menos ou onde há informação que as velas não têm (ver abaixo) | H1, H2 e H3 testadas a 23/10/2026: nenhuma confirmada (RELATORIO_FASE3.md) | Uma configuração qualifica no desenvolvimento E é positiva no teste final (a regra do registo de modelos) |
+| 3. Nova hipótese | Procurar vantagem onde o custo pesa menos ou onde há informação que as velas não têm (ver abaixo) | H1 a H4 testadas a 23/10/2026: nenhuma confirmada (RELATORIO_FASE3.md) | Uma configuração qualifica no desenvolvimento E é positiva no teste final (a regra do registo de modelos) |
 | 4. Paper trading contínuo | Worker na GCP com o modelo aprovado, Telegram e Atlas ligados | Pronto a ligar, à espera de um modelo aprovado e das credenciais | 3 meses de paper trading coerentes com o backtest (desvio explicado) |
 | 5. Endurecimento | Monitorização, alertas, testes de falha | | Incidentes simulados tratados sem intervenção manual |
 | 6. Real com capital próprio (opcional) | Execução real numa conta própria, limites mínimos | | Decisão explícita do dono, revisão de risco, conta na corretora em nome próprio |
@@ -31,7 +31,10 @@
    **Resultado (23/10/2026): NÃO confirmada** (`docs/research-results-h3.md`). O HAR prevê a volatilidade melhor do
    que o EWMA, mas a volatilidade-alvo no BTC só reduz o risco: o Sharpe líquido não supera o de comprar e manter
    (−0,06 com IC95% [−0,28; +0,13] no desenvolvimento). 3 tentativas novas, 75 no total.
-4. **Mais mercados com custos baixos** (pares Forex principais, índices) só depois de 1 a 3, para não multiplicar
+4. **(H4) Carry de funding neutro ao preço.** **Resultado (23/10/2026): NÃO confirmada** (`reports/h4/resultado.md`):
+   +5,7% ao ano no desenvolvimento e +2,3% no teste final (positivo e significativo), abaixo dos 4% sem risco. O funding
+   está a cair. 2 tentativas novas, 81 no total. Monitorizar o funding de 72 h; reavaliar se voltar a > 10% ao ano.
+5. **Mais mercados com custos baixos** (pares Forex principais, índices) só depois de 1 a 3, para não multiplicar
    tentativas até aparecer um falso positivo.
 
 Cada nova hipótese conta como tentativa: o número de configurações testadas fica registado no resumo e o critério
