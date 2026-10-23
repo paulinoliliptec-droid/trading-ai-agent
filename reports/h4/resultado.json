@@ -1,0 +1,171 @@
+{
+ "gerado_em": "2026-10-23T00:39:36.068121+00:00",
+ "preregisto": "docs/h4-carry-funding-preregisto.md",
+ "periodos": {
+  "desenvolvimento": [
+   "2023-01-03",
+   "2025-07-16",
+   926
+  ],
+  "teste_final": [
+   "2025-07-17",
+   "2026-10-22",
+   463
+  ]
+ },
+ "custos_bps_por_lado": {
+  "principal": 36,
+  "barato": 15
+ },
+ "resultados": {
+  "sempre|principal": {
+   "desenvolvimento": {
+    "dias": 926,
+    "dias_em_posicao": 926,
+    "entradas": 1,
+    "retorno_anual_pct": 5.661398063354931,
+    "retorno_total_pct": 15.440952632185589,
+    "ic95_diario_bps": [
+     1.1282602717782577,
+     2.0825697660187186
+    ],
+    "max_drawdown_pct": -0.2052046666666696,
+    "carry_anual_pct": 5.85083674226062,
+    "base_anual_pct": -0.00023781497480203942,
+    "custo_total_pct": 0.48
+   },
+   "teste_final": {
+    "dias": 463,
+    "dias_em_posicao": 463,
+    "entradas": 1,
+    "retorno_anual_pct": 2.287278675305976,
+    "retorno_total_pct": 2.9426928446100398,
+    "ic95_diario_bps": [
+     0.3207701007919366,
+     0.9035269402447802
+    ],
+    "max_drawdown_pct": -0.28009687687938767,
+    "carry_anual_pct": 2.6665233981281498,
+    "base_anual_pct": -0.0008429949604031956,
+    "custo_total_pct": 0.48
+   }
+  },
+  "condicional|principal": {
+   "desenvolvimento": {
+    "dias": 926,
+    "dias_em_posicao": 650,
+    "entradas": 5,
+    "retorno_anual_pct": 4.338830417566595,
+    "retorno_total_pct": 11.629785500426792,
+    "ic95_diario_bps": [
+     0.6658672948164148,
+     1.7939449442044628
+    ],
+    "max_drawdown_pct": -0.6943581648842789,
+    "carry_anual_pct": 5.21821685025198,
+    "base_anual_pct": 0.0666178869690425,
+    "custo_total_pct": 2.4000000000000004
+   },
+   "teste_final": {
+    "dias": 463,
+    "dias_em_posicao": 132,
+    "entradas": 2,
+    "retorno_anual_pct": 0.5065501007919367,
+    "retorno_total_pct": 0.6434086420140872,
+    "ic95_diario_bps": [
+     -0.09385862131029518,
+     0.3943923146148308
+    ],
+    "max_drawdown_pct": -0.47693169747218267,
+    "carry_anual_pct": 1.233917055435565,
+    "base_anual_pct": 0.029436501079913573,
+    "custo_total_pct": 0.96
+   }
+  },
+  "sempre|barato": {
+   "desenvolvimento": {
+    "dias": 926,
+    "dias_em_posicao": 926,
+    "entradas": 1,
+    "retorno_anual_pct": 5.771765233981281,
+    "retorno_total_pct": 15.765112739917653,
+    "ic95_diario_bps": [
+     1.1734321652267818,
+     2.0975900683945277
+    ],
+    "max_drawdown_pct": -0.06913666106361793,
+    "carry_anual_pct": 5.85083674226062,
+    "base_anual_pct": -0.00023781497480203942,
+    "custo_total_pct": 0.2
+   },
+   "teste_final": {
+    "dias": 463,
+    "dias_em_posicao": 463,
+    "entradas": 1,
+    "retorno_anual_pct": 2.5080130165586754,
+    "retorno_total_pct": 3.231848364627954,
+    "ic95_diario_bps": [
+     0.39565572354211664,
+     0.9338370482361411
+    ],
+    "max_drawdown_pct": -0.28009687687938767,
+    "carry_anual_pct": 2.6665233981281498,
+    "base_anual_pct": -0.0008429949604031956,
+    "custo_total_pct": 0.2
+   }
+  },
+  "condicional|barato": {
+   "desenvolvimento": {
+    "dias": 926,
+    "dias_em_posicao": 650,
+    "entradas": 5,
+    "retorno_anual_pct": 4.890666270698345,
+    "retorno_total_pct": 13.206067930011622,
+    "ic95_diario_bps": [
+     0.865476249100072,
+     1.9145820608351334
+    ],
+    "max_drawdown_pct": -0.2757413535284581,
+    "carry_anual_pct": 5.21821685025198,
+    "base_anual_pct": 0.0666178869690425,
+    "custo_total_pct": 1.0
+   },
+   "teste_final": {
+    "dias": 463,
+    "dias_em_posicao": 132,
+    "entradas": 2,
+    "retorno_anual_pct": 0.9480187832973364,
+    "retorno_total_pct": 1.209464450540465,
+    "ic95_diario_bps": [
+     0.05231973002159827,
+     0.5013171238300932
+    ],
+    "max_drawdown_pct": -0.19744228603136849,
+    "carry_anual_pct": 1.233917055435565,
+    "base_anual_pct": 0.029436501079913573,
+    "custo_total_pct": 0.4
+   }
+  }
+ },
+ "riscos": {
+  "desenvolvimento": {
+   "dias_funding_negativo_pct": 6.587473002159827,
+   "pior_variacao_diaria_premio_bps": 11.2469,
+   "maior_subida_btc_30d_pct": 58.93763105759571,
+   "funding_medio_anual_pct": 8.77625511339093
+  },
+  "teste_final": {
+   "dias_funding_negativo_pct": 18.142548596112313,
+   "pior_variacao_diaria_premio_bps": 8.084399999999999,
+   "maior_subida_btc_30d_pct": 26.874852362611957,
+   "funding_medio_anual_pct": 3.9997850971922246
+  }
+ },
+ "escolhida": "sempre",
+ "criterios": {
+  "1_dev_ic95_diario_acima_de_zero": true,
+  "2_final_retorno_anual_positivo": true,
+  "3_final_supera_4pct": false
+ },
+ "hipotese_confirmada": false
+}
