@@ -42,3 +42,18 @@ Plano em `docs/observacao-5-dias.md`. Nenhum modelo é aprovado com base neste p
 - Opcional: retirar `TELEGRAM_BOT_TOKEN` do serviço `agentos-angola` do `serafy-agentics-fe12b`, para que um arranque futuro não volte a registar o webhook.
 - O token do bot foi partilhado numa conversa; o dono decidiu mantê-lo.
 - Renovar o acesso da Workstation ao Atlas depois de 28/10 (`scripts/atlas_setup.sh`).
+
+## Auditoria semanal no Telegram (04/11/2026)
+
+`scripts/weekly_audit.py` corre na VM às segundas, às 09:00 UTC (`trading-audit.timer`, `Persistent=true`: se a VM
+estiver desligada, corre no arranque seguinte). Avalia as decisões cujo horizonte de 24 h já acabou, com a mesma
+tabela da auditoria retrospetiva (`monitoring/audit.tabela`), e envia uma mensagem simples:
+
+- **Funcionamento:** decisões registadas contra as esperadas (uma por hora), falhas de ligação e compras feitas.
+- **Decisões da semana:** quantas rejeições estavam certas depois de custos e quanto daria comprar sempre.
+- **Nota:** AUC da probabilidade contra o TP (0,50 = moeda ao ar), da semana e acumulado, mais as semanas anteriores.
+- **Veredicto** com regra fixa (`monitoring/weekly.py`): só fala em «possível habilidade» com AUC acumulado ≥ 0,55
+  e pelo menos 90 dias. Uma semana boa isolada não conta.
+
+O resumo fica na coleção `audits` (um documento por semana; repetir a mesma semana não volta a enviar). É a única
+escrita; o modelo, os limites de risco e a operação não mudam. Teste sem enviar: `python scripts/weekly_audit.py --seco`.

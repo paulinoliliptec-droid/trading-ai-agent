@@ -27,6 +27,7 @@ COLLECTIONS: dict[str, list[tuple[list[tuple[str, int]], dict]]] = {
     "risk_events": [([("tenant_id", 1), ("ts", -1)], {}), ([("tenant_id", 1), ("kind", 1), ("ts", -1)], {})],
     "events": [([("tenant_id", 1), ("ts", -1)], {}), ([("tenant_id", 1), ("level", 1), ("ts", -1)], {})],
     "tenants": [([("tenant_id", 1)], {"unique": True})],
+    "audits": [([("tenant_id", 1), ("audit_id", 1)], {"unique": True}), ([("tenant_id", 1), ("ts", -1)], {})],
     "model_versions": [([("tenant_id", 1), ("model_id", 1)], {"unique": True}), ([("tenant_id", 1), ("symbol", 1), ("created_at", -1)], {})],
 }
 
