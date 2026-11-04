@@ -23,5 +23,7 @@ mkdir -p /var/lib/trading/models_artifacts
 gcloud storage rsync -r "gs://$BUCKET/models_artifacts" /var/lib/trading/models_artifacts || true
 meta unit-agent > "/etc/systemd/system/trading-agent@.service"
 meta unit-telegram > /etc/systemd/system/trading-telegram.service
+meta unit-audit > /etc/systemd/system/trading-audit.service
+meta unit-audit-timer > /etc/systemd/system/trading-audit.timer
 systemctl daemon-reload
-systemctl enable --now trading-agent@BTCUSD.service trading-telegram.service
+systemctl enable --now trading-agent@BTCUSD.service trading-telegram.service trading-audit.timer

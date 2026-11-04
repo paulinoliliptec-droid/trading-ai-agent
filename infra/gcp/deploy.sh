@@ -65,7 +65,7 @@ run gcloud compute instances create "$P-worker" --project "$PROJECT" --zone "$ZO
   --boot-disk-size 30GB --boot-disk-type pd-standard --address "$P-worker-ip" --labels "$LABELS" \
   --no-shielded-secure-boot --tags "$P" \
   --metadata image="$IMAGE",bucket="$BUCKET",prefix="$P" \
-  --metadata-from-file startup-script=infra/gcp/startup-worker.sh,unit-agent=infra/gcp/systemd/trading-agent@.service,unit-telegram=infra/gcp/systemd/trading-telegram.service
+  --metadata-from-file startup-script=infra/gcp/startup-worker.sh,unit-agent=infra/gcp/systemd/trading-agent@.service,unit-telegram=infra/gcp/systemd/trading-telegram.service,unit-audit=infra/gcp/systemd/trading-audit.service,unit-audit-timer=infra/gcp/systemd/trading-audit.timer
 # Sem regras de firewall de entrada: a VM só faz ligações de saída (Atlas, Telegram, Coinbase). SSH via IAP se preciso.
 
 echo
